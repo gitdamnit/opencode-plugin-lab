@@ -39,6 +39,12 @@ plugin.
 - **ProDoc Guard** project memory: `PRODUCT_REQUIREMENTS.md`, `DECISION_LOG.md`,
   `PROJECT_STATUS.md`.
 
+### Verified
+
+- OpenCode V2 **2.0.21** (pinned baseline) and **2.0.32** (evaluated): the full
+  generic suite passes identically on both — 76 pass / 0 fail / 5 skip. See
+  `reports/v1.0.0/` and `docs/OPENCODE_COMPATIBILITY.md`.
+
 ### Changed
 
 - The Docker builder is now driven by a resolved build plan

@@ -9,22 +9,21 @@ it *verified*.
 | Version | Where | Result |
 | --- | --- | --- |
 | **2.0.21** | the pinned baseline, committed manifests, the historical evidence | verified: real `opencode serve` runtime, plugin loading, tool registration, model-request path |
+| **2.0.32** (latest stable at the time of writing) | separate evaluation build (`OPENCODE_VERSION=2.0.32`), not the pinned default | verified: **76 pass / 0 fail / 5 skip**, identical to 2.0.21, image `sha256:ea5017747b2a…` |
 
 The historical three-plugin run (`reports/historical/gitdamnit-2026-10-17/`)
 was performed on OpenCode **v2.0.21** and Node **v22.23.3**.
 
-## Projected (API surface probed, full matrix not re-run)
+The 2.0.32 evaluation is committed at
+`reports/v1.0.0/opencode-2.0.32/test-report.json`.
 
-| Version | Status | Evidence |
-| --- | --- | --- |
-| **2.0.32** (latest stable at the time of writing) | projected compatible | `@opencode/cli@2.0.32` installs and reports `opencode v2.0.32`; `@opencode/plugin@2.0.32` exposes the same surface the lab relies on: `Plugin.define({ id, setup })`, `ctx.tool.transform` / `editor.add` / `editor.namespace`, `ctx.tool.hook("execute.before"|"execute.after")`, `ctx.plugin.list()`, `ctx.tool.list()`. |
+## Projected
 
-**Projected is not verified.** The full matrix (server boot, `/api/plugin`,
-inspector tool capture, failure isolation, install-from-artifact) has **not**
-been run against 2.0.32 in this repository. To verify it:
+None currently recorded. A version is either verified by a run, or listed here as
+projected with the reason it has not been run.
 
 ```sh
-make build OPENCODE_VERSION=2.0.32
+make build OPENCODE_VERSION=<x>
 make suite
 make report        # the report records the exact runtime version used
 ```
@@ -53,6 +52,5 @@ into the report.
 
 OpenCode V2 ships frequently (`2.0.21` → `2.0.3x` within weeks of the baseline).
 The lab is designed so that following it is a deliberate, recorded action rather
-than silent drift. No breaking change to the lab's assumptions was found between
-2.0.21 and 2.0.32 at the API-surface level; the runtime matrix on 2.0.32 remains
-unverified until it is run.
+than silent drift. No breaking change was found between 2.0.21 and 2.0.32: the
+full generic suite passes on both (76 pass / 0 fail / 5 skip).

@@ -62,13 +62,12 @@ and runs the full generic suite. Nothing is committed. Add `NAME=...`,
 | Version | Status |
 | --- | --- |
 | **2.0.21** | **Reproducible tested baseline.** The pinned version in every committed manifest and in the historical evidence. |
-| 2.0.3x (e.g. 2.0.32) | *Projected*, not asserted by the committed baseline. Evaluate explicitly with `make build OPENCODE_VERSION=2.0.32`. |
+| **2.0.32** | **Verified by evaluation** (`make build OPENCODE_VERSION=2.0.32 && make suite`): 76 pass / 0 fail / 5 skip, identical to 2.0.21. Not the pinned default. |
 
 The OpenCode V2 line moves quickly. The lab never silently follows `latest`: a
-manifest pins an exact version, `make build OPENCODE_VERSION=…` overrides it for a
-one-off evaluation, and the **exact installed version is recorded in every
-report**. Passing on 2.0.21 does not prove 2.0.32 works — run it and read the
-report.
+manifest pins an exact version, `make build OPENCODE_VERSION=…` selects another
+for a one-off evaluation, and the **exact installed version is recorded in every
+report**. See [`docs/OPENCODE_COMPATIBILITY.md`](docs/OPENCODE_COMPATIBILITY.md).
 
 ---
 

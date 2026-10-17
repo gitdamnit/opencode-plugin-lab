@@ -39,8 +39,8 @@ work item is rejected without at least one entry here.
 - [Tested] `make test-plugin` for an arbitrary external plugin — `reports/v1.0.0/arbitrary-plugin/test-report.json`
 - [Implemented] Documentation, licence, changelog and release materials — `README.md`, `docs/`, `CHANGELOG.md`, `LICENSE`
 - [Removed] Hardcoded three-plugin staging/`plugins.tsv` from the default path (preserved in the profile) — `profiles/gitdamnit/plugins.tsv`
+- [Tested] OpenCode 2.0.32 evaluated end to end — `reports/v1.0.0/opencode-2.0.32/test-report.json`
 - [Planned] Publish v1.0.0 to GitHub (requires maintainer authorization) — `docs/RELEASE_CHECKLIST.md`
-- [Planned] Evaluate OpenCode 2.0.3x end to end against the baseline — `docs/OPENCODE_COMPATIBILITY.md`
 
 ## Tests
 
@@ -52,7 +52,7 @@ work item is rejected without at least one entry here.
 | regression profile | `PROFILE=gitdamnit make build && ./scripts/validate.sh` | Pass (153 / 0 fail / 8 skip) | `reports/v1.0.0/gitdamnit-profile/test-report.json` |
 | arbitrary plugin | `make test-plugin PLUGIN=…` | Pass (30 / 0 fail / 3 skip) | `reports/v1.0.0/arbitrary-plugin/test-report.json` |
 | rc-evidence | `make rc-evidence` | Pass (consistent) | `reports/v1.0.0/rc-evidence.json` |
-| OpenCode 2.0.32 | `npm install -g @opencode/cli@2.0.32` (API-surface probe only) | Not run (projected) | `docs/OPENCODE_COMPATIBILITY.md` |
+| OpenCode 2.0.32 | `OPENCODE_VERSION=2.0.32 make build && make suite` | Pass (76 / 0 fail / 5 skip) | `reports/v1.0.0/opencode-2.0.32/test-report.json` |
 
 ## Known Defects
 

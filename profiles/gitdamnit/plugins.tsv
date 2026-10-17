@@ -9,6 +9,6 @@
 # branch, HEAD SHA and dirty state, and never writes to it.
 #
 # NOTE: the columns are separated by a single TAB. Do not replace tabs with spaces.
-checkpoint-orchestrator	/home/evan/Projects/checkpoint-orchestrator-v2	/home/evan/Projects/checkpoint-orchestrator	package.json package-lock.json tsconfig.json plugins tests README.md CHANGELOG.md LICENSE
-git-that-shit	/home/evan/Projects/git-that-shit-v2	/home/evan/Projects/git-that-shit	package.json package-lock.json tsconfig.json src tests README.md CHANGELOG.md
-stranger-danger	/home/evan/Projects/stranger-danger-v2-hardening	/home/evan/Projects/stranger-danger	package.json package-lock.json tsconfig.json tsconfig.test.json src tests scripts rules .strangerdanger-allowlist.toml README.md CHANGELOG.md
+checkpoint-orchestrator	$HOME/Projects/checkpoint-orchestrator-v2	$HOME/Projects/checkpoint-orchestrator	package.json package-lock.json tsconfig.json plugins tests README.md CHANGELOG.md LICENSE
+git-that-shit	$HOME/Projects/git-that-shit-v2	$HOME/Projects/git-that-shit	package.json package-lock.json tsconfig.json src tests README.md CHANGELOG.md
+stranger-danger	$HOME/Projects/stranger-danger-v2-hardening	$HOME/Projects/stranger-danger	package.json package-lock.json tsconfig.json tsconfig.test.json src tests scripts rules .strangerdanger-allowlist.toml README.md CHANGELOG.md
