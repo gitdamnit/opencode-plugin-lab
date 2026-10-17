@@ -2,17 +2,17 @@
 
 ## Current Phase
 
-In Progress
+Released
 
 ## Repository State
 
 <!-- Machine-maintained by `prodoc update`. Do not hand-edit. -->
 <!-- prodoc:observed:start -->
 <!-- Observed from Git metadata only, by `prodoc update`. This block is not evidence that the implementation or its tests are correct; record that under `## Verification Evidence`. -->
-- **Observed branch:** release/v1.0.0
-- **Observed commit:** 31ecf1a5f60ee0129eb934829b9fd57f2f2542c2
+- **Observed branch:** main
+- **Observed commit:** a89265058831d67d44b7bd38ae8ea4cb5a8a325a
 - **Observed working tree:** dirty
-- **Observed at:** 2026-10-17T02:28:56Z
+- **Observed at:** 2026-10-17T03:38:53Z
 <!-- prodoc:observed:end -->
 
 ## Verification Evidence
@@ -27,6 +27,8 @@ work item is rejected without at least one entry here.
 - **Verification:** commit `31ecf1a` — `gitdamnit` regression profile green against the pinned historical commits (153 passed / 0 failed / 8 skipped) — evidence `reports/v1.0.0/gitdamnit-profile/test-report.json`
 - **Verification:** commit `31ecf1a` — arbitrary external plugin via `make test-plugin` green (30 passed / 0 failed / 3 skipped) — evidence `reports/v1.0.0/arbitrary-plugin/test-report.json`
 - **Verification:** commit `31ecf1a` — source = staged = packed = installed for the default manifest — evidence `reports/v1.0.0/rc-evidence.json`
+- **Verification:** commit `a892650` — OpenCode 2.0.32 evaluated end to end (76 pass / 0 fail / 5 skip) — evidence `reports/v1.0.0/opencode-2.0.32/test-report.json`
+- **Verification:** commit `a892650` — published to GitHub; public clone loads and its manifests validate; tag `v1.0.0` (annotated) dereferences to `a892650`; release archive downloads — evidence https://github.com/gitdamnit/opencode-plugin-lab/releases/tag/v1.0.0
 
 ## Completed Work
 
@@ -40,7 +42,7 @@ work item is rejected without at least one entry here.
 - [Implemented] Documentation, licence, changelog and release materials — `README.md`, `docs/`, `CHANGELOG.md`, `LICENSE`
 - [Removed] Hardcoded three-plugin staging/`plugins.tsv` from the default path (preserved in the profile) — `profiles/gitdamnit/plugins.tsv`
 - [Tested] OpenCode 2.0.32 evaluated end to end — `reports/v1.0.0/opencode-2.0.32/test-report.json`
-- [Planned] Publish v1.0.0 to GitHub (requires maintainer authorization) — `docs/RELEASE_CHECKLIST.md`
+- [Published] v1.0.0 released on GitHub — https://github.com/gitdamnit/opencode-plugin-lab/releases/tag/v1.0.0
 
 ## Tests
 
@@ -64,17 +66,17 @@ None.
 
 ## Next Actions
 
-1. Run `prodoc validate` / `prodoc check` and fix any findings.
-2. Commit the v1.0.0 work locally; refresh the observed Git block with
-   `prodoc update`.
-3. Pending explicit maintainer authorization: create the public repository, push
-   the release branch, and tag `v1.0.0` (`docs/RELEASE_CHECKLIST.md`).
-4. Optionally verify OpenCode 2.0.3x end to end (`make build
-   OPENCODE_VERSION=2.0.32 && make suite`).
+1. Keep the `v1.0.0` tag fixed at `a892650`; do not move it.
+2. Optionally pin a newer OpenCode version after a fresh evaluation run
+   (`make build OPENCODE_VERSION=<x> && make suite`).
+3. Triage issues and PRs arriving against the public repository.
 
 ## Release Status
 
-v1.0.0 release candidate — **not released**. No tag, no push, no repository
-creation, no package publication has been performed. Implementation and testing
-are complete and verified locally; publication requires explicit maintainer
-authorization.
+**v1.0.0 — Released** (2026-10-17).
+
+- Repository (public, MIT): https://github.com/gitdamnit/opencode-plugin-lab
+- Tag: `v1.0.0` (annotated) → commit `a89265058831d67d44b7bd38ae8ea4cb5a8a325a`
+- Release: https://github.com/gitdamnit/opencode-plugin-lab/releases/tag/v1.0.0
+- Nothing was published to npm or any Docker registry (this is not a loadable
+  OpenCode plugin).
