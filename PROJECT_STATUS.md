@@ -9,10 +9,10 @@ In Progress
 <!-- Machine-maintained by `prodoc update`. Do not hand-edit. -->
 <!-- prodoc:observed:start -->
 <!-- Observed from Git metadata only, by `prodoc update`. This block is not evidence that the implementation or its tests are correct; record that under `## Verification Evidence`. -->
-- **Observed branch:** -
-- **Observed commit:** -
-- **Observed working tree:** unknown
-- **Observed at:** -
+- **Observed branch:** release/v1.0.0
+- **Observed commit:** 31ecf1a5f60ee0129eb934829b9fd57f2f2542c2
+- **Observed working tree:** dirty
+- **Observed at:** 2026-10-17T02:28:56Z
 <!-- prodoc:observed:end -->
 
 ## Verification Evidence
@@ -23,10 +23,10 @@ work item is rejected without at least one entry here.
 
 - **Verification:** commit `96e67fc` — historical three-plugin evidence imported unchanged (145 passed / 0 failed / 0 skipped, OpenCode v2.0.21, image `sha256:76ebd805cd54…`) — evidence `reports/historical/gitdamnit-2026-10-17/test-report.json`
 - **Verification:** commit `96e67fc` — original release-candidate provenance (source = staged = packed = installed) preserved — evidence `reports/historical/gitdamnit-2026-10-17/rc-evidence.json`
-- **Verification:** commit `96e67fc`+ (generalized lab, recorded below) — default manifest `make build && make suite` green (76 passed / 0 failed / 5 skipped), OpenCode v2.0.21, baked harness — evidence `reports/v1.0.0/default-run/test-report.json`
-- **Verification:** commit `96e67fc`+ (generalized lab, recorded below) — `gitdamnit` regression profile green against the pinned historical commits (153 passed / 0 failed / 8 skipped) — evidence `reports/v1.0.0/gitdamnit-profile/test-report.json`
-- **Verification:** commit `96e67fc`+ (generalized lab, recorded below) — arbitrary external plugin via `make test-plugin` green (30 passed / 0 failed / 3 skipped) — evidence `reports/v1.0.0/arbitrary-plugin/test-report.json`
-- **Verification:** commit `96e67fc`+ (generalized lab, recorded below) — source = staged = packed = installed for the default manifest — evidence `reports/v1.0.0/rc-evidence.json`
+- **Verification:** commit `31ecf1a` — default manifest `make build && make suite` green (76 passed / 0 failed / 5 skipped), OpenCode v2.0.21, baked harness — evidence `reports/v1.0.0/default-run/test-report.json`
+- **Verification:** commit `31ecf1a` — `gitdamnit` regression profile green against the pinned historical commits (153 passed / 0 failed / 8 skipped) — evidence `reports/v1.0.0/gitdamnit-profile/test-report.json`
+- **Verification:** commit `31ecf1a` — arbitrary external plugin via `make test-plugin` green (30 passed / 0 failed / 3 skipped) — evidence `reports/v1.0.0/arbitrary-plugin/test-report.json`
+- **Verification:** commit `31ecf1a` — source = staged = packed = installed for the default manifest — evidence `reports/v1.0.0/rc-evidence.json`
 
 ## Completed Work
 
