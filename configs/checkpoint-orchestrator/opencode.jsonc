@@ -1,0 +1,25 @@
+// Configuration 2 — Checkpoint Orchestrator only.
+//
+// The plugin is loaded from the staged, compiled lab package as a local plugin
+// directory (absolute path). The lab inspector is loaded last so it can record
+// the tools this plugin actually registered at runtime.
+{
+  "$schema": "https://opencode.ai/config.json",
+  "update": "disable",
+  "plugins": [
+    {
+      "package": "/opt/lab/plugins/checkpoint-orchestrator",
+      // Namespaced defaults are intentionally NOT overridden here, so the lab
+      // exercises the plugin's own default handoff location
+      // (.opencode/state/checkpoint-orchestrator/) and legacy gating.
+      "options": {
+        "historyLimit": 20,
+        "autosaveEvery": false
+      }
+    },
+    {
+      "package": "/opt/lab/plugins/lab-inspector",
+      "options": { "out": "__REPORTS__/runtime-checkpoint-orchestrator.json" }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+// Configuration 1 — OpenCode V2 with NO external plugins.
+// Used as the baseline: it proves the runtime boots and that no third-party
+// plugin is present, so any plugin later observed in another config is
+// attributable to that config alone.
+{
+  "$schema": "https://opencode.ai/config.json",
+  "update": "disable",
+  "plugins": []
+}

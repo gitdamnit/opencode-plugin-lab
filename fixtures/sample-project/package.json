@@ -1,0 +1,6 @@
+{
+  "name": "lab-sample-fixture",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Disposable fixture project for destructive plugin tests."
+}

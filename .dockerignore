@@ -1,0 +1,27 @@
+# Never ship host credentials or host state into the image.
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+.ssh
+.aws
+.config/opencode
+.opencode
+
+# Host-only control surface
+.git
+.gitignore
+.github
+node_modules
+build
+reports
+*.log
+
+# Keep staged sources, but never their installed dependencies.
+staging/**/node_modules
+staging/**/dist
+staging/**/dist-test
+staging/**/.git
+staging/**/.env
+staging/**/.env.*

@@ -1,0 +1,12 @@
+// Configuration 4 — Stranger Danger only.
+{
+  "$schema": "https://opencode.ai/config.json",
+  "update": "disable",
+  "plugins": [
+    { "package": "/opt/lab/plugins/stranger-danger", "options": {} },
+    {
+      "package": "/opt/lab/plugins/lab-inspector",
+      "options": { "out": "__REPORTS__/runtime-stranger-danger.json" }
+    }
+  ]
+}

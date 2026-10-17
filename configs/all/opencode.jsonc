@@ -1,0 +1,22 @@
+// Configuration 5 — all three plugins together.
+//
+// Load order is explicit: checkpoint-orchestrator, git-that-shit,
+// stranger-danger, then the inspector. The combined integration tests assert
+// that all three register without tool-name conflicts and that the inspector
+// still observes every expected tool.
+{
+  "$schema": "https://opencode.ai/config.json",
+  "update": "disable",
+  "plugins": [
+    {
+      "package": "/opt/lab/plugins/checkpoint-orchestrator",
+      "options": { "historyLimit": 20, "autosaveEvery": false }
+    },
+    { "package": "/opt/lab/plugins/git-that-shit", "options": {} },
+    { "package": "/opt/lab/plugins/stranger-danger", "options": {} },
+    {
+      "package": "/opt/lab/plugins/lab-inspector",
+      "options": { "out": "__REPORTS__/runtime-all.json" }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+// Configuration 3 — Git That Shit only.
+{
+  "$schema": "https://opencode.ai/config.json",
+  "update": "disable",
+  "plugins": [
+    { "package": "/opt/lab/plugins/git-that-shit", "options": {} },
+    {
+      "package": "/opt/lab/plugins/lab-inspector",
+      "options": { "out": "__REPORTS__/runtime-git-that-shit.json" }
+    }
+  ]
+}

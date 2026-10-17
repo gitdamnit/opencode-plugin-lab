@@ -1,0 +1,94 @@
+# OpenCode Plugin Lab — isolated, disposable Docker test lab.
+#
+# Security posture (offline `lab` service):
+#   * no privileged mode, no host Docker socket, no host networking
+#   * network_mode: "none"  -> no outbound traffic during tests
+#   * read_only rootfs with small tmpfs scratch mounts
+#   * all Linux capabilities dropped, no-new-privileges
+#   * runs as the invoking host uid/gid (non-root), restart policy "none"
+#   * no published host ports (the server binds 127.0.0.1 inside the container)
+#   * resource limits (memory, cpus, pids)
+#
+# The optional `lab-online` service (profile: online) is the ONLY one with
+# outbound networking and is started explicitly via `make test-online`.
+name: opencode-plugin-lab
+
+x-lab-common: &lab-common
+  build:
+    context: .
+    dockerfile: Dockerfile
+    args:
+      NODE_IMAGE: ${NODE_IMAGE:-node:22-bookworm-slim}
+      OPENCODE_VERSION: ${OPENCODE_VERSION:-2.0.21}
+      PLUGIN_SDK_VERSION: ${PLUGIN_SDK_VERSION:-2.0.21}
+  image: opencode-plugin-lab:local
+  user: "${LAB_UID:-1000}:${LAB_GID:-1000}"
+  working_dir: /lab/work
+  environment:
+    HOME: /lab/home
+    XDG_CONFIG_HOME: /lab/xdg/config
+    XDG_DATA_HOME: /lab/xdg/data
+    XDG_CACHE_HOME: /lab/xdg/cache
+    OPENCODE_DISABLE_AUTOUPDATE: "1"
+    CI: "1"
+    LAB_REPORTS_DIR: /lab/reports
+  labels:
+    org.opencode.lab: "1"
+    org.opencode.lab.component: "test-lab"
+
+services:
+  # -------------------------------------------------------------------------
+  # Offline test lab: no network at all, read-only rootfs, dropped caps.
+  # -------------------------------------------------------------------------
+  lab:
+    <<: *lab-common
+    container_name: opencode-plugin-lab-offline
+    network_mode: "none"
+    read_only: true
+    cap_drop: ["ALL"]
+    security_opt:
+      - "no-new-privileges:true"
+    restart: "no"
+    pids_limit: ${LAB_PIDS:-512}
+    mem_limit: ${LAB_MEMORY:-2g}
+    cpus: ${LAB_CPUS:-2.0}
+    tmpfs:
+      - /lab/home:rw,size=${LAB_HOME_TMPFS:-256m},mode=1777
+      - /lab/xdg:rw,size=${LAB_HOME_TMPFS:-256m},mode=1777
+      - /lab/work:rw,size=${LAB_WORK_TMPFS:-2g},mode=1777
+      - /tmp:rw,size=256m,mode=1777
+      - /run:rw,size=16m,mode=755
+    volumes:
+      # Only lab-owned report output leaves the container. The development
+      # repositories are never mounted (source is baked in as staged copies).
+      - ./reports:/lab/reports
+    command: ["node", "/opt/lab/harness/run.mjs", "--config", "${LAB_CONFIG:-all}", "--tier", "${LAB_TIER:-all}"]
+
+  # -------------------------------------------------------------------------
+  # Optional online tier. Started only with `--profile online` / `make test-online`.
+  # Has outbound networking and a dedicated test credential via .env.
+  # -------------------------------------------------------------------------
+  lab-online:
+    <<: *lab-common
+    profiles: ["online"]
+    container_name: opencode-plugin-lab-online
+    read_only: true
+    cap_drop: ["ALL"]
+    security_opt:
+      - "no-new-privileges:true"
+    restart: "no"
+    pids_limit: ${LAB_PIDS:-512}
+    mem_limit: ${LAB_MEMORY:-2g}
+    cpus: ${LAB_CPUS:-2.0}
+    tmpfs:
+      - /lab/home:rw,size=${LAB_HOME_TMPFS:-256m},mode=1777
+      - /lab/xdg:rw,size=${LAB_HOME_TMPFS:-256m},mode=1777
+      - /lab/work:rw,size=${LAB_WORK_TMPFS:-2g},mode=1777
+      - /tmp:rw,size=256m,mode=1777
+      - /run:rw,size=16m,mode=755
+    volumes:
+      - ./reports:/lab/reports
+    env_file:
+      - path: .env
+        required: false
+    command: ["node", "/opt/lab/harness/run.mjs", "--config", "${LAB_CONFIG:-all}", "--tier", "all", "--online"]
