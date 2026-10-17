@@ -1,73 +1,51 @@
 {
-  "generatedAt": "2026-10-17T00:10:25.488Z",
+  "generatedAt": "2026-10-17T02:24:52.709Z",
   "image": "opencode-plugin-lab:local",
+  "manifest": "/home/evan/Projects/opencode-plugin-lab/lab.config.json",
   "plugins": [
     {
-      "name": "checkpoint-orchestrator",
-      "sourcePath": "/home/evan/Projects/checkpoint-orchestrator-v2",
+      "name": "example-plugin",
+      "sourceType": "directory",
       "source": {
-        "branch": "feat/sqlite-opencode-v2",
-        "commit": "65bf6981eee55e6cf031bdf37a6b13b0ccd24072",
-        "dirty": false,
-        "version": "2.0.0-dev.2"
+        "branch": "release/v1.0.0",
+        "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6",
+        "dirty": true,
+        "version": "1.0.0"
       },
       "staged": {
-        "version": "2.0.0-dev.2"
+        "version": "1.0.0"
       },
       "packed": {
-        "tarball": "gitdamnit-checkpoint-orchestrator-2.0.0-dev.2.tgz",
-        "version": "2.0.0-dev.2",
-        "sha256": "9adcaf8b7724b561fbe795ca20fec469a21ee9ca75e3d7ece3fb1e550ce2c0cf"
+        "tarball": "opencode-lab-example-plugin-1.0.0.tgz",
+        "version": "1.0.0",
+        "sha256": "a6b2d430e97780d5b9be994d12353f6845a92b8613f374f356534a379cea71aa"
       },
       "installed": {
-        "version": "2.0.0-dev.2",
-        "commit": "65bf6981eee55e6cf031bdf37a6b13b0ccd24072"
+        "version": "1.0.0",
+        "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6"
       },
       "consistent": true
     },
     {
-      "name": "git-that-shit",
-      "sourcePath": "/home/evan/Projects/git-that-shit-v2",
+      "name": "example-plugin-2",
+      "sourceType": "package",
       "source": {
-        "branch": "feat/git-that-shit-v2-hardening",
-        "commit": "6069f916a0fac14439c3335e682f994466961851",
-        "dirty": false,
-        "version": "0.3.0"
+        "branch": "release/v1.0.0",
+        "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6",
+        "dirty": true,
+        "version": "1.0.0"
       },
       "staged": {
-        "version": "0.3.0"
+        "version": "1.0.0"
       },
       "packed": {
-        "tarball": "gitdamnit-opencode-git-that-shit-0.3.0.tgz",
-        "version": "0.3.0",
-        "sha256": "bcfe63796cb7308d971cb5a3f9423c71c0702e4f664584b4f94d5c4f1a7ef533"
+        "tarball": "opencode-lab-example-plugin-2-1.0.0.tgz",
+        "version": "1.0.0",
+        "sha256": "562ce5d5616796dcd7e17bafc5df19675eb37a152d92595b0912efc19e46bd94"
       },
       "installed": {
-        "version": "0.3.0",
-        "commit": "6069f916a0fac14439c3335e682f994466961851"
-      },
-      "consistent": true
-    },
-    {
-      "name": "stranger-danger",
-      "sourcePath": "/home/evan/Projects/stranger-danger-v2-hardening",
-      "source": {
-        "branch": "feat/stranger-danger-v2-hardening",
-        "commit": "9cfd8135429bffb2e5e32e97f23bec3f5b6277bd",
-        "dirty": false,
-        "version": "0.2.0"
-      },
-      "staged": {
-        "version": "0.2.0"
-      },
-      "packed": {
-        "tarball": "gitdamnit-stranger-danger-0.2.0.tgz",
-        "version": "0.2.0",
-        "sha256": "2ca20f512a03cbaa04596a6dc9a787b68d20889566044fddfaf69ec945895d92"
-      },
-      "installed": {
-        "version": "0.2.0",
-        "commit": "9cfd8135429bffb2e5e32e97f23bec3f5b6277bd"
+        "version": "1.0.0",
+        "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6"
       },
       "consistent": true
     }

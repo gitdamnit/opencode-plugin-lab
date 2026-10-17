@@ -1,0 +1,24 @@
+gitdamnit regression profile — exact sources built for the v1.0.0 profile run.
+
+Committed historical baseline (reports/historical/gitdamnit-2026-10-17):
+  checkpoint-orchestrator 2.0.0-dev.2  65bf6981eee55e6cf031bdf37a6b13b0ccd24072
+  git-that-shit           0.3.0        6069f916a0fac14439c3335e682f994466961851
+  stranger-danger         0.2.0        9cfd8135429bffb2e5e32e97f23bec3f5b6277bd
+
+v1.0.0 profile run (reports/v1.0.0/gitdamnit-profile): built from READ-ONLY
+exports of those same three commits (`git archive <sha> | tar -x` into
+/tmp, so no plugin repository was modified), via:
+
+  PROFILE=gitdamnit \
+  CHECKPOINT_ORCHESTRATOR_DIR=/tmp/.../cp \
+  GIT_THAT_SHIT_DIR=/tmp/.../gts \
+  STRANGER_DANGER_DIR=/tmp/.../sd \
+  ./scripts/build.sh
+
+Reported versions match the historical baseline (2.0.0-dev.2 / 0.3.0 / 0.2.0).
+The exports are not git worktrees, so the report records branch/commit as
+unknown for them; the versions and this file pin the commits.
+
+arbitrary-plugin run (reports/v1.0.0/arbitrary-plugin): the pinned stranger-danger
+export supplied to `make test-plugin` (an external plugin the default lab knows
+nothing about), proving requirement D.

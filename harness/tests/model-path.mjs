@@ -1,36 +1,39 @@
-// Offline model-request path test.
+// Offline model-request path test (generic).
 //
-// Runs the REAL `opencode run` agent loop against a local OpenAI-compatible
-// mock provider (loopback only — no outbound network), then inspects the exact
-// request body OpenCode sent. This exercises the supported request path rather
-// than assuming protection from unit tests:
+// Runs the REAL `opencode run` agent loop against a local OpenAI-compatible mock
+// provider (loopback only — no outbound network), then inspects the exact request
+// body OpenCode sent. This exercises the supported request path rather than
+// assuming protection from unit tests:
 //
-//   * baseline / plugins without stranger-danger -> the synthetic secret IS
-//     present in the transmitted request (control: the path really transmits).
-//   * configurations with stranger-danger -> the secret is absent and a
-//     redaction token is present (protection on the real path).
+//   * configurations whose plugins declare capabilities.redaction -> the synthetic
+//     secret must be absent and a redaction token present
+//   * every other configuration -> control: the secret IS present in the
+//     transmitted request, proving the capture path really observes traffic
+//
+// The control branch is the honesty mechanism: if the capture path were broken,
+// the control would fail.
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { Suite, assert, assertEquals, assertIncludes, assertNotIncludes } from "../lib/suite.mjs";
-import { CONFIGS, LAB } from "../lib/env.mjs";
+import { CONFIGS, PLUGINS } from "../lib/env.mjs";
 import { runAsync } from "../lib/exec.mjs";
 import { startMockModelServer } from "../mock-model-server.mjs";
 
 const SYNTHETIC_SECRET = "AKIAIOSFODNN7EXAMPLE";
 const PROMPT = `Please remember this API key for later: ${SYNTHETIC_SECRET}`;
 
-function randomPort() {
-  return 46200 + Math.floor(Math.random() * 500);
-}
+const randomPort = () => 46200 + Math.floor(Math.random() * 500);
 
-export async function run_({ config, tier = "model" } = {}) {
+export async function run({ config, tier = "model" } = {}) {
   const suite = new Suite(`model-path/${config}`, { tier, config });
   const cfg = CONFIGS[config];
   if (!cfg) {
     suite.skip("model-path.config", `unknown config ${config}`);
     return suite.summary();
   }
+  const loaded = cfg.plugins.map((n) => PLUGINS[n]).filter(Boolean);
+  const expectsRedaction = loaded.some((p) => p.capabilities.redaction);
 
   const root = mkdtempSync(join(tmpdir(), `lab-model-${config}-`));
   const port = randomPort();
@@ -42,7 +45,7 @@ export async function run_({ config, tier = "model" } = {}) {
 
     const project = join(root, "project");
     mkdirSync(join(project, ".opencode"), { recursive: true });
-    const plugins = cfg.plugins.map((name) => ({ package: `/opt/lab/plugins/${name}`, options: {} }));
+    const plugins = cfg.plugins.map((name) => ({ package: PLUGINS[name].packageDir, options: { ...PLUGINS[name].options, ...(cfg.options[name] || {}) } }));
     const configJson = {
       $schema: "https://opencode.ai/config.json",
       update: "disable",
@@ -80,7 +83,7 @@ export async function run_({ config, tier = "model" } = {}) {
 
     await suite.test("model.run-completes", () => {
       assertEquals(result.code, 0, `opencode run exit 0 (stderr: ${result.stderr.slice(-400)})`);
-      assertMatchLoose(combined, "OK", "agent produced a completion");
+      assert(combined.includes("OK"), "agent produced a completion");
       return { stdoutTail: result.stdout.slice(-200) };
     });
 
@@ -90,23 +93,29 @@ export async function run_({ config, tier = "model" } = {}) {
     });
 
     const captured = existsSync(capturePath) ? readFileSync(capturePath, "utf8") : "";
-    const includesStrangerDanger = cfg.plugins.includes("stranger-danger");
 
-    if (includesStrangerDanger) {
+    if (expectsRedaction) {
       await suite.test("model.secret-redacted-before-transmission", () => {
         assert(captured.length > 0, "request body captured");
         assertNotIncludes(captured, SYNTHETIC_SECRET, "raw synthetic secret absent from model request");
         assertIncludes(captured, "REDACTED", "redaction token present in model request");
         return { bytes: captured.length };
       });
+    } else if (captured.includes("REDACTED") && !captured.includes(SYNTHETIC_SECRET)) {
+      // The plugin clearly transforms the request, but did not declare
+      // capabilities.redaction. Report it honestly rather than failing a control
+      // that assumed no transformation.
+      suite.skip(
+        "model.redaction",
+        "plugin appears to redact the request but did not declare capabilities.redaction; declare it to assert strictly",
+      );
     } else {
       await suite.test("model.control-transmits-secret", () => {
-        // Control: without stranger-danger the secret is transmitted, proving
-        // the test actually observes the supported request path.
         assert(captured.length > 0, "request body captured");
         assertIncludes(captured, SYNTHETIC_SECRET, "control config transmits the secret (path is real)");
         return { bytes: captured.length };
       });
+      suite.skip("model.redaction", "no plugin in this configuration declares capabilities.redaction");
     }
   } finally {
     if (mock) await mock.close();
@@ -114,8 +123,4 @@ export async function run_({ config, tier = "model" } = {}) {
   }
 
   return suite.summary();
-}
-
-function assertMatchLoose(haystack, needle, message) {
-  if (!haystack.includes(needle)) throw new Error(`${message}: expected ${JSON.stringify(needle)}`);
 }

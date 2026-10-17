@@ -25,3 +25,6 @@ staging/**/dist-test
 staging/**/.git
 staging/**/.env
 staging/**/.env.*
+
+# Locally generated manifests
+.lab

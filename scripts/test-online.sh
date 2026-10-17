@@ -17,7 +17,13 @@ set -a; . "$LAB_ROOT/.env"; set +a
 [ -n "${LAB_TEST_API_KEY:-}" ] || die "LAB_TEST_API_KEY is not set in .env"
 [ -n "${LAB_TEST_MODEL:-}" ] || die "LAB_TEST_MODEL is not set in .env"
 
-CONFIG="${1:-${CONFIG:-baseline}}"
-log "online test config=$CONFIG model=$LAB_TEST_MODEL (credential value is never logged)"
-"${COMPOSE[@]}" --profile online run --rm --no-deps lab-online \
-  node /opt/lab/harness/run.mjs --config "$CONFIG" --tier all --online
+CONFIG="${1:-}"
+mapfile -t M_ARGS < <(manifest_compose_args)
+log "online test config=${CONFIG:-default} model=$LAB_TEST_MODEL (credential value is never logged)"
+if [ -n "$CONFIG" ]; then
+  "${COMPOSE[@]}" --profile online run --rm --no-deps "${M_ARGS[@]}" lab-online \
+    node /opt/lab/harness/run.mjs --config "$CONFIG" --tier all --online
+else
+  "${COMPOSE[@]}" --profile online run --rm --no-deps "${M_ARGS[@]}" lab-online \
+    node /opt/lab/harness/run.mjs --tier all --online
+fi

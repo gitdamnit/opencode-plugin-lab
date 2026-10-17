@@ -1,0 +1,98 @@
+// Optional regression profile: the three @gitdamnit OpenCode V2 plugins.
+//
+// This profile is NOT required to use the lab. It exists to reproduce the
+// historical three-plugin compatibility matrix and the plugins' specialized
+// assertions. It is activated explicitly:
+//
+//     make build PROFILE=gitdamnit
+//     make suite PROFILE=gitdamnit
+//
+// Source paths default to the maintainer's worktrees but are fully overridable
+// without editing this file:
+//
+//     CHECKPOINT_ORCHESTRATOR_DIR=... GIT_THAT_SHIT_DIR=... STRANGER_DANGER_DIR=... \
+//       make build PROFILE=gitdamnit
+//
+// The exact commits built are recorded in every report. The committed historical
+// evidence under reports/historical/ is pinned to specific commits and is never
+// relabelled as validation of this generalized lab.
+{
+  "$schema": "../../schema/lab.config.schema.json",
+  "version": 1,
+  "name": "opencode-plugin-lab · gitdamnit regression profile",
+  "opencode": {
+    "version": "2.0.21",
+    "sdkVersion": "2.0.21"
+  },
+  "defaultConfig": "all",
+  "plugins": [
+    {
+      "name": "checkpoint-orchestrator",
+      "package": "@gitdamnit/checkpoint-orchestrator",
+      "id": "gitdamnit.checkpoint-orchestrator",
+      "source": { "type": "directory", "path": "${CHECKPOINT_ORCHESTRATOR_DIR:-$HOME/Projects/checkpoint-orchestrator-v2}" },
+      "build": { "command": "npm run build", "dist": "dist", "entry": "checkpoint-orchestrator.js", "install": "npm ci --no-audit --no-fund" },
+      "capabilities": { "tools": true, "hooks": true, "storage": true },
+      "expectTools": [
+        "checkpoint_save",
+        "checkpoint_load",
+        "checkpoint_status",
+        "checkpoint_clear",
+        "checkpoint_list",
+        "checkpoint_load_snapshot",
+        "checkpoint_restore_snapshot",
+        "checkpoint_migrate"
+      ],
+      "expectedWrites": [],
+      "tests": ["tests/functional-checkpoint.mjs"],
+      "notes": "SQLite-backed session checkpointing with namespaced handoff and legacy-migration safeguards."
+    },
+    {
+      "name": "git-that-shit",
+      "package": "@gitdamnit/opencode-git-that-shit",
+      "id": "gitdamnit.git-that-shit",
+      "source": { "type": "directory", "path": "${GIT_THAT_SHIT_DIR:-$HOME/Projects/git-that-shit-v2}" },
+      "build": { "command": "npm run build", "dist": "dist", "entry": "index.js", "install": "npm ci --no-audit --no-fund" },
+      "capabilities": { "tools": true, "hooks": true, "storage": true },
+      "expectTools": ["gts_status", "gts_list", "gts_diff", "gts_restore", "gts_snapshot", "gts_prune", "gts_config", "gts_doctor"],
+      "expectedWrites": [".git-that-shit"],
+      "tests": ["tests/functional-git-that-shit.mjs"],
+      "notes": "Shadow-repo snapshotting with sensitive-file exclusion and snapshot redaction."
+    },
+    {
+      "name": "stranger-danger",
+      "package": "@gitdamnit/stranger-danger",
+      "id": "gitdamnit.stranger-danger",
+      "source": { "type": "directory", "path": "${STRANGER_DANGER_DIR:-$HOME/Projects/stranger-danger-v2-hardening}" },
+      "build": { "command": "npm run build", "dist": "dist", "entry": "plugin/index.js", "install": "npm ci --no-audit --no-fund" },
+      "capabilities": { "tools": true, "hooks": true, "storage": true, "redaction": true },
+      "expectTools": ["sd_status", "sd_audit", "sd_allowlist_add", "sd_allowlist_show", "sd_scan"],
+      "expectedWrites": [],
+      "tests": ["tests/functional-stranger-danger.mjs"],
+      "notes": "Secret/PII redaction on the supported model-request path, with a secret-free audit trail."
+    }
+  ],
+  "configs": [
+    { "name": "baseline", "description": "OpenCode V2 with no external plugins.", "plugins": [] },
+    {
+      "name": "checkpoint-orchestrator",
+      "description": "Checkpoint Orchestrator only.",
+      "plugins": ["checkpoint-orchestrator"],
+      "options": { "checkpoint-orchestrator": { "historyLimit": 20, "autosaveEvery": false } }
+    },
+    { "name": "git-that-shit", "description": "Git That Shit only.", "plugins": ["git-that-shit"] },
+    { "name": "stranger-danger", "description": "Stranger Danger only.", "plugins": ["stranger-danger"] },
+    {
+      "name": "all",
+      "description": "All three plugins loaded together.",
+      "plugins": ["checkpoint-orchestrator", "git-that-shit", "stranger-danger"],
+      "options": { "checkpoint-orchestrator": { "historyLimit": 20, "autosaveEvery": false } }
+    }
+  ],
+  "globalSuites": [
+    { "name": "security", "module": "tests/security.mjs" },
+    { "name": "concurrency", "module": "tests/concurrency.mjs" },
+    { "name": "combined", "module": "tests/combined.mjs" },
+    { "name": "checkpoint-triggers", "module": "tests/checkpoint-triggers.mjs" }
+  ]
+}

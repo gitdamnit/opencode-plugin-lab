@@ -1,232 +1,168 @@
 # OpenCode Plugin Lab — Test Report
 
-- Generated: 2026-10-15T17:04:35.842Z
+- Run id: 2026-10-17T02-23-31-053Z
+- Generated: 2026-10-17T02:24:13.903Z
 - OpenCode runtime: opencode v2.0.21
 - Node: v22.23.3 (linux/x64)
-- Image: opencode-plugin-lab:local
-- Config: all configurations · tier: validate · online: false
-- Duration: 128.0s
+- Image: opencode-plugin-lab:local (sha256:8991705754c61317e9ab1eef000b8ecd13dee8cc48381adcdcf63f011a7a4f0e)
+- Manifest: opencode-plugin-lab (default: bundled example plugin) · `/opt/lab/lab.config.json` · digest ef54a1d29680ecb8…
+- Config: all configurations · tier: all · online: false
+- Duration: 42.7s
 
 ## Summary
 
 | Result | Count |
 | --- | --- |
-| Pass | 145 |
+| Pass | 76 |
 | Fail | 0 |
-| Skipped | 0 |
-| Total | 145 |
+| Skipped | 5 |
+| Total | 81 |
 
 ### By area
 
 | Area | Pass | Fail | Skipped |
 | --- | --- | --- | --- |
-| Runtime plugin loading | 29 | 0 | 0 |
-| Functional tests | 60 | 0 | 0 |
-| Model-request path (offline mock provider) | 15 | 0 | 0 |
-| Combined compatibility | 8 | 0 | 0 |
-| Plugin compatibility matrix (load orders) | 7 | 0 | 0 |
-| Security tests | 16 | 0 | 0 |
-| Concurrency & crash consistency | 5 | 0 | 0 |
+| Runtime plugin loading | 33 | 0 | 1 |
+| Model-request path (offline mock provider) | 12 | 0 | 4 |
+| Package inspection & provenance | 13 | 0 | 0 |
+| Load-order permutations & tool conflicts | 3 | 0 | 0 |
 | Failure isolation | 3 | 0 | 0 |
-| Checkpoint automatic triggers (live runtime) | 2 | 0 | 0 |
+| Process cleanup | 4 | 0 | 0 |
+| Install from built artifact | 4 | 0 | 0 |
+| Configuration validation & error handling | 4 | 0 | 0 |
 
-## Plugin packages under test
+## Plugins under test
 
-| Plugin | Version | Commit | Branch | Dirty |
-| --- | --- | --- | --- | --- |
-| checkpoint-orchestrator | 2.0.0-dev.1 | bedc14babf | feat/sqlite-opencode-v2 | false |
-| git-that-shit | 0.3.0 | afddd15a20 | feat/git-that-shit-v2-hardening | false |
-| stranger-danger | 0.2.0 | 5465988597 | feat/stranger-danger-v2-hardening | false |
+| Plugin | Version | Commit | Branch | Dirty | Source type |
+| --- | --- | --- | --- | --- | --- |
+| example-plugin | 1.0.0 | 96e67fc43e | release/v1.0.0 | true | directory |
+| example-plugin-2 | 1.0.0 | 96e67fc43e | release/v1.0.0 | true | package |
+
+## Security warnings
+
+- Staged from a dirty worktree (uncommitted changes): example-plugin, example-plugin-2. Results may not reproduce from the recorded commit.
+- Third-party plugin code runs in the container during build and load. Rootless Docker limits but does not eliminate risk; do not run untrusted plugins without reviewing them.
 
 ## Runtime plugin loading
 
-Pass 29 · Fail 0 · Skipped 0
+Pass 33 · Fail 0 · Skipped 1
 
-- ✅ `runtime/baseline` `runtime.server-boot` (8ms)
-- ✅ `runtime/baseline` `runtime.plugins-active` (15ms)
+- ✅ `runtime/baseline` `runtime.server-boot` (4ms)
+- ✅ `runtime/baseline` `runtime.plugins-active` (8ms)
 - ✅ `runtime/baseline` `runtime.no-load-errors` (0ms)
+- ⏭️ `runtime/baseline` `runtime.lifecycle-setup` (0ms) — no plugin declares a setup marker
+- ✅ `runtime/baseline` `runtime.write-boundaries` (0ms)
 - ✅ `runtime/baseline` `runtime.log-snapshot` (0ms)
-- ✅ `runtime/baseline` `runtime.cleanup` (302ms)
-- ✅ `runtime/checkpoint-orchestrator` `runtime.server-boot` (95ms)
-- ✅ `runtime/checkpoint-orchestrator` `runtime.plugins-active` (20ms)
-- ✅ `runtime/checkpoint-orchestrator` `runtime.tools-registered` (3ms)
-- ✅ `runtime/checkpoint-orchestrator` `runtime.no-load-errors` (1ms)
-- ✅ `runtime/checkpoint-orchestrator` `runtime.log-snapshot` (0ms)
-- ✅ `runtime/checkpoint-orchestrator` `runtime.cleanup` (301ms)
-- ✅ `runtime/git-that-shit` `runtime.server-boot` (3ms)
-- ✅ `runtime/git-that-shit` `runtime.plugins-active` (11ms)
-- ✅ `runtime/git-that-shit` `runtime.tools-registered` (0ms)
-- ✅ `runtime/git-that-shit` `runtime.no-load-errors` (0ms)
-- ✅ `runtime/git-that-shit` `runtime.log-snapshot` (1ms)
-- ✅ `runtime/git-that-shit` `runtime.cleanup` (300ms)
-- ✅ `runtime/stranger-danger` `runtime.server-boot` (15ms)
-- ✅ `runtime/stranger-danger` `runtime.plugins-active` (18ms)
-- ✅ `runtime/stranger-danger` `runtime.tools-registered` (0ms)
-- ✅ `runtime/stranger-danger` `runtime.no-load-errors` (1ms)
-- ✅ `runtime/stranger-danger` `runtime.log-snapshot` (0ms)
-- ✅ `runtime/stranger-danger` `runtime.cleanup` (345ms)
-- ✅ `runtime/all` `runtime.server-boot` (5ms)
-- ✅ `runtime/all` `runtime.plugins-active` (21ms)
-- ✅ `runtime/all` `runtime.tools-registered` (0ms)
-- ✅ `runtime/all` `runtime.no-load-errors` (0ms)
-- ✅ `runtime/all` `runtime.log-snapshot` (1ms)
-- ✅ `runtime/all` `runtime.cleanup` (455ms)
-
-## Functional tests
-
-Pass 60 · Fail 0 · Skipped 0
-
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.path-resolution` (1ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.sqlite-init` (5ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.create-load-status` (7ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.multiple-session-ids` (4ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.snapshots-restore` (6ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.concurrent-writes` (48ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.restart-recovery` (5ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.handoff-namespaced-and-isolated` (6ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.legacy-import-disabled-is-a-noop` (2ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.legacy-foreign-payload-left-alone` (3ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.legacy-import-copies-and-backs-up` (4ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.clear` (3ms)
-- ✅ `functional/git-that-shit` `gts.init-shadow-repo` (622ms)
-- ✅ `functional/git-that-shit` `gts.automatic-snapshot` (173ms)
-- ✅ `functional/git-that-shit` `gts.manual-snapshot-cli` (259ms)
-- ✅ `functional/git-that-shit` `gts.snapshot-git-history` (108ms)
-- ✅ `functional/git-that-shit` `gts.locking` (2871ms)
-- ✅ `functional/git-that-shit` `gts.restore-dry-run` (350ms)
-- ✅ `functional/git-that-shit` `gts.real-restore` (214ms)
-- ✅ `functional/git-that-shit` `gts.simultaneous-sessions` (699ms)
-- ✅ `functional/stranger-danger` `sd.scan-synthetic-keys` (14ms)
-- ✅ `functional/stranger-danger` `sd.file-reads-cli-secret-free` (104ms)
-- ✅ `functional/stranger-danger` `sd.context-redaction` (3ms)
-- ✅ `functional/stranger-danger` `sd.tool-output-protection` (1ms)
-- ✅ `functional/stranger-danger` `sd.large-output-windowed-scan` (914ms)
-- ✅ `functional/stranger-danger` `sd.large-output-oversize-fails-closed` (0ms)
-- ✅ `functional/stranger-danger` `sd.allowlist-suppresses-finding` (7ms)
-- ✅ `functional/stranger-danger` `sd.audit-records-secret-free` (0ms)
-- ✅ `functional/stranger-danger` `sd.multiple-sessions-isolated-audit-paths` (1ms)
-- ✅ `functional/stranger-danger` `sd.safe-finding-projection` (1ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.path-resolution` (0ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.sqlite-init` (11ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.create-load-status` (7ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.multiple-session-ids` (9ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.snapshots-restore` (140ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.concurrent-writes` (42ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.restart-recovery` (6ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.handoff-namespaced-and-isolated` (5ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.legacy-import-disabled-is-a-noop` (52ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.legacy-foreign-payload-left-alone` (2ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.legacy-import-copies-and-backs-up` (4ms)
-- ✅ `functional/checkpoint-orchestrator` `checkpoint.clear` (3ms)
-- ✅ `functional/git-that-shit` `gts.init-shadow-repo` (83ms)
-- ✅ `functional/git-that-shit` `gts.automatic-snapshot` (183ms)
-- ✅ `functional/git-that-shit` `gts.manual-snapshot-cli` (318ms)
-- ✅ `functional/git-that-shit` `gts.snapshot-git-history` (191ms)
-- ✅ `functional/git-that-shit` `gts.locking` (3097ms)
-- ✅ `functional/git-that-shit` `gts.restore-dry-run` (397ms)
-- ✅ `functional/git-that-shit` `gts.real-restore` (346ms)
-- ✅ `functional/git-that-shit` `gts.simultaneous-sessions` (481ms)
-- ✅ `functional/stranger-danger` `sd.scan-synthetic-keys` (4ms)
-- ✅ `functional/stranger-danger` `sd.file-reads-cli-secret-free` (289ms)
-- ✅ `functional/stranger-danger` `sd.context-redaction` (0ms)
-- ✅ `functional/stranger-danger` `sd.tool-output-protection` (0ms)
-- ✅ `functional/stranger-danger` `sd.large-output-windowed-scan` (749ms)
-- ✅ `functional/stranger-danger` `sd.large-output-oversize-fails-closed` (0ms)
-- ✅ `functional/stranger-danger` `sd.allowlist-suppresses-finding` (0ms)
-- ✅ `functional/stranger-danger` `sd.audit-records-secret-free` (0ms)
-- ✅ `functional/stranger-danger` `sd.multiple-sessions-isolated-audit-paths` (1ms)
-- ✅ `functional/stranger-danger` `sd.safe-finding-projection` (0ms)
+- ✅ `runtime/baseline` `runtime.cleanup` (300ms)
+- ✅ `runtime/example-plugin` `runtime.server-boot` (4ms)
+- ✅ `runtime/example-plugin` `runtime.plugins-active` (10ms)
+- ✅ `runtime/example-plugin` `runtime.tools-registered` (0ms)
+- ✅ `runtime/example-plugin` `runtime.no-load-errors` (0ms)
+- ✅ `runtime/example-plugin` `runtime.lifecycle-setup` (0ms)
+- ✅ `runtime/example-plugin` `runtime.write-boundaries` (1ms)
+- ✅ `runtime/example-plugin` `runtime.log-snapshot` (0ms)
+- ✅ `runtime/example-plugin` `runtime.cleanup` (151ms)
+- ✅ `runtime/example-plugin` `runtime.lifecycle-cleanup` (0ms)
+- ✅ `runtime/single-plugin` `runtime.server-boot` (2ms)
+- ✅ `runtime/single-plugin` `runtime.plugins-active` (7ms)
+- ✅ `runtime/single-plugin` `runtime.tools-registered` (0ms)
+- ✅ `runtime/single-plugin` `runtime.no-load-errors` (0ms)
+- ✅ `runtime/single-plugin` `runtime.lifecycle-setup` (0ms)
+- ✅ `runtime/single-plugin` `runtime.write-boundaries` (1ms)
+- ✅ `runtime/single-plugin` `runtime.log-snapshot` (0ms)
+- ✅ `runtime/single-plugin` `runtime.cleanup` (149ms)
+- ✅ `runtime/single-plugin` `runtime.lifecycle-cleanup` (0ms)
+- ✅ `runtime/multi-plugin` `runtime.server-boot` (3ms)
+- ✅ `runtime/multi-plugin` `runtime.plugins-active` (5ms)
+- ✅ `runtime/multi-plugin` `runtime.tools-registered` (0ms)
+- ✅ `runtime/multi-plugin` `runtime.no-load-errors` (0ms)
+- ✅ `runtime/multi-plugin` `runtime.lifecycle-setup` (0ms)
+- ✅ `runtime/multi-plugin` `runtime.write-boundaries` (0ms)
+- ✅ `runtime/multi-plugin` `runtime.log-snapshot` (0ms)
+- ✅ `runtime/multi-plugin` `runtime.cleanup` (151ms)
+- ✅ `runtime/multi-plugin` `runtime.lifecycle-cleanup` (0ms)
 
 ## Model-request path (offline mock provider)
 
-Pass 15 · Fail 0 · Skipped 0
+Pass 12 · Fail 0 · Skipped 4
 
 - ✅ `model-path/baseline` `model.run-completes` (0ms)
-- ✅ `model-path/baseline` `model.request-reached-provider` (0ms)
+- ✅ `model-path/baseline` `model.request-reached-provider` (1ms)
 - ✅ `model-path/baseline` `model.control-transmits-secret` (0ms)
-- ✅ `model-path/checkpoint-orchestrator` `model.run-completes` (0ms)
-- ✅ `model-path/checkpoint-orchestrator` `model.request-reached-provider` (0ms)
-- ✅ `model-path/checkpoint-orchestrator` `model.control-transmits-secret` (0ms)
-- ✅ `model-path/git-that-shit` `model.run-completes` (0ms)
-- ✅ `model-path/git-that-shit` `model.request-reached-provider` (0ms)
-- ✅ `model-path/git-that-shit` `model.control-transmits-secret` (0ms)
-- ✅ `model-path/stranger-danger` `model.run-completes` (0ms)
-- ✅ `model-path/stranger-danger` `model.request-reached-provider` (0ms)
-- ✅ `model-path/stranger-danger` `model.secret-redacted-before-transmission` (0ms)
-- ✅ `model-path/all` `model.run-completes` (0ms)
-- ✅ `model-path/all` `model.request-reached-provider` (0ms)
-- ✅ `model-path/all` `model.secret-redacted-before-transmission` (0ms)
+- ⏭️ `model-path/baseline` `model.redaction` (0ms) — no plugin in this configuration declares capabilities.redaction
+- ✅ `model-path/example-plugin` `model.run-completes` (0ms)
+- ✅ `model-path/example-plugin` `model.request-reached-provider` (0ms)
+- ✅ `model-path/example-plugin` `model.control-transmits-secret` (0ms)
+- ⏭️ `model-path/example-plugin` `model.redaction` (0ms) — no plugin in this configuration declares capabilities.redaction
+- ✅ `model-path/single-plugin` `model.run-completes` (0ms)
+- ✅ `model-path/single-plugin` `model.request-reached-provider` (0ms)
+- ✅ `model-path/single-plugin` `model.control-transmits-secret` (0ms)
+- ⏭️ `model-path/single-plugin` `model.redaction` (0ms) — no plugin in this configuration declares capabilities.redaction
+- ✅ `model-path/multi-plugin` `model.run-completes` (1ms)
+- ✅ `model-path/multi-plugin` `model.request-reached-provider` (0ms)
+- ✅ `model-path/multi-plugin` `model.control-transmits-secret` (0ms)
+- ⏭️ `model-path/multi-plugin` `model.redaction` (0ms) — no plugin in this configuration declares capabilities.redaction
 
-## Combined compatibility
+## Package inspection & provenance
 
-Pass 8 · Fail 0 · Skipped 0
+Pass 13 · Fail 0 · Skipped 0
 
-- ✅ `combined/all-plugins` `combined.all-plugins-active` (20ms)
-- ✅ `combined/all-plugins` `combined.no-tool-name-conflicts` (3ms)
-- ✅ `combined/all-plugins` `combined.no-unexpected-project-writes` (0ms)
-- ✅ `combined/all-plugins` `combined.server-log-clean` (0ms)
-- ✅ `combined/all-plugins` `combined.cleanup` (302ms)
-- ✅ `combined/all-plugins` `combined.checkpoint-handoff-through-stranger-danger` (9ms)
-- ✅ `combined/all-plugins` `combined.no-live-database-copied-as-backup` (1ms)
-- ✅ `combined/all-plugins` `combined.git-that-shit-snapshots-config-artifacts` (148ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin.present` (0ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin.metadata` (0ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin.sdk-resolvable` (0ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin.entry-resolves` (0ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin.build-output` (0ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin.provenance` (1ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin-2.present` (0ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin-2.metadata` (0ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin-2.sdk-resolvable` (0ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin-2.entry-resolves` (0ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin-2.build-output` (0ms)
+- ✅ `package-inspection/artifacts` `package.example-plugin-2.provenance` (1ms)
+- ✅ `package-inspection/artifacts` `package.inspector.present` (0ms)
 
-## Plugin compatibility matrix (load orders)
+## Load-order permutations & tool conflicts
 
-Pass 7 · Fail 0 · Skipped 0
+Pass 3 · Fail 0 · Skipped 0
 
-- ✅ `matrix/load-order` `matrix.order.cp>gts>sd` (5429ms)
-- ✅ `matrix/load-order` `matrix.order.cp>sd>gts` (4462ms)
-- ✅ `matrix/load-order` `matrix.order.gts>cp>sd` (4362ms)
-- ✅ `matrix/load-order` `matrix.order.gts>sd>cp` (5556ms)
-- ✅ `matrix/load-order` `matrix.order.sd>cp>gts` (4183ms)
-- ✅ `matrix/load-order` `matrix.order.sd>gts>cp` (4693ms)
-- ✅ `matrix/load-order` `matrix.duplicate-entry` (5597ms)
-
-## Security tests
-
-Pass 16 · Fail 0 · Skipped 0
-
-- ✅ `security/all-plugins` `security.sd-known-rule-detection` (1ms)
-- ✅ `security/all-plugins` `security.sd-redaction-is-idempotent` (1ms)
-- ✅ `security/all-plugins` `security.sd-preserves-benign-content` (0ms)
-- ✅ `security/all-plugins` `security.sd-no-false-positives` (0ms)
-- ✅ `security/all-plugins` `security.sd-secret-across-window-boundary` (748ms)
-- ✅ `security/all-plugins` `security.sd-allowlist-by-regex` (1ms)
-- ✅ `security/all-plugins` `security.sd-audit-file-mode-0600` (0ms)
-- ✅ `security/all-plugins` `security.sd-audit-never-stores-secret` (0ms)
-- ✅ `security/all-plugins` `security.sd-safe-projection-secret-free` (0ms)
-- ✅ `security/all-plugins` `security.sd-cli-output-secret-free` (454ms)
-- ✅ `security/all-plugins` `security.sd-oversize-is-fail-closed` (0ms)
-- ✅ `security/all-plugins` `security.checkpoint-db-permissions` (1ms)
-- ✅ `security/all-plugins` `security.checkpoint-db-outside-project` (0ms)
-- ✅ `security/all-plugins` `security.checkpoint-session-isolation` (2ms)
-- ✅ `security/all-plugins` `security.gts-excludes-sensitive-env` (83ms)
-- ✅ `security/all-plugins` `security.gts-redacts-secret-in-tracked-file` (99ms)
-
-## Concurrency & crash consistency
-
-Pass 5 · Fail 0 · Skipped 0
-
-- ✅ `concurrency/multi-process` `concurrency.checkpoint-multi-process-distinct-sessions` (304ms)
-- ✅ `concurrency/multi-process` `concurrency.checkpoint-multi-process-same-session` (317ms)
-- ✅ `concurrency/multi-process` `concurrency.gts-multi-process-snapshots` (667ms)
-- ✅ `concurrency/multi-process` `concurrency.sd-parallel-redaction` (214ms)
-- ✅ `concurrency/multi-process` `concurrency.sd-audit-sessions-do-not-mix` (2ms)
+- ✅ `load-order/permutations` `load-order.order.exampleplugin_exampleplugin2` (2103ms)
+- ✅ `load-order/permutations` `load-order.order.exampleplugin2_exampleplugin` (2103ms)
+- ✅ `load-order/permutations` `load-order.duplicate-entry` (2102ms)
 
 ## Failure isolation
 
 Pass 3 · Fail 0 · Skipped 0
 
-- ✅ `failure-isolation/broken-plugin` `failure-isolation.broken-first` (5605ms)
-- ✅ `failure-isolation/broken-plugin` `failure-isolation.broken-last` (5296ms)
-- ✅ `failure-isolation/broken-plugin` `failure-isolation.unresolvable-import-first` (5354ms)
+- ✅ `failure-isolation/broken-plugin` `failure-isolation.broken-first` (2130ms)
+- ✅ `failure-isolation/broken-plugin` `failure-isolation.broken-last` (2117ms)
+- ✅ `failure-isolation/broken-plugin` `failure-isolation.unresolvable-import-first` (2124ms)
 
-## Checkpoint automatic triggers (live runtime)
+## Process cleanup
 
-Pass 2 · Fail 0 · Skipped 0
+Pass 4 · Fail 0 · Skipped 0
 
-- ✅ `checkpoint-triggers/live-runtime` `checkpoint.trigger-b-periodic-autosave` (4109ms)
-- ✅ `checkpoint-triggers/live-runtime` `checkpoint.trigger-a-compaction` (5252ms)
+- ✅ `process-cleanup/graceful-shutdown` `process-cleanup.server-alive` (3ms)
+- ✅ `process-cleanup/graceful-shutdown` `process-cleanup.shutdown-exits` (150ms)
+- ✅ `process-cleanup/graceful-shutdown` `process-cleanup.port-released` (403ms)
+- ✅ `process-cleanup/graceful-shutdown` `process-cleanup.no-orphans` (209ms)
+
+## Install from built artifact
+
+Pass 4 · Fail 0 · Skipped 0
+
+- ✅ `install-artifact/packaged` `install.example-plugin.pack` (2067ms)
+- ✅ `install-artifact/packaged` `install.example-plugin.loads-in-runtime` (1796ms)
+- ✅ `install-artifact/packaged` `install.example-plugin-2.pack` (518ms)
+- ✅ `install-artifact/packaged` `install.example-plugin-2.loads-in-runtime` (1992ms)
+
+## Configuration validation & error handling
+
+Pass 4 · Fail 0 · Skipped 0
+
+- ✅ `config-validation/errors` `config-validation.unknown-configuration` (0ms)
+- ✅ `config-validation/errors` `config-validation.invalid-manifest-rejected` (1ms)
+- ✅ `config-validation/errors` `config-validation.missing-plugin-directory` (1791ms)
+- ✅ `config-validation/errors` `config-validation.malformed-package-json` (1910ms)
 
 ## Blockers
 
@@ -235,18 +171,9 @@ Pass 2 · Fail 0 · Skipped 0
 ## Limitations / remaining unverified behaviors
 
 - Live provider credential paths are not exercised unless `--online` and a dedicated test key are supplied (disabled by default).
-- Outbound redaction is verified on the supported HTTP model-request path via the offline mock provider; provider-native WebSocket traffic (experimental) is not covered.
-- The stranger-danger oversize fail-closed branch (>256MiB) is asserted by its constant, not by allocating a >256MiB payload inside the resource-limited container.
-- Hook registration is observed indirectly (through tool registration and the offline model path); OpenCode exposes no API to enumerate hooks.
-- Tool-result transformations beyond the prompt/context/output paths depend on the same hooks and are covered by the functional suite rather than distinct live sessions.
-- Plugin cleanup is verified by graceful server shutdown; explicit registration disposal / plugin unload is not separately asserted.
-- The compatibility matrix covers the three plugins in every load order plus a duplicate entry, but not arbitrary third-party plugins.
-
-## Future improvements (not required for this validation)
-
-- Image size / export time (deferred, not a functional issue): the final image is ~3.61GB with ~73k files, dominated by four identical copies of `@opencode/plugin` (~189MB / ~17.8k files each). Installing the SDK once and symlinking `node_modules/@opencode` into each plugin directory would remove ~570MB and ~53k files, but must be re-verified with a loading test before adoption.
-- Drop the optional global `bun` (85MB) from the runtime image; it is only needed for Git That Shit's own `bun:test` suite, which the lab harness does not run.
-- Build when the host is quieter or run the build under `nice -n 19 ionice -c3`; exports take minutes under load because rootless overlayfs writes ~3.6GB / ~73k files on a single volume.
+- Outbound redaction is only asserted for plugins that declare capabilities.redaction; it is verified on the supported HTTP model-request path via the offline mock provider, never on provider-native WebSocket traffic.
+- Docker (rootless or otherwise) reduces but does not eliminate the risk of malicious plugin code; plugins are not a hard security sandbox.
+- Install-from-artifact packs the built output with npm scripts disabled and supplies the plugin SDK offline; a package that relies on install-time scripts is reported as skipped rather than forced.
 
 ## Reproduce
 

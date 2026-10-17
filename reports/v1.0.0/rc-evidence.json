@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-10-17T02:24:52.709Z",
+  "image": "opencode-plugin-lab:local",
+  "manifest": "/home/evan/Projects/opencode-plugin-lab/lab.config.json",
+  "plugins": [
+    {
+      "name": "example-plugin",
+      "sourceType": "directory",
+      "source": {
+        "branch": "release/v1.0.0",
+        "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6",
+        "dirty": true,
+        "version": "1.0.0"
+      },
+      "staged": {
+        "version": "1.0.0"
+      },
+      "packed": {
+        "tarball": "opencode-lab-example-plugin-1.0.0.tgz",
+        "version": "1.0.0",
+        "sha256": "a6b2d430e97780d5b9be994d12353f6845a92b8613f374f356534a379cea71aa"
+      },
+      "installed": {
+        "version": "1.0.0",
+        "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6"
+      },
+      "consistent": true
+    },
+    {
+      "name": "example-plugin-2",
+      "sourceType": "package",
+      "source": {
+        "branch": "release/v1.0.0",
+        "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6",
+        "dirty": true,
+        "version": "1.0.0"
+      },
+      "staged": {
+        "version": "1.0.0"
+      },
+      "packed": {
+        "tarball": "opencode-lab-example-plugin-2-1.0.0.tgz",
+        "version": "1.0.0",
+        "sha256": "562ce5d5616796dcd7e17bafc5df19675eb37a152d92595b0912efc19e46bd94"
+      },
+      "installed": {
+        "version": "1.0.0",
+        "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6"
+      },
+      "consistent": true
+    }
+  ]
+}

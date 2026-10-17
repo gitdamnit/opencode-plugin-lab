@@ -1,8 +1,7 @@
 # Security notes
 
-The lab is designed to test security- and state-sensitive plugins (including a
-secret-redaction guard and a snapshot engine) without exposing the host or any
-real data.
+The lab is designed to test security- and state-sensitive plugins without
+exposing the host or any real data. It does **not** claim to be a hard sandbox.
 
 ## Container hardening (`lab` service)
 
@@ -21,21 +20,21 @@ real data.
 
 ## Host surface
 
-- **No writable (or read-only) mount of any development repository.** Plugin
-  sources are copied into `staging/` at build time; only built `dist/` artifacts
-  reach the image.
+- **No mount of any development repository into a container.** Plugin sources are
+  copied into `staging/` at build time; only built artifacts reach the image.
 - **Only `./reports` is bind-mounted** into the container, and only for output.
-- All test state (SQLite databases, shadow Git repos, audit logs, fixtures)
-  lives on tmpfs and is discarded with the container.
+- A selected manifest file may be mounted read-only over its baked path so edits
+  are never stale.
+- All test state (databases, shadow repos, audit logs, fixtures) lives on tmpfs
+  and is discarded with the container.
 
 ## What is never staged or shipped
 
-`scripts/stage.sh` copies an allowlist of top-level entries and excludes
-`node_modules`, `.git`, `.github`, `dist`, `dist-test`, `coverage`, build output,
-images, logs, and **every `.env*`**. `.dockerignore` additionally excludes
-`.env*`, key material, `.ssh`, `.aws`, `.config/opencode` and `.opencode`. The
-staging script aborts if a credential-like file (`.env*`, `auth.json`,
-`credentials*`, `*.pem`, `id_rsa*`) is found in the staged tree.
+`scripts/stage.mjs` excludes `node_modules`, `.git`, `.github`, build output,
+coverage, images, logs, `.opencode`, and **every `.env*`**, then aborts if a
+credential-like file (`.env*`, `auth.json`, `credentials*`, `*.pem`, `id_rsa*`)
+is found in the staged tree. `.dockerignore` additionally excludes `.env*`, key
+material, `.ssh`, `.aws`, `.config/opencode`, `.opencode` and `.lab`.
 
 ## Credentials
 
@@ -46,18 +45,40 @@ staging script aborts if a credential-like file (`.env*`, `auth.json`,
   the single `lab-online` container and is never logged or written to reports.
 - All functional tests use clearly synthetic, non-functional placeholders.
 
+## Supply chain
+
+- Dependency installation runs with `--ignore-scripts` by default. A plugin that
+  needs lifecycle scripts must set `install.scripts: true` in the manifest — an
+  explicit, documented supply-chain decision.
+- A `source.type: npm` plugin is **never** fetched unless `source.allowRemote`
+  is `true`; the default refuses.
+- Building a plugin source inevitably runs *its build*, which may execute
+  arbitrary code. Review untrusted plugins before pointing the lab at them.
+
+## Shell argument handling
+
+Host scripts quote all arguments and pass manifest-derived values through arrays
+(`mapfile`), not unquoted interpolation. The container runs the harness with
+fixed arguments. No manifest field is passed to `eval` except the manifest's
+`opencode` version, which is read into `OPENCODE_VERSION`/`PLUGIN_SDK_VERSION`
+and constrained by the manifest schema's version pattern.
+
 ## Scope of `reset` / `clean`
 
-- `make reset` removes only this compose project's containers and the lab's own
-  generated reports.
-- `make clean` additionally removes the lab image, `staging/`, and generated
-  reports. It never touches other Docker resources or any repository.
+- `make reset` removes only this compose project's containers and generated
+  reports (keeping `reports/historical/`).
+- `make clean` additionally removes the lab image, `staging/` and generated
+  reports. It never touches other Docker resources, any repository, or the
+  committed historical evidence.
 
 ## Known limitations (also listed in every report)
 
+- **Rootless Docker reduces risk but is not an absolute boundary against
+  malicious plugin code.** A container escape or a resource-exhaustion attack is
+  still possible in principle.
 - Outbound redaction is verified on the supported HTTP model-request path using a
   local mock provider. Provider-native WebSocket traffic is not covered.
-- The stranger-danger >256 MiB fail-closed branch is asserted by constant, not by
-  allocating a >256 MiB payload inside the resource-limited container.
 - Hook registration is observed indirectly (tool registration + the model path);
   OpenCode exposes no API to enumerate hooks.
+- A plugin’s own persistence is exercised only through the generic
+  write-boundary check, not a plugin-specific storage audit.

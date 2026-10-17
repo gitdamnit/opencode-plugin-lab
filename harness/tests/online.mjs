@@ -13,7 +13,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { Suite, assert, assertEquals } from "../lib/suite.mjs";
-import { CONFIGS } from "../lib/env.mjs";
+import { CONFIGS, PLUGINS } from "../lib/env.mjs";
 import { run } from "../lib/exec.mjs";
 
 const PROVIDER_ENV = {
@@ -47,7 +47,7 @@ export async function run_({ config = "baseline", tier = "online" } = {}) {
   writeFileSync(
     join(project, "opencode.json"),
     JSON.stringify(
-      { $schema: "https://opencode.ai/config.json", update: "disable", plugins: cfg.plugins.map((n) => ({ package: `/opt/lab/plugins/${n}`, options: {} })) },
+      { $schema: "https://opencode.ai/config.json", update: "disable", plugins: cfg.plugins.map((n) => ({ package: PLUGINS[n]?.packageDir ?? `/opt/lab/plugins/${n}`, options: {} })) },
       null,
       2,
     ),

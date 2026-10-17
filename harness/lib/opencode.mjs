@@ -1,71 +1,61 @@
 // Control the real OpenCode V2 server in an isolated, per-config environment.
 import { spawn } from "node:child_process";
-import { mkdirSync, writeFileSync, readFileSync, existsSync, rmSync, openSync, readSync, closeSync, statSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync, existsSync, rmSync, openSync, closeSync } from "node:fs";
 import { join } from "node:path";
-import { LAB } from "./env.mjs";
+import { LAB, PLUGINS, CONFIGS } from "./env.mjs";
+import { stripJsonComments } from "./manifest.mjs";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-/** Strip // and /* *​/ comments from a small JSONC document (string-aware). */
-export function stripJsonComments(input) {
-  let out = "";
-  let inString = false;
-  let inLine = false;
-  let inBlock = false;
-  for (let i = 0; i < input.length; i++) {
-    const ch = input[i];
-    const next = input[i + 1];
-    if (inLine) {
-      if (ch === "\n") {
-        inLine = false;
-        out += ch;
-      }
-      continue;
-    }
-    if (inBlock) {
-      if (ch === "*" && next === "/") {
-        inBlock = false;
-        i++;
-      }
-      continue;
-    }
-    if (inString) {
-      out += ch;
-      if (ch === "\\") {
-        out += next;
-        i++;
-      } else if (ch === '"') {
-        inString = false;
-      }
-      continue;
-    }
-    if (ch === '"') {
-      inString = true;
-      out += ch;
-      continue;
-    }
-    if (ch === "/" && next === "/") {
-      inLine = true;
-      i++;
-      continue;
-    }
-    if (ch === "/" && next === "*") {
-      inBlock = true;
-      i++;
-      continue;
-    }
-    out += ch;
-  }
-  return out;
-}
+export { stripJsonComments };
 
-/** Render a config template for a given config name and reports directory. */
-export function renderConfig(configName, reportsDir = LAB.reports) {
-  const templatePath = join(LAB.configs, configName, "opencode.jsonc");
+export const INSPECTOR_DIR = process.env.LAB_INSPECTOR_DIR || join(LAB.plugins, "lab-inspector");
+
+/** Read a JSONC config template, substituting lab placeholders. */
+function renderTemplate(templatePath, reportsDir) {
   const raw = readFileSync(templatePath, "utf8");
   const substituted = raw.replaceAll("__REPORTS__", reportsDir);
-  const parsed = JSON.parse(stripJsonComments(substituted));
-  return { templatePath, config: parsed };
+  return JSON.parse(stripJsonComments(substituted));
+}
+
+/**
+ * Generate the OpenCode config for a manifest configuration.
+ *
+ * The plugin list is always derived from the manifest (never hardcoded). An
+ * optional JSONC template provides non-plugin runtime settings (providers,
+ * compaction, …); the generated plugin list and the lab inspector are applied on
+ * top of it.
+ */
+export function generateConfig(configName, options = {}) {
+  const reportsDir = options.reportsDir || LAB.reports;
+  const inspectorDir = options.inspectorDir || INSPECTOR_DIR;
+  const cfg = CONFIGS[configName];
+  if (!cfg) throw new Error(`unknown configuration "${configName}" (known: ${Object.keys(CONFIGS).join(", ")})`);
+
+  const base = cfg.template ? renderTemplate(cfg.template, reportsDir) : {};
+  const plugins = [];
+  for (const name of cfg.plugins) {
+    const plugin = PLUGINS[name];
+    if (!plugin) throw new Error(`configuration "${configName}" references unknown plugin "${name}"`);
+    plugins.push({ package: plugin.packageDir, options: { ...plugin.options, ...(cfg.options[name] || {}) } });
+  }
+  if (cfg.plugins.length && options.inspector !== false) {
+    plugins.push({ package: inspectorDir, options: { out: join(reportsDir, `runtime-${configName}.json`) } });
+  }
+
+  const config = {
+    $schema: "https://opencode.ai/config.json",
+    update: "disable",
+    ...base,
+    ...cfg.settings,
+    plugins,
+  };
+  return { config, configName, templatePath: cfg.template || null };
+}
+
+/** Backwards-compatible alias used by suites that only need the config object. */
+export function renderConfig(configName, reportsDir = LAB.reports) {
+  return generateConfig(configName, { reportsDir });
 }
 
 function readPortFromLog(logPath) {
@@ -98,9 +88,9 @@ export async function startServer(configName, options = {}) {
   }
 
   const reportsDir = options.reportsDir || LAB.reports;
-  // `options.config` allows suites (matrix, failure isolation, ...) to supply an
-  // inline configuration without shipping it as a baked template.
-  const config = options.config ?? renderConfig(configName, reportsDir).config;
+  // `options.config` allows suites (load-order, failure isolation, …) to supply
+  // an inline configuration without shipping it as a manifest template.
+  const config = options.config ?? generateConfig(configName, { reportsDir }).config;
   writeFileSync(join(dirs.project, "opencode.json"), JSON.stringify(config, null, 2));
   writeFileSync(join(dirs.project, "AGENTS.md"), "# Lab project\n\nDisposable OpenCode project for the plugin lab.\n");
 

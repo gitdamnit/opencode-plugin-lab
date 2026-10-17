@@ -11,6 +11,8 @@ ensure_reports_dir
 CONFIG="${1:-${CONFIG:-all}}"
 TIER="${2:-${TIER:-all}}"
 
-log "test config=$CONFIG tier=$TIER"
-"${COMPOSE[@]}" run --rm --no-deps lab \
+set_image_id
+mapfile -t M_ARGS < <(manifest_compose_args)
+log "test config=$CONFIG tier=$TIER (manifest: $(manifest_label))"
+"${COMPOSE[@]}" run --rm --no-deps "${M_ARGS[@]}" lab \
   node /opt/lab/harness/run.mjs --config "$CONFIG" --tier "$TIER" ${EXTRA_ARGS:-}

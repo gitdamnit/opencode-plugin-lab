@@ -32,6 +32,10 @@ x-lab-common: &lab-common
     OPENCODE_DISABLE_AUTOUPDATE: "1"
     CI: "1"
     LAB_REPORTS_DIR: /lab/reports
+    LAB_MANIFEST: ${LAB_MANIFEST:-/opt/lab/lab.config.json}
+    LAB_SDK_VERSION: ${PLUGIN_SDK_VERSION:-2.0.21}
+    LAB_IMAGE: ${LAB_IMAGE:-opencode-plugin-lab:local}
+    LAB_IMAGE_ID: ${LAB_IMAGE_ID:-}
   labels:
     org.opencode.lab: "1"
     org.opencode.lab.component: "test-lab"
@@ -62,7 +66,7 @@ services:
       # Only lab-owned report output leaves the container. The development
       # repositories are never mounted (source is baked in as staged copies).
       - ./reports:/lab/reports
-    command: ["node", "/opt/lab/harness/run.mjs", "--config", "${LAB_CONFIG:-all}", "--tier", "${LAB_TIER:-all}"]
+    command: ["node", "/opt/lab/harness/run.mjs", "--all", "--tier", "${LAB_TIER:-all}"]
 
   # -------------------------------------------------------------------------
   # Optional online tier. Started only with `--profile online` / `make test-online`.
@@ -91,4 +95,4 @@ services:
     env_file:
       - path: .env
         required: false
-    command: ["node", "/opt/lab/harness/run.mjs", "--config", "${LAB_CONFIG:-all}", "--tier", "all", "--online"]
+    command: ["node", "/opt/lab/harness/run.mjs", "--all", "--tier", "all", "--online"]

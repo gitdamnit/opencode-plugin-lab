@@ -5,4 +5,5 @@ set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 require_docker
 
-"${COMPOSE[@]}" run --rm --no-deps lab bash
+mapfile -t M_ARGS < <(manifest_compose_args)
+"${COMPOSE[@]}" run --rm --no-deps "${M_ARGS[@]}" lab bash

@@ -1,0 +1,9 @@
+{
+  "name": "@opencode-lab/example-plugin-2",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Second minimal example plugin: lifecycle only, registers no tools. Ships prebuilt to exercise the no-build / prebuilt-package input path and the lab's capability-aware skipping.",
+  "license": "MIT",
+  "main": "index.js"
+}

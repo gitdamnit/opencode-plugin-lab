@@ -1,0 +1,68 @@
+// OpenCode Plugin Lab — default manifest.
+//
+// This is the configuration a fresh clone uses. It depends on NOTHING outside
+// this repository: it stages and builds the two bundled example plugins only.
+//
+// To test your own plugin, copy this file (or add an entry) and point
+// `source.path` at your plugin. See docs/CONFIGURATION.md for the full schema and
+// examples, and profiles/gitdamnit/lab.config.json for a real-world profile.
+{
+  "$schema": "./schema/lab.config.schema.json",
+  "version": 1,
+  "name": "opencode-plugin-lab (default: bundled example plugin)",
+  "opencode": {
+    "version": "2.0.21",
+    "sdkVersion": "2.0.21"
+  },
+  "defaultConfig": "baseline",
+  "plugins": [
+    {
+      "name": "example-plugin",
+      "package": "@opencode-lab/example-plugin",
+      "id": "lab.example",
+      "source": { "type": "directory", "path": "examples/example-plugin" },
+      "build": { "command": "npm run build", "dist": "dist", "entry": "index.js" },
+      "options": { "greeting": "hello from the lab" },
+      "capabilities": { "tools": true, "hooks": false, "storage": false },
+      "expectTools": ["example_echo"],
+      "setupMarker": "[example-plugin] setup",
+      "cleanupMarker": "[example-plugin] cleanup",
+      "notes": "Compiled TypeScript plugin. Registers one safe tool; lifecycle logging."
+    },
+    {
+      "name": "example-plugin-2",
+      "package": "@opencode-lab/example-plugin-2",
+      "id": "lab.example-two",
+      "source": { "type": "package", "path": "examples/example-plugin-2" },
+      "build": { "rootEntry": true, "entry": "index.js" },
+      "capabilities": { "tools": false, "hooks": false, "storage": false },
+      "expectTools": [],
+      "setupMarker": "[example-plugin-2] setup",
+      "cleanupMarker": "[example-plugin-2] cleanup",
+      "notes": "Prebuilt JavaScript plugin with no build step. Registers no tools."
+    }
+  ],
+  "configs": [
+    {
+      "name": "baseline",
+      "description": "OpenCode V2 with no external plugins. Proves the runtime boots cleanly.",
+      "plugins": []
+    },
+    {
+      "name": "example-plugin",
+      "description": "The bundled example plugin loaded on its own (default options).",
+      "plugins": ["example-plugin"]
+    },
+    {
+      "name": "single-plugin",
+      "description": "One supplied plugin loaded with an explicit option override (template for your own plugin).",
+      "plugins": ["example-plugin"],
+      "options": { "example-plugin": { "greeting": "hello from single-plugin" } }
+    },
+    {
+      "name": "multi-plugin",
+      "description": "Two plugins together: one that registers a tool and one that does not.",
+      "plugins": ["example-plugin", "example-plugin-2"]
+    }
+  ]
+}

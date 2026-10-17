@@ -1,0 +1,3567 @@
+{
+  "schema": "opencode-plugin-lab/report/v1",
+  "environment": {
+    "schema": "opencode-plugin-lab/report/v1",
+    "generatedAt": "2026-10-17T02:24:13.905Z",
+    "runId": "2026-10-17T02-23-31-053Z",
+    "opencodeVersion": "opencode v2.0.21",
+    "nodeVersion": "v22.23.3",
+    "platform": "linux/x64",
+    "image": "opencode-plugin-lab:local",
+    "imageId": "sha256:8991705754c61317e9ab1eef000b8ecd13dee8cc48381adcdcf63f011a7a4f0e",
+    "labRoot": "/lab",
+    "manifest": {
+      "name": "opencode-plugin-lab (default: bundled example plugin)",
+      "path": "/opt/lab/lab.config.json",
+      "digest": "ef54a1d29680ecb81d6a0b17a8756e5771ea8954307b2971a7a81988a96149d9",
+      "version": 1,
+      "opencode": {
+        "version": "2.0.21",
+        "sdkVersion": "2.0.21"
+      },
+      "plugins": [
+        "example-plugin",
+        "example-plugin-2"
+      ],
+      "configs": [
+        "baseline",
+        "example-plugin",
+        "single-plugin",
+        "multi-plugin"
+      ],
+      "defaultConfig": "baseline"
+    },
+    "requested": {
+      "config": null,
+      "tier": "all",
+      "online": false,
+      "all": true
+    },
+    "plugins": {
+      "example-plugin": {
+        "name": "example-plugin",
+        "packageDir": "/opt/lab/plugins/example-plugin",
+        "version": "1.0.0",
+        "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6",
+        "branch": "release/v1.0.0",
+        "dirty": true,
+        "sourcePath": "/home/evan/Projects/opencode-plugin-lab/examples/example-plugin",
+        "built": true,
+        "packageName": "@opencode-lab/example-plugin",
+        "license": "MIT",
+        "sourceType": "directory",
+        "labPackageName": "@opencode-lab/example-plugin",
+        "manifestDir": "/opt/lab",
+        "dist": {
+          "present": true,
+          "fileCount": 1,
+          "bytes": 1948,
+          "files": [
+            {
+              "path": "dist/index.js",
+              "bytes": 1948
+            }
+          ]
+        },
+        "capabilities": {
+          "tools": true,
+          "hooks": false,
+          "storage": false,
+          "redaction": false,
+          "network": false
+        },
+        "expectTools": [
+          "example_echo"
+        ]
+      },
+      "example-plugin-2": {
+        "name": "example-plugin-2",
+        "packageDir": "/opt/lab/plugins/example-plugin-2",
+        "version": "1.0.0",
+        "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6",
+        "branch": "release/v1.0.0",
+        "dirty": true,
+        "sourcePath": "/home/evan/Projects/opencode-plugin-lab/examples/example-plugin-2",
+        "built": true,
+        "packageName": "@opencode-lab/example-plugin-2",
+        "license": "MIT",
+        "sourceType": "package",
+        "labPackageName": "@opencode-lab/example-plugin-2",
+        "manifestDir": "/opt/lab",
+        "dist": {
+          "present": true,
+          "fileCount": 6,
+          "bytes": 142901,
+          "files": [
+            {
+              "path": "LAB_SOURCE.json",
+              "bytes": 315
+            },
+            {
+              "path": "README.md",
+              "bytes": 408
+            },
+            {
+              "path": "index.js",
+              "bytes": 629
+            },
+            {
+              "path": "package-lock.json",
+              "bytes": 140989
+            },
+            {
+              "path": "package.json",
+              "bytes": 212
+            },
+            {
+              "path": "upstream-package.json",
+              "bytes": 348
+            }
+          ]
+        },
+        "capabilities": {
+          "tools": false,
+          "hooks": false,
+          "storage": false,
+          "redaction": false,
+          "network": false
+        },
+        "expectTools": []
+      }
+    }
+  },
+  "startedAt": "2026-10-17T02:23:31.207Z",
+  "finishedAt": "2026-10-17T02:24:13.903Z",
+  "durationMs": 42696,
+  "summary": {
+    "counts": {
+      "pass": 76,
+      "fail": 0,
+      "skipped": 5
+    },
+    "total": 81
+  },
+  "sections": {
+    "section0": {
+      "title": "Runtime plugin loading",
+      "counts": {
+        "pass": 33,
+        "fail": 0,
+        "skipped": 1
+      },
+      "results": [
+        {
+          "suite": "runtime/baseline",
+          "id": "runtime.server-boot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 4,
+          "error": null,
+          "detail": {
+            "version": "2.0.21",
+            "port": 47450
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/baseline",
+          "id": "runtime.plugins-active",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 8,
+          "error": null,
+          "detail": {
+            "active": [
+              "opencode.tool.input.repair",
+              "opencode.config.worktree",
+              "opencode.config.mcp",
+              "opencode.mcp.codemode.defaults",
+              "opencode.wellknown",
+              "opencode.vcs.git",
+              "opencode.agent",
+              "opencode.plan",
+              "opencode.command",
+              "opencode.skill",
+              "opencode.vcs.hg",
+              "opencode.models.dev",
+              "opencode.provider.amazon.bedrock",
+              "opencode.provider.azure",
+              "opencode.provider.cerebras",
+              "opencode.provider.chatgpt",
+              "opencode.provider.cloudflare.ai.gateway",
+              "opencode.provider.cloudflare.workers.ai",
+              "opencode.provider.cohere",
+              "opencode.provider.digitalocean",
+              "opencode.provider.gateway",
+              "opencode.provider.github.copilot",
+              "opencode.provider.gitlab",
+              "opencode.provider.google.vertex",
+              "opencode.provider.kilo",
+              "opencode.provider.llmgateway",
+              "opencode.provider.lmstudio",
+              "opencode.provider.modal",
+              "opencode.provider.nvidia",
+              "opencode.provider.ollama",
+              "opencode.provider.opencode",
+              "opencode.provider.snowflake.cortex",
+              "opencode.provider.openai",
+              "opencode.provider.openrouter",
+              "opencode.provider.perplexity",
+              "opencode.provider.poe",
+              "opencode.provider.prompt-cache-key",
+              "opencode.provider.sap.ai.core",
+              "opencode.provider.vercel",
+              "opencode.provider.venice",
+              "opencode.provider.vllm",
+              "opencode.provider.xai",
+              "opencode.provider.zenmux",
+              "opencode.provider.dynamic",
+              "opencode.websearch.exa",
+              "opencode.websearch.firecrawl",
+              "opencode.websearch.parallel",
+              "opencode.websearch.tavily",
+              "opencode.websearch.tinyfish",
+              "opencode.tool.patch",
+              "opencode.prompt.openai",
+              "opencode.prompt.anthropic",
+              "opencode.prompt.kimi",
+              "opencode.prompt.arcee",
+              "opencode.prompt.meta",
+              "opencode.prompt.verbosity",
+              "opencode.prompt.identity",
+              "opencode.tool.edit",
+              "opencode.tool.glob",
+              "opencode.tool.grep",
+              "opencode.tools",
+              "opencode.tools.mcp-resources",
+              "opencode.tool.question",
+              "opencode.tool.read",
+              "opencode.tool.shell",
+              "opencode.tool.skill",
+              "opencode.tool.subagent",
+              "opencode.tool.webfetch",
+              "opencode.tool.websearch",
+              "opencode.tool.write",
+              "opencode.warming",
+              "opencode.config.instruction",
+              "opencode.config.reference",
+              "opencode.config.agent",
+              "opencode.browser",
+              "opencode.config.command",
+              "opencode.config.compaction",
+              "opencode.config.formatter",
+              "opencode.config.image",
+              "opencode.config.location-watcher",
+              "opencode.config.shell",
+              "opencode.config.snapshot",
+              "opencode.config.tool-output",
+              "opencode.config.compatibility",
+              "opencode.config.skill",
+              "opencode.config.provider",
+              "opencode.config.websearch",
+              "opencode.config.policy"
+            ],
+            "expected": []
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/baseline",
+          "id": "runtime.no-load-errors",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logBytes": 7720
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/baseline",
+          "id": "runtime.lifecycle-setup",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin declares a setup marker"
+        },
+        {
+          "suite": "runtime/baseline",
+          "id": "runtime.write-boundaries",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "entries": [
+              ".opencode",
+              "AGENTS.md",
+              "opencode.json"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/baseline",
+          "id": "runtime.log-snapshot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logTail": [
+              "server password SQ7oRyGqm8Oh2OtDKpeEQyGKAJoXSAqgopgFNgDUS0w",
+              "timestamp=2026-10-17T02:23:32.639Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/xdg/config/opencode type=directory ignores=3 http.span=43 role=server",
+              "timestamp=2026-10-17T02:23:32.640Z level=ERROR run=34af9764 message=\"watcher backend not supported\" directory=/lab/work/runs/baseline/xdg/config/opencode platform=linux http.span=44 role=server",
+              "timestamp=2026-10-17T02:23:32.641Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project/.opencode type=directory ignores=3 http.span=45 role=server",
+              "timestamp=2026-10-17T02:23:32.642Z level=ERROR run=34af9764 message=\"watcher backend not supported\" directory=/lab/work/runs/baseline/project/.opencode platform=linux http.span=46 role=server",
+              "timestamp=2026-10-17T02:23:32.642Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/ type=entries ignores=0 http.span=46 role=server",
+              "timestamp=2026-10-17T02:23:32.643Z level=INFO run=34af9764 message=\"watcher started\" path=/ type=entries backend=node ignores=0 http.span=47 role=server",
+              "timestamp=2026-10-17T02:23:32.644Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab type=entries ignores=0 http.span=48 role=server",
+              "timestamp=2026-10-17T02:23:32.645Z level=INFO run=34af9764 message=\"watcher started\" path=/lab type=entries backend=node ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:32.645Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work type=entries ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:32.645Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work type=entries backend=node ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:32.645Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs type=entries ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:32.646Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs type=entries backend=node ignores=0 http.span=50 role=server",
+              "timestamp=2026-10-17T02:23:32.646Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline type=entries ignores=0 http.span=50 role=server",
+              "timestamp=2026-10-17T02:23:32.647Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline type=entries backend=node ignores=0 http.span=51 role=server",
+              "timestamp=2026-10-17T02:23:32.647Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project type=entries ignores=0 http.span=51 role=server",
+              "timestamp=2026-10-17T02:23:32.647Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/project type=entries backend=node ignores=0 http.span=51 role=server",
+              "timestamp=2026-10-17T02:23:32.648Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/home type=entries ignores=0 http.span=52 role=server",
+              "timestamp=2026-10-17T02:23:32.648Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/home type=entries backend=node ignores=0 http.span=52 role=server",
+              "timestamp=2026-10-17T02:23:32.683Z level=INFO run=34af9764 message=\"location services booted\" directory=/lab/work/runs/baseline/project workspaceID=undefined durationMs=85 http.span=87 role=server",
+              "timestamp=2026-10-17T02:23:33.142Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/xdg/config/opencode/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.143Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/xdg/config/opencode/AGENTS.md type=file backend=node ignores=0 http.span=547 role=server",
+              "timestamp=2026-10-17T02:23:33.143Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.143Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/project/AGENTS.md type=file backend=node ignores=0 http.span=547 role=server",
+              "timestamp=2026-10-17T02:23:33.174Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/xdg/config/opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.175Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/xdg/config/opencode/skill type=file backend=node ignores=0 http.span=579 role=server",
+              "timestamp=2026-10-17T02:23:33.179Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/xdg/config/opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.180Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/xdg/config/opencode/skills type=file backend=node ignores=0 http.span=584 role=server",
+              "timestamp=2026-10-17T02:23:33.183Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project/.opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.183Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/project/.opencode/skill type=file backend=node ignores=0 http.span=587 role=server",
+              "timestamp=2026-10-17T02:23:33.186Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project/.opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.186Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/project/.opencode/skills type=file backend=node ignores=0 http.span=590 role=server",
+              "timestamp=2026-10-17T02:23:33.211Z level=INFO run=34af9764 message=event event.id=evt_147abf15b001s6iYjCJMZpOSxx event.created=1792203813211 event.type=provider.updated event.location.directory=/lab/work/runs/baseline/project event.location.workspaceID=undefined event.data={} http.span=615 role=server",
+              "timestamp=2026-10-17T02:23:33.232Z level=INFO run=34af9764 message=event event.id=evt_147abf170001xKUjJuAMj0xrV5 event.created=1792203813232 event.type=model.updated event.location.directory=/lab/work/runs/baseline/project event.location.workspaceID=undefined event.data={} http.span=636 role=server",
+              "timestamp=2026-10-17T02:23:33.235Z level=INFO run=34af9764 message=event event.id=evt_147abf173001Np8ZHghH3TCCWJ event.created=1792203813235 event.type=agent.updated event.location.directory=/lab/work/runs/baseline/project event.location.workspaceID=undefined event.data={} http.span=639 role=server",
+              "timestamp=2026-10-17T02:23:33.237Z level=INFO run=34af9764 message=event event.id=evt_147abf174001XpVs04p9Wn7rfm event.created=1792203813237 event.type=command.updated event.location.directory=/lab/work/runs/baseline/project event.location.workspaceID=undefined event.data={} http.span=641 role=server",
+              "timestamp=2026-10-17T02:23:33.293Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/xdg/config/opencode type=directory ignores=3 http.span=697 role=server",
+              "timestamp=2026-10-17T02:23:33.293Z level=ERROR run=34af9764 message=\"watcher backend not supported\" directory=/lab/work/runs/baseline/xdg/config/opencode platform=linux http.span=697 role=server",
+              "timestamp=2026-10-17T02:23:33.293Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project/.opencode type=directory ignores=3 http.span=697 role=server",
+              "timestamp=2026-10-17T02:23:33.294Z level=ERROR run=34af9764 message=\"watcher backend not supported\" directory=/lab/work/runs/baseline/project/.opencode platform=linux http.span=698 role=server"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/baseline",
+          "id": "runtime.cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 300,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/example-plugin",
+          "id": "runtime.server-boot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 4,
+          "error": null,
+          "detail": {
+            "version": "2.0.21",
+            "port": 47697
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/example-plugin",
+          "id": "runtime.plugins-active",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 10,
+          "error": null,
+          "detail": {
+            "active": [
+              "opencode.tool.input.repair",
+              "opencode.config.worktree",
+              "opencode.config.mcp",
+              "opencode.mcp.codemode.defaults",
+              "opencode.wellknown",
+              "opencode.vcs.git",
+              "opencode.agent",
+              "opencode.plan",
+              "opencode.command",
+              "opencode.skill",
+              "opencode.vcs.hg",
+              "opencode.models.dev",
+              "opencode.provider.amazon.bedrock",
+              "opencode.provider.azure",
+              "opencode.provider.cerebras",
+              "opencode.provider.chatgpt",
+              "opencode.provider.cloudflare.ai.gateway",
+              "opencode.provider.cloudflare.workers.ai",
+              "opencode.provider.cohere",
+              "opencode.provider.digitalocean",
+              "opencode.provider.gateway",
+              "opencode.provider.github.copilot",
+              "opencode.provider.gitlab",
+              "opencode.provider.google.vertex",
+              "opencode.provider.kilo",
+              "opencode.provider.llmgateway",
+              "opencode.provider.lmstudio",
+              "opencode.provider.modal",
+              "opencode.provider.nvidia",
+              "opencode.provider.ollama",
+              "opencode.provider.opencode",
+              "opencode.provider.snowflake.cortex",
+              "opencode.provider.openai",
+              "opencode.provider.openrouter",
+              "opencode.provider.perplexity",
+              "opencode.provider.poe",
+              "opencode.provider.prompt-cache-key",
+              "opencode.provider.sap.ai.core",
+              "opencode.provider.vercel",
+              "opencode.provider.venice",
+              "opencode.provider.vllm",
+              "opencode.provider.xai",
+              "opencode.provider.zenmux",
+              "opencode.provider.dynamic",
+              "opencode.websearch.exa",
+              "opencode.websearch.firecrawl",
+              "opencode.websearch.parallel",
+              "opencode.websearch.tavily",
+              "opencode.websearch.tinyfish",
+              "opencode.tool.patch",
+              "opencode.prompt.openai",
+              "opencode.prompt.anthropic",
+              "opencode.prompt.kimi",
+              "opencode.prompt.arcee",
+              "opencode.prompt.meta",
+              "opencode.prompt.verbosity",
+              "opencode.prompt.identity",
+              "opencode.tool.edit",
+              "opencode.tool.glob",
+              "opencode.tool.grep",
+              "opencode.tools",
+              "opencode.tools.mcp-resources",
+              "opencode.tool.question",
+              "opencode.tool.read",
+              "opencode.tool.shell",
+              "opencode.tool.skill",
+              "opencode.tool.subagent",
+              "opencode.tool.webfetch",
+              "opencode.tool.websearch",
+              "opencode.tool.write",
+              "opencode.warming",
+              "lab.example",
+              "lab.inspector",
+              "opencode.config.instruction",
+              "opencode.config.reference",
+              "opencode.config.agent",
+              "opencode.browser",
+              "opencode.config.command",
+              "opencode.config.compaction",
+              "opencode.config.formatter",
+              "opencode.config.image",
+              "opencode.config.location-watcher",
+              "opencode.config.shell",
+              "opencode.config.snapshot",
+              "opencode.config.tool-output",
+              "opencode.config.compatibility",
+              "opencode.config.skill",
+              "opencode.config.provider",
+              "opencode.config.websearch",
+              "opencode.config.policy"
+            ],
+            "expected": [
+              "example-plugin"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/example-plugin",
+          "id": "runtime.tools-registered",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "tools": 18,
+            "pluginsWithoutTools": []
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/example-plugin",
+          "id": "runtime.no-load-errors",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logBytes": 10265
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/example-plugin",
+          "id": "runtime.lifecycle-setup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] setup"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/example-plugin",
+          "id": "runtime.write-boundaries",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "entries": [
+              ".opencode",
+              "AGENTS.md",
+              "opencode.json"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/example-plugin",
+          "id": "runtime.log-snapshot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logTail": [
+              "timestamp=2026-10-17T02:23:36.710Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin type=entries backend=node ignores=0 http.span=48 role=server",
+              "timestamp=2026-10-17T02:23:36.710Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/project type=entries ignores=0 http.span=48 role=server",
+              "timestamp=2026-10-17T02:23:36.710Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/project type=entries backend=node ignores=0 http.span=48 role=server",
+              "timestamp=2026-10-17T02:23:36.711Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/home type=entries ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:36.711Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/home type=entries backend=node ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:36.743Z level=INFO run=f78d9956 message=\"location services booted\" directory=/lab/work/runs/example-plugin/project workspaceID=undefined durationMs=79 http.span=81 role=server",
+              "timestamp=2026-10-17T02:23:36.853Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin type=directory ignores=0 http.span=191 role=server",
+              "timestamp=2026-10-17T02:23:36.854Z level=ERROR run=f78d9956 message=\"watcher backend not supported\" directory=/opt/lab/plugins/example-plugin platform=linux http.span=192 role=server",
+              "timestamp=2026-10-17T02:23:36.854Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector type=directory ignores=0 http.span=192 role=server",
+              "timestamp=2026-10-17T02:23:36.858Z level=ERROR run=f78d9956 message=\"watcher backend not supported\" directory=/opt/lab/plugins/lab-inspector platform=linux http.span=196 role=server",
+              "timestamp=2026-10-17T02:23:36.860Z level=INFO run=f78d9956 msg=\"loading plugin\" id=/opt/lab/plugins/example-plugin entrypoint=file:///opt/lab/plugins/example-plugin/index.ts http.span=198 role=server",
+              "timestamp=2026-10-17T02:23:37.154Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/index.ts type=file ignores=0 http.span=492 role=server",
+              "timestamp=2026-10-17T02:23:37.155Z level=INFO run=f78d9956 message=\"watcher started\" path=/opt/lab/plugins/example-plugin/index.ts type=file backend=node ignores=0 http.span=493 role=server",
+              "timestamp=2026-10-17T02:23:37.155Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file ignores=0 http.span=493 role=server",
+              "timestamp=2026-10-17T02:23:37.156Z level=INFO run=f78d9956 message=\"watcher started\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file backend=node ignores=0 http.span=494 role=server",
+              "timestamp=2026-10-17T02:23:37.157Z level=INFO run=f78d9956 msg=\"loading plugin\" id=/opt/lab/plugins/lab-inspector entrypoint=file:///opt/lab/plugins/lab-inspector/index.ts http.span=495 role=server",
+              "timestamp=2026-10-17T02:23:37.326Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector/index.ts type=file ignores=0 http.span=664 role=server",
+              "timestamp=2026-10-17T02:23:37.327Z level=INFO run=f78d9956 message=\"watcher started\" path=/opt/lab/plugins/lab-inspector/index.ts type=file backend=node ignores=0 http.span=665 role=server",
+              "[example-plugin] setup (options={\"greeting\":\"hello from the lab\"})",
+              "[lab.inspector] version=2.0.21 plugins=[] tools=18",
+              "timestamp=2026-10-17T02:23:37.769Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/xdg/config/opencode/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.770Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/xdg/config/opencode/AGENTS.md type=file backend=node ignores=0 http.span=1108 role=server",
+              "timestamp=2026-10-17T02:23:37.770Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/project/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.770Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/project/AGENTS.md type=file backend=node ignores=0 http.span=1108 role=server",
+              "timestamp=2026-10-17T02:23:37.794Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/xdg/config/opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.795Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/xdg/config/opencode/skill type=file backend=node ignores=0 http.span=1133 role=server",
+              "timestamp=2026-10-17T02:23:37.797Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/xdg/config/opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.797Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/xdg/config/opencode/skills type=file backend=node ignores=0 http.span=1135 role=server",
+              "timestamp=2026-10-17T02:23:37.799Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/project/.opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.799Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/project/.opencode/skill type=file backend=node ignores=0 http.span=1137 role=server",
+              "timestamp=2026-10-17T02:23:37.803Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/project/.opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.803Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/project/.opencode/skills type=file backend=node ignores=0 http.span=1141 role=server",
+              "timestamp=2026-10-17T02:23:37.805Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/xdg/config/opencode type=directory ignores=3 http.span=1143 role=server",
+              "timestamp=2026-10-17T02:23:37.806Z level=ERROR run=f78d9956 message=\"watcher backend not supported\" directory=/lab/work/runs/example-plugin/xdg/config/opencode platform=linux http.span=1144 role=server",
+              "timestamp=2026-10-17T02:23:37.806Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/project/.opencode type=directory ignores=3 http.span=1144 role=server",
+              "timestamp=2026-10-17T02:23:37.807Z level=ERROR run=f78d9956 message=\"watcher backend not supported\" directory=/lab/work/runs/example-plugin/project/.opencode platform=linux http.span=1145 role=server",
+              "timestamp=2026-10-17T02:23:37.828Z level=INFO run=f78d9956 message=event event.id=evt_147ac0364001CHl47RjR5F3Gb9 event.created=1792203817828 event.type=provider.updated event.location.directory=/lab/work/runs/example-plugin/project event.location.workspaceID=undefined event.data={} http.span=1166 role=server",
+              "timestamp=2026-10-17T02:23:37.845Z level=INFO run=f78d9956 message=event event.id=evt_147ac0375001r3ZDLsH83OIbaB event.created=1792203817845 event.type=model.updated event.location.directory=/lab/work/runs/example-plugin/project event.location.workspaceID=undefined event.data={} http.span=1183 role=server",
+              "timestamp=2026-10-17T02:23:37.848Z level=INFO run=f78d9956 message=event event.id=evt_147ac0378001hk1nupBdvqxY2Q event.created=1792203817848 event.type=agent.updated event.location.directory=/lab/work/runs/example-plugin/project event.location.workspaceID=undefined event.data={} http.span=1186 role=server",
+              "timestamp=2026-10-17T02:23:37.849Z level=INFO run=f78d9956 message=event event.id=evt_147ac0379001Q8jp7vSyCnlUV2 event.created=1792203817849 event.type=command.updated event.location.directory=/lab/work/runs/example-plugin/project event.location.workspaceID=undefined event.data={} http.span=1187 role=server"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/example-plugin",
+          "id": "runtime.cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 151,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/example-plugin",
+          "id": "runtime.lifecycle-cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] cleanup"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/single-plugin",
+          "id": "runtime.server-boot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2,
+          "error": null,
+          "detail": {
+            "version": "2.0.21",
+            "port": 47256
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/single-plugin",
+          "id": "runtime.plugins-active",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 7,
+          "error": null,
+          "detail": {
+            "active": [
+              "opencode.tool.input.repair",
+              "opencode.config.worktree",
+              "opencode.config.mcp",
+              "opencode.mcp.codemode.defaults",
+              "opencode.wellknown",
+              "opencode.vcs.git",
+              "opencode.agent",
+              "opencode.plan",
+              "opencode.command",
+              "opencode.skill",
+              "opencode.vcs.hg",
+              "opencode.models.dev",
+              "opencode.provider.amazon.bedrock",
+              "opencode.provider.azure",
+              "opencode.provider.cerebras",
+              "opencode.provider.chatgpt",
+              "opencode.provider.cloudflare.ai.gateway",
+              "opencode.provider.cloudflare.workers.ai",
+              "opencode.provider.cohere",
+              "opencode.provider.digitalocean",
+              "opencode.provider.gateway",
+              "opencode.provider.github.copilot",
+              "opencode.provider.gitlab",
+              "opencode.provider.google.vertex",
+              "opencode.provider.kilo",
+              "opencode.provider.llmgateway",
+              "opencode.provider.lmstudio",
+              "opencode.provider.modal",
+              "opencode.provider.nvidia",
+              "opencode.provider.ollama",
+              "opencode.provider.opencode",
+              "opencode.provider.snowflake.cortex",
+              "opencode.provider.openai",
+              "opencode.provider.openrouter",
+              "opencode.provider.perplexity",
+              "opencode.provider.poe",
+              "opencode.provider.prompt-cache-key",
+              "opencode.provider.sap.ai.core",
+              "opencode.provider.vercel",
+              "opencode.provider.venice",
+              "opencode.provider.vllm",
+              "opencode.provider.xai",
+              "opencode.provider.zenmux",
+              "opencode.provider.dynamic",
+              "opencode.websearch.exa",
+              "opencode.websearch.firecrawl",
+              "opencode.websearch.parallel",
+              "opencode.websearch.tavily",
+              "opencode.websearch.tinyfish",
+              "opencode.tool.patch",
+              "opencode.prompt.openai",
+              "opencode.prompt.anthropic",
+              "opencode.prompt.kimi",
+              "opencode.prompt.arcee",
+              "opencode.prompt.meta",
+              "opencode.prompt.verbosity",
+              "opencode.prompt.identity",
+              "opencode.tool.edit",
+              "opencode.tool.glob",
+              "opencode.tool.grep",
+              "opencode.tools",
+              "opencode.tools.mcp-resources",
+              "opencode.tool.question",
+              "opencode.tool.read",
+              "opencode.tool.shell",
+              "opencode.tool.skill",
+              "opencode.tool.subagent",
+              "opencode.tool.webfetch",
+              "opencode.tool.websearch",
+              "opencode.tool.write",
+              "opencode.warming",
+              "lab.example",
+              "lab.inspector",
+              "opencode.config.instruction",
+              "opencode.config.reference",
+              "opencode.config.agent",
+              "opencode.browser",
+              "opencode.config.command",
+              "opencode.config.compaction",
+              "opencode.config.formatter",
+              "opencode.config.image",
+              "opencode.config.location-watcher",
+              "opencode.config.shell",
+              "opencode.config.snapshot",
+              "opencode.config.tool-output",
+              "opencode.config.compatibility",
+              "opencode.config.skill",
+              "opencode.config.provider",
+              "opencode.config.websearch",
+              "opencode.config.policy"
+            ],
+            "expected": [
+              "example-plugin"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/single-plugin",
+          "id": "runtime.tools-registered",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "tools": 18,
+            "pluginsWithoutTools": []
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/single-plugin",
+          "id": "runtime.no-load-errors",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logBytes": 10517
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/single-plugin",
+          "id": "runtime.lifecycle-setup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] setup"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/single-plugin",
+          "id": "runtime.write-boundaries",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "entries": [
+              ".opencode",
+              "AGENTS.md",
+              "opencode.json"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/single-plugin",
+          "id": "runtime.log-snapshot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logTail": [
+              "timestamp=2026-10-17T02:23:40.654Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/project type=entries ignores=0 http.span=50 role=server",
+              "timestamp=2026-10-17T02:23:40.654Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/project type=entries backend=node ignores=0 http.span=50 role=server",
+              "timestamp=2026-10-17T02:23:40.655Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/home type=entries ignores=0 http.span=51 role=server",
+              "timestamp=2026-10-17T02:23:40.655Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/home type=entries backend=node ignores=0 http.span=51 role=server",
+              "timestamp=2026-10-17T02:23:40.681Z level=INFO run=8bf2e7be message=\"location services booted\" directory=/lab/work/runs/single-plugin/project workspaceID=undefined durationMs=75 http.span=77 role=server",
+              "timestamp=2026-10-17T02:23:40.694Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin type=directory ignores=0 http.span=90 role=server",
+              "timestamp=2026-10-17T02:23:40.695Z level=ERROR run=8bf2e7be message=\"watcher backend not supported\" directory=/opt/lab/plugins/example-plugin platform=linux http.span=91 role=server",
+              "timestamp=2026-10-17T02:23:40.695Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector type=directory ignores=0 http.span=91 role=server",
+              "timestamp=2026-10-17T02:23:40.696Z level=ERROR run=8bf2e7be message=\"watcher backend not supported\" directory=/opt/lab/plugins/lab-inspector platform=linux http.span=92 role=server",
+              "timestamp=2026-10-17T02:23:40.698Z level=INFO run=8bf2e7be msg=\"loading plugin\" id=/opt/lab/plugins/example-plugin entrypoint=file:///opt/lab/plugins/example-plugin/index.ts http.span=94 role=server",
+              "timestamp=2026-10-17T02:23:41.009Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/index.ts type=file ignores=0 http.span=405 role=server",
+              "timestamp=2026-10-17T02:23:41.010Z level=INFO run=8bf2e7be message=\"watcher started\" path=/opt/lab/plugins/example-plugin/index.ts type=file backend=node ignores=0 http.span=406 role=server",
+              "timestamp=2026-10-17T02:23:41.011Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file ignores=0 http.span=407 role=server",
+              "timestamp=2026-10-17T02:23:41.011Z level=INFO run=8bf2e7be message=\"watcher started\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file backend=node ignores=0 http.span=407 role=server",
+              "timestamp=2026-10-17T02:23:41.013Z level=INFO run=8bf2e7be msg=\"loading plugin\" id=/opt/lab/plugins/lab-inspector entrypoint=file:///opt/lab/plugins/lab-inspector/index.ts http.span=409 role=server",
+              "timestamp=2026-10-17T02:23:41.198Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector/index.ts type=file ignores=0 http.span=594 role=server",
+              "timestamp=2026-10-17T02:23:41.199Z level=INFO run=8bf2e7be message=\"watcher started\" path=/opt/lab/plugins/lab-inspector/index.ts type=file backend=node ignores=0 http.span=595 role=server",
+              "[example-plugin] setup (options={\"greeting\":\"hello from single-plugin\"})",
+              "[lab.inspector] version=2.0.21 plugins=[] tools=18",
+              "timestamp=2026-10-17T02:23:41.642Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/xdg/config/opencode/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.642Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/xdg/config/opencode/AGENTS.md type=file backend=node ignores=0 http.span=1038 role=server",
+              "timestamp=2026-10-17T02:23:41.642Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/project/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.643Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/project/AGENTS.md type=file backend=node ignores=0 http.span=1039 role=server",
+              "timestamp=2026-10-17T02:23:41.666Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/xdg/config/opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.667Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/xdg/config/opencode/skill type=file backend=node ignores=0 http.span=1063 role=server",
+              "timestamp=2026-10-17T02:23:41.672Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/xdg/config/opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.673Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/xdg/config/opencode/skills type=file backend=node ignores=0 http.span=1069 role=server",
+              "timestamp=2026-10-17T02:23:41.675Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/project/.opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.675Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/project/.opencode/skill type=file backend=node ignores=0 http.span=1071 role=server",
+              "timestamp=2026-10-17T02:23:41.677Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/project/.opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.678Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/project/.opencode/skills type=file backend=node ignores=0 http.span=1074 role=server",
+              "timestamp=2026-10-17T02:23:41.699Z level=INFO run=8bf2e7be message=event event.id=evt_147ac12830014bm0tK261QdnBb event.created=1792203821699 event.type=provider.updated event.location.directory=/lab/work/runs/single-plugin/project event.location.workspaceID=undefined event.data={} http.span=1095 role=server",
+              "timestamp=2026-10-17T02:23:41.716Z level=INFO run=8bf2e7be message=event event.id=evt_147ac1294001HygkmPDa1ITkAv event.created=1792203821716 event.type=model.updated event.location.directory=/lab/work/runs/single-plugin/project event.location.workspaceID=undefined event.data={} http.span=1112 role=server",
+              "timestamp=2026-10-17T02:23:41.719Z level=INFO run=8bf2e7be message=event event.id=evt_147ac1296001k5fNKrvfsa0OH1 event.created=1792203821718 event.type=agent.updated event.location.directory=/lab/work/runs/single-plugin/project event.location.workspaceID=undefined event.data={} http.span=1115 role=server",
+              "timestamp=2026-10-17T02:23:41.720Z level=INFO run=8bf2e7be message=event event.id=evt_147ac1297001pRzB8eTgiUEsFv event.created=1792203821719 event.type=command.updated event.location.directory=/lab/work/runs/single-plugin/project event.location.workspaceID=undefined event.data={} http.span=1116 role=server",
+              "timestamp=2026-10-17T02:23:41.762Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/xdg/config/opencode type=directory ignores=3 http.span=1158 role=server",
+              "timestamp=2026-10-17T02:23:41.762Z level=ERROR run=8bf2e7be message=\"watcher backend not supported\" directory=/lab/work/runs/single-plugin/xdg/config/opencode platform=linux http.span=1158 role=server",
+              "timestamp=2026-10-17T02:23:41.763Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/project/.opencode type=directory ignores=3 http.span=1159 role=server",
+              "timestamp=2026-10-17T02:23:41.763Z level=ERROR run=8bf2e7be message=\"watcher backend not supported\" directory=/lab/work/runs/single-plugin/project/.opencode platform=linux http.span=1159 role=server",
+              "timestamp=2026-10-17T02:23:41.948Z level=ERROR run=8bf2e7be message=\"Failed to fetch models.dev\" cause=\"Cause([Fail(HttpClientError: Transport error (GET https://models.opencode.ai/api.json) (cause: TypeError: getaddrinfo ETIMEOUT models.opencode.ai))])\" http.span=1344 role=server"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/single-plugin",
+          "id": "runtime.cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 149,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/single-plugin",
+          "id": "runtime.lifecycle-cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] cleanup"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/multi-plugin",
+          "id": "runtime.server-boot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 3,
+          "error": null,
+          "detail": {
+            "version": "2.0.21",
+            "port": 47349
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/multi-plugin",
+          "id": "runtime.plugins-active",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 5,
+          "error": null,
+          "detail": {
+            "active": [
+              "opencode.tool.input.repair",
+              "opencode.config.worktree",
+              "opencode.config.mcp",
+              "opencode.mcp.codemode.defaults",
+              "opencode.wellknown",
+              "opencode.vcs.git",
+              "opencode.agent",
+              "opencode.plan",
+              "opencode.command",
+              "opencode.skill",
+              "opencode.vcs.hg",
+              "opencode.models.dev",
+              "opencode.provider.amazon.bedrock",
+              "opencode.provider.azure",
+              "opencode.provider.cerebras",
+              "opencode.provider.chatgpt",
+              "opencode.provider.cloudflare.ai.gateway",
+              "opencode.provider.cloudflare.workers.ai",
+              "opencode.provider.cohere",
+              "opencode.provider.digitalocean",
+              "opencode.provider.gateway",
+              "opencode.provider.github.copilot",
+              "opencode.provider.gitlab",
+              "opencode.provider.google.vertex",
+              "opencode.provider.kilo",
+              "opencode.provider.llmgateway",
+              "opencode.provider.lmstudio",
+              "opencode.provider.modal",
+              "opencode.provider.nvidia",
+              "opencode.provider.ollama",
+              "opencode.provider.opencode",
+              "opencode.provider.snowflake.cortex",
+              "opencode.provider.openai",
+              "opencode.provider.openrouter",
+              "opencode.provider.perplexity",
+              "opencode.provider.poe",
+              "opencode.provider.prompt-cache-key",
+              "opencode.provider.sap.ai.core",
+              "opencode.provider.vercel",
+              "opencode.provider.venice",
+              "opencode.provider.vllm",
+              "opencode.provider.xai",
+              "opencode.provider.zenmux",
+              "opencode.provider.dynamic",
+              "opencode.websearch.exa",
+              "opencode.websearch.firecrawl",
+              "opencode.websearch.parallel",
+              "opencode.websearch.tavily",
+              "opencode.websearch.tinyfish",
+              "opencode.tool.patch",
+              "opencode.prompt.openai",
+              "opencode.prompt.anthropic",
+              "opencode.prompt.kimi",
+              "opencode.prompt.arcee",
+              "opencode.prompt.meta",
+              "opencode.prompt.verbosity",
+              "opencode.prompt.identity",
+              "opencode.tool.edit",
+              "opencode.tool.glob",
+              "opencode.tool.grep",
+              "opencode.tools",
+              "opencode.tools.mcp-resources",
+              "opencode.tool.question",
+              "opencode.tool.read",
+              "opencode.tool.shell",
+              "opencode.tool.skill",
+              "opencode.tool.subagent",
+              "opencode.tool.webfetch",
+              "opencode.tool.websearch",
+              "opencode.tool.write",
+              "opencode.warming",
+              "lab.example",
+              "lab.example-two",
+              "lab.inspector",
+              "opencode.config.instruction",
+              "opencode.config.reference",
+              "opencode.config.agent",
+              "opencode.browser",
+              "opencode.config.command",
+              "opencode.config.compaction",
+              "opencode.config.formatter",
+              "opencode.config.image",
+              "opencode.config.location-watcher",
+              "opencode.config.shell",
+              "opencode.config.snapshot",
+              "opencode.config.tool-output",
+              "opencode.config.compatibility",
+              "opencode.config.skill",
+              "opencode.config.provider",
+              "opencode.config.websearch",
+              "opencode.config.policy"
+            ],
+            "expected": [
+              "example-plugin",
+              "example-plugin-2"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/multi-plugin",
+          "id": "runtime.tools-registered",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "tools": 18,
+            "pluginsWithoutTools": [
+              "example-plugin-2"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/multi-plugin",
+          "id": "runtime.no-load-errors",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logBytes": 11479
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/multi-plugin",
+          "id": "runtime.lifecycle-setup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] setup",
+              "[example-plugin-2] setup"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/multi-plugin",
+          "id": "runtime.write-boundaries",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "entries": [
+              ".opencode",
+              "AGENTS.md",
+              "opencode.json"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/multi-plugin",
+          "id": "runtime.log-snapshot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logTail": [
+              "timestamp=2026-10-17T02:23:44.840Z level=ERROR run=830ee2f1 message=\"watcher backend not supported\" directory=/opt/lab/plugins/example-plugin platform=linux http.span=87 role=server",
+              "timestamp=2026-10-17T02:23:44.840Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin-2 type=directory ignores=0 http.span=87 role=server",
+              "timestamp=2026-10-17T02:23:44.841Z level=ERROR run=830ee2f1 message=\"watcher backend not supported\" directory=/opt/lab/plugins/example-plugin-2 platform=linux http.span=88 role=server",
+              "timestamp=2026-10-17T02:23:44.842Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector type=directory ignores=0 http.span=89 role=server",
+              "timestamp=2026-10-17T02:23:44.842Z level=ERROR run=830ee2f1 message=\"watcher backend not supported\" directory=/opt/lab/plugins/lab-inspector platform=linux http.span=89 role=server",
+              "timestamp=2026-10-17T02:23:44.843Z level=INFO run=830ee2f1 msg=\"loading plugin\" id=/opt/lab/plugins/example-plugin entrypoint=file:///opt/lab/plugins/example-plugin/index.ts http.span=90 role=server",
+              "timestamp=2026-10-17T02:23:45.136Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/index.ts type=file ignores=0 http.span=383 role=server",
+              "timestamp=2026-10-17T02:23:45.137Z level=INFO run=830ee2f1 message=\"watcher started\" path=/opt/lab/plugins/example-plugin/index.ts type=file backend=node ignores=0 http.span=384 role=server",
+              "timestamp=2026-10-17T02:23:45.137Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file ignores=0 http.span=384 role=server",
+              "timestamp=2026-10-17T02:23:45.138Z level=INFO run=830ee2f1 message=\"watcher started\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file backend=node ignores=0 http.span=385 role=server",
+              "timestamp=2026-10-17T02:23:45.139Z level=INFO run=830ee2f1 msg=\"loading plugin\" id=/opt/lab/plugins/example-plugin-2 entrypoint=file:///opt/lab/plugins/example-plugin-2/index.js http.span=386 role=server",
+              "timestamp=2026-10-17T02:23:45.310Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin-2/index.js type=file ignores=0 http.span=557 role=server",
+              "timestamp=2026-10-17T02:23:45.311Z level=INFO run=830ee2f1 message=\"watcher started\" path=/opt/lab/plugins/example-plugin-2/index.js type=file backend=node ignores=0 http.span=558 role=server",
+              "timestamp=2026-10-17T02:23:45.313Z level=INFO run=830ee2f1 msg=\"loading plugin\" id=/opt/lab/plugins/lab-inspector entrypoint=file:///opt/lab/plugins/lab-inspector/index.ts http.span=560 role=server",
+              "timestamp=2026-10-17T02:23:45.459Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector/index.ts type=file ignores=0 http.span=706 role=server",
+              "timestamp=2026-10-17T02:23:45.459Z level=INFO run=830ee2f1 message=\"watcher started\" path=/opt/lab/plugins/lab-inspector/index.ts type=file backend=node ignores=0 http.span=706 role=server",
+              "timestamp=2026-10-17T02:23:45.886Z level=ERROR run=830ee2f1 message=\"Failed to fetch models.dev\" cause=\"Cause([Fail(HttpClientError: Transport error (GET https://models.opencode.ai/api.json) (cause: TypeError: getaddrinfo ETIMEOUT models.opencode.ai))])\" http.span=1133 role=server",
+              "[example-plugin] setup (options={\"greeting\":\"hello from the lab\"})",
+              "[example-plugin-2] setup (lifecycle-only; registers no tools)",
+              "[lab.inspector] version=2.0.21 plugins=[] tools=18",
+              "timestamp=2026-10-17T02:23:45.923Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.923Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/AGENTS.md type=file backend=node ignores=0 http.span=1170 role=server",
+              "timestamp=2026-10-17T02:23:45.923Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/project/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.924Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/project/AGENTS.md type=file backend=node ignores=0 http.span=1171 role=server",
+              "timestamp=2026-10-17T02:23:45.954Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.955Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/skill type=file backend=node ignores=0 http.span=1202 role=server",
+              "timestamp=2026-10-17T02:23:45.957Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.957Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/skills type=file backend=node ignores=0 http.span=1204 role=server",
+              "timestamp=2026-10-17T02:23:45.958Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/project/.opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.959Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/project/.opencode/skill type=file backend=node ignores=0 http.span=1206 role=server",
+              "timestamp=2026-10-17T02:23:45.961Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/project/.opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.961Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/project/.opencode/skills type=file backend=node ignores=0 http.span=1208 role=server",
+              "timestamp=2026-10-17T02:23:45.985Z level=INFO run=830ee2f1 message=event event.id=evt_147ac2341001y4vJ2HvxxOE1iw event.created=1792203825985 event.type=provider.updated event.location.directory=/lab/work/runs/multi-plugin/project event.location.workspaceID=undefined event.data={} http.span=1232 role=server",
+              "timestamp=2026-10-17T02:23:46.003Z level=INFO run=830ee2f1 message=event event.id=evt_147ac2353001XpXtPrqsaedARb event.created=1792203826003 event.type=model.updated event.location.directory=/lab/work/runs/multi-plugin/project event.location.workspaceID=undefined event.data={} http.span=1250 role=server",
+              "timestamp=2026-10-17T02:23:46.006Z level=INFO run=830ee2f1 message=event event.id=evt_147ac23560018f33Cf46nrS1ht event.created=1792203826006 event.type=agent.updated event.location.directory=/lab/work/runs/multi-plugin/project event.location.workspaceID=undefined event.data={} http.span=1253 role=server",
+              "timestamp=2026-10-17T02:23:46.008Z level=INFO run=830ee2f1 message=event event.id=evt_147ac2357001z9d10GrfBp07ZH event.created=1792203826008 event.type=command.updated event.location.directory=/lab/work/runs/multi-plugin/project event.location.workspaceID=undefined event.data={} http.span=1255 role=server",
+              "timestamp=2026-10-17T02:23:46.056Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/xdg/config/opencode type=directory ignores=3 http.span=1303 role=server",
+              "timestamp=2026-10-17T02:23:46.057Z level=ERROR run=830ee2f1 message=\"watcher backend not supported\" directory=/lab/work/runs/multi-plugin/xdg/config/opencode platform=linux http.span=1304 role=server",
+              "timestamp=2026-10-17T02:23:46.057Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/project/.opencode type=directory ignores=3 http.span=1304 role=server",
+              "timestamp=2026-10-17T02:23:46.057Z level=ERROR run=830ee2f1 message=\"watcher backend not supported\" directory=/lab/work/runs/multi-plugin/project/.opencode platform=linux http.span=1304 role=server"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/multi-plugin",
+          "id": "runtime.cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 151,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/multi-plugin",
+          "id": "runtime.lifecycle-cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] cleanup",
+              "[example-plugin-2] cleanup"
+            ]
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section1": {
+      "title": "Model-request path (offline mock provider)",
+      "counts": {
+        "pass": 12,
+        "fail": 0,
+        "skipped": 4
+      },
+      "results": [
+        {
+          "suite": "model-path/baseline",
+          "id": "model.run-completes",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "stdoutTail": "OK\n"
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/baseline",
+          "id": "model.request-reached-provider",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "requestCount": 2
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/baseline",
+          "id": "model.control-transmits-secret",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "bytes": 25171
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/baseline",
+          "id": "model.redaction",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin in this configuration declares capabilities.redaction"
+        },
+        {
+          "suite": "model-path/example-plugin",
+          "id": "model.run-completes",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "stdoutTail": "OK\n"
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/example-plugin",
+          "id": "model.request-reached-provider",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "requestCount": 2
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/example-plugin",
+          "id": "model.control-transmits-secret",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "bytes": 25364
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/example-plugin",
+          "id": "model.redaction",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin in this configuration declares capabilities.redaction"
+        },
+        {
+          "suite": "model-path/single-plugin",
+          "id": "model.run-completes",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "stdoutTail": "OK\n"
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/single-plugin",
+          "id": "model.request-reached-provider",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "requestCount": 2
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/single-plugin",
+          "id": "model.control-transmits-secret",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "bytes": 25361
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/single-plugin",
+          "id": "model.redaction",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin in this configuration declares capabilities.redaction"
+        },
+        {
+          "suite": "model-path/multi-plugin",
+          "id": "model.run-completes",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "stdoutTail": "OK\n"
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/multi-plugin",
+          "id": "model.request-reached-provider",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "requestCount": 2
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/multi-plugin",
+          "id": "model.control-transmits-secret",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "bytes": 25358
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/multi-plugin",
+          "id": "model.redaction",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin in this configuration declares capabilities.redaction"
+        }
+      ]
+    },
+    "section2": {
+      "title": "Package inspection & provenance",
+      "counts": {
+        "pass": 13,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin.present",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "packageDir": "/opt/lab/plugins/example-plugin"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin.metadata",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "name": "@opencode-lab/example-plugin",
+            "sdk": "2.0.21",
+            "main": "index.ts"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin.sdk-resolvable",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "sdkVersion": "2.0.21"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin.entry-resolves",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "entry": "index.js",
+            "shim": true
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin.build-output",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "files": 1,
+            "bytes": 1948
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin.provenance",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "version": "1.0.0",
+            "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6",
+            "sourceType": "directory"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin-2.present",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "packageDir": "/opt/lab/plugins/example-plugin-2"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin-2.metadata",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "name": "@opencode-lab/example-plugin-2",
+            "sdk": "2.0.21",
+            "main": "index.js"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin-2.sdk-resolvable",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "sdkVersion": "2.0.21"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin-2.entry-resolves",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "entry": "index.js",
+            "rootEntry": true
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin-2.build-output",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "files": 6,
+            "bytes": 142901
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.example-plugin-2.provenance",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "version": "1.0.0",
+            "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6",
+            "sourceType": "package"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.inspector.present",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "present": true
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section3": {
+      "title": "Load-order permutations & tool conflicts",
+      "counts": {
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "load-order/permutations",
+          "id": "load-order.order.exampleplugin_exampleplugin2",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2103,
+          "error": null,
+          "detail": {
+            "order": [
+              "example-plugin",
+              "example-plugin-2"
+            ],
+            "tools": 18
+          },
+          "notes": null
+        },
+        {
+          "suite": "load-order/permutations",
+          "id": "load-order.order.exampleplugin2_exampleplugin",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2103,
+          "error": null,
+          "detail": {
+            "order": [
+              "example-plugin-2",
+              "example-plugin"
+            ],
+            "tools": 18
+          },
+          "notes": null
+        },
+        {
+          "suite": "load-order/permutations",
+          "id": "load-order.duplicate-entry",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2102,
+          "error": null,
+          "detail": {
+            "tools": 18,
+            "duplicateOf": "example-plugin"
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section4": {
+      "title": "Failure isolation",
+      "counts": {
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "failure-isolation/broken-plugin",
+          "id": "failure-isolation.broken-first",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2130,
+          "error": null,
+          "detail": {
+            "label": "broken-first",
+            "failed": 1,
+            "tools": 18,
+            "externalPlugins": 4
+          },
+          "notes": null
+        },
+        {
+          "suite": "failure-isolation/broken-plugin",
+          "id": "failure-isolation.broken-last",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2117,
+          "error": null,
+          "detail": {
+            "label": "broken-last",
+            "failed": 1,
+            "tools": 18,
+            "externalPlugins": 4
+          },
+          "notes": null
+        },
+        {
+          "suite": "failure-isolation/broken-plugin",
+          "id": "failure-isolation.unresolvable-import-first",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2124,
+          "error": null,
+          "detail": {
+            "label": "unresolvable-import-first",
+            "failed": 1,
+            "tools": 18,
+            "externalPlugins": 3
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section5": {
+      "title": "Process cleanup",
+      "counts": {
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "process-cleanup/graceful-shutdown",
+          "id": "process-cleanup.server-alive",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 3,
+          "error": null,
+          "detail": {
+            "port": 47443
+          },
+          "notes": null
+        },
+        {
+          "suite": "process-cleanup/graceful-shutdown",
+          "id": "process-cleanup.shutdown-exits",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 150,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        },
+        {
+          "suite": "process-cleanup/graceful-shutdown",
+          "id": "process-cleanup.port-released",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 403,
+          "error": null,
+          "detail": {
+            "port": 47443,
+            "refused": true
+          },
+          "notes": null
+        },
+        {
+          "suite": "process-cleanup/graceful-shutdown",
+          "id": "process-cleanup.no-orphans",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 209,
+          "error": null,
+          "detail": {
+            "runDir": "/lab/work/runs/multi-plugin",
+            "orphans": 0
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section6": {
+      "title": "Install from built artifact",
+      "counts": {
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "install-artifact/packaged",
+          "id": "install.example-plugin.pack",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2067,
+          "error": null,
+          "detail": {
+            "tarball": "opencode-lab-example-plugin-0.0.0-lab.tgz",
+            "pkgRoot": "/tmp/lab-pack-ZBBrIy/example-plugin/extracted/package"
+          },
+          "notes": null
+        },
+        {
+          "suite": "install-artifact/packaged",
+          "id": "install.example-plugin.loads-in-runtime",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1796,
+          "error": null,
+          "detail": {
+            "active": true,
+            "plugins": 90
+          },
+          "notes": null
+        },
+        {
+          "suite": "install-artifact/packaged",
+          "id": "install.example-plugin-2.pack",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 518,
+          "error": null,
+          "detail": {
+            "tarball": "opencode-lab-example-plugin-2-0.0.0-lab.tgz",
+            "pkgRoot": "/tmp/lab-pack-ZBBrIy/example-plugin-2/extracted/package"
+          },
+          "notes": null
+        },
+        {
+          "suite": "install-artifact/packaged",
+          "id": "install.example-plugin-2.loads-in-runtime",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1992,
+          "error": null,
+          "detail": {
+            "active": true,
+            "plugins": 90
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section7": {
+      "title": "Configuration validation & error handling",
+      "counts": {
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "config-validation/errors",
+          "id": "config-validation.unknown-configuration",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "message": "unknown configuration \"definitely-not-a-config\" (known: baseline, example-plugin, single-plugin, multi-plugin)"
+          },
+          "notes": null
+        },
+        {
+          "suite": "config-validation/errors",
+          "id": "config-validation.invalid-manifest-rejected",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "message": "invalid manifest /tmp/lab-cfg-q3lP9A/bad-lab.config.json: |   - plugins[0].source.type is required (directory|tarball|package|npm)"
+          },
+          "notes": null
+        },
+        {
+          "suite": "config-validation/errors",
+          "id": "config-validation.missing-plugin-directory",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1791,
+          "error": null,
+          "detail": {
+            "outcome": "booted",
+            "failed": 1
+          },
+          "notes": null
+        },
+        {
+          "suite": "config-validation/errors",
+          "id": "config-validation.malformed-package-json",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1910,
+          "error": null,
+          "detail": {
+            "outcome": "booted"
+          },
+          "notes": null
+        }
+      ]
+    }
+  },
+  "blockers": [],
+  "failures": [],
+  "skipped": [
+    {
+      "suite": "runtime/baseline",
+      "id": "runtime.lifecycle-setup",
+      "reason": "no plugin declares a setup marker"
+    },
+    {
+      "suite": "model-path/baseline",
+      "id": "model.redaction",
+      "reason": "no plugin in this configuration declares capabilities.redaction"
+    },
+    {
+      "suite": "model-path/example-plugin",
+      "id": "model.redaction",
+      "reason": "no plugin in this configuration declares capabilities.redaction"
+    },
+    {
+      "suite": "model-path/single-plugin",
+      "id": "model.redaction",
+      "reason": "no plugin in this configuration declares capabilities.redaction"
+    },
+    {
+      "suite": "model-path/multi-plugin",
+      "id": "model.redaction",
+      "reason": "no plugin in this configuration declares capabilities.redaction"
+    }
+  ],
+  "securityWarnings": [
+    "Staged from a dirty worktree (uncommitted changes): example-plugin, example-plugin-2. Results may not reproduce from the recorded commit.",
+    "Third-party plugin code runs in the container during build and load. Rootless Docker limits but does not eliminate risk; do not run untrusted plugins without reviewing them."
+  ],
+  "limitations": [
+    "Live provider credential paths are not exercised unless `--online` and a dedicated test key are supplied (disabled by default).",
+    "Outbound redaction is only asserted for plugins that declare capabilities.redaction; it is verified on the supported HTTP model-request path via the offline mock provider, never on provider-native WebSocket traffic.",
+    "Docker (rootless or otherwise) reduces but does not eliminate the risk of malicious plugin code; plugins are not a hard security sandbox.",
+    "Install-from-artifact packs the built output with npm scripts disabled and supplies the plugin SDK offline; a package that relies on install-time scripts is reported as skipped rather than forced."
+  ],
+  "notes": [],
+  "suites": [
+    {
+      "suite": "runtime/baseline",
+      "meta": {
+        "tier": "all",
+        "config": "baseline"
+      },
+      "startedAt": "2026-10-17T02:23:31.212Z",
+      "finishedAt": "2026-10-17T02:23:33.851Z",
+      "counts": {
+        "pass": 6,
+        "fail": 0,
+        "skipped": 1
+      },
+      "results": [
+        {
+          "id": "runtime.server-boot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 4,
+          "error": null,
+          "detail": {
+            "version": "2.0.21",
+            "port": 47450
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.plugins-active",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 8,
+          "error": null,
+          "detail": {
+            "active": [
+              "opencode.tool.input.repair",
+              "opencode.config.worktree",
+              "opencode.config.mcp",
+              "opencode.mcp.codemode.defaults",
+              "opencode.wellknown",
+              "opencode.vcs.git",
+              "opencode.agent",
+              "opencode.plan",
+              "opencode.command",
+              "opencode.skill",
+              "opencode.vcs.hg",
+              "opencode.models.dev",
+              "opencode.provider.amazon.bedrock",
+              "opencode.provider.azure",
+              "opencode.provider.cerebras",
+              "opencode.provider.chatgpt",
+              "opencode.provider.cloudflare.ai.gateway",
+              "opencode.provider.cloudflare.workers.ai",
+              "opencode.provider.cohere",
+              "opencode.provider.digitalocean",
+              "opencode.provider.gateway",
+              "opencode.provider.github.copilot",
+              "opencode.provider.gitlab",
+              "opencode.provider.google.vertex",
+              "opencode.provider.kilo",
+              "opencode.provider.llmgateway",
+              "opencode.provider.lmstudio",
+              "opencode.provider.modal",
+              "opencode.provider.nvidia",
+              "opencode.provider.ollama",
+              "opencode.provider.opencode",
+              "opencode.provider.snowflake.cortex",
+              "opencode.provider.openai",
+              "opencode.provider.openrouter",
+              "opencode.provider.perplexity",
+              "opencode.provider.poe",
+              "opencode.provider.prompt-cache-key",
+              "opencode.provider.sap.ai.core",
+              "opencode.provider.vercel",
+              "opencode.provider.venice",
+              "opencode.provider.vllm",
+              "opencode.provider.xai",
+              "opencode.provider.zenmux",
+              "opencode.provider.dynamic",
+              "opencode.websearch.exa",
+              "opencode.websearch.firecrawl",
+              "opencode.websearch.parallel",
+              "opencode.websearch.tavily",
+              "opencode.websearch.tinyfish",
+              "opencode.tool.patch",
+              "opencode.prompt.openai",
+              "opencode.prompt.anthropic",
+              "opencode.prompt.kimi",
+              "opencode.prompt.arcee",
+              "opencode.prompt.meta",
+              "opencode.prompt.verbosity",
+              "opencode.prompt.identity",
+              "opencode.tool.edit",
+              "opencode.tool.glob",
+              "opencode.tool.grep",
+              "opencode.tools",
+              "opencode.tools.mcp-resources",
+              "opencode.tool.question",
+              "opencode.tool.read",
+              "opencode.tool.shell",
+              "opencode.tool.skill",
+              "opencode.tool.subagent",
+              "opencode.tool.webfetch",
+              "opencode.tool.websearch",
+              "opencode.tool.write",
+              "opencode.warming",
+              "opencode.config.instruction",
+              "opencode.config.reference",
+              "opencode.config.agent",
+              "opencode.browser",
+              "opencode.config.command",
+              "opencode.config.compaction",
+              "opencode.config.formatter",
+              "opencode.config.image",
+              "opencode.config.location-watcher",
+              "opencode.config.shell",
+              "opencode.config.snapshot",
+              "opencode.config.tool-output",
+              "opencode.config.compatibility",
+              "opencode.config.skill",
+              "opencode.config.provider",
+              "opencode.config.websearch",
+              "opencode.config.policy"
+            ],
+            "expected": []
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.no-load-errors",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logBytes": 7720
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.lifecycle-setup",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin declares a setup marker"
+        },
+        {
+          "id": "runtime.write-boundaries",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "entries": [
+              ".opencode",
+              "AGENTS.md",
+              "opencode.json"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.log-snapshot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logTail": [
+              "server password SQ7oRyGqm8Oh2OtDKpeEQyGKAJoXSAqgopgFNgDUS0w",
+              "timestamp=2026-10-17T02:23:32.639Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/xdg/config/opencode type=directory ignores=3 http.span=43 role=server",
+              "timestamp=2026-10-17T02:23:32.640Z level=ERROR run=34af9764 message=\"watcher backend not supported\" directory=/lab/work/runs/baseline/xdg/config/opencode platform=linux http.span=44 role=server",
+              "timestamp=2026-10-17T02:23:32.641Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project/.opencode type=directory ignores=3 http.span=45 role=server",
+              "timestamp=2026-10-17T02:23:32.642Z level=ERROR run=34af9764 message=\"watcher backend not supported\" directory=/lab/work/runs/baseline/project/.opencode platform=linux http.span=46 role=server",
+              "timestamp=2026-10-17T02:23:32.642Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/ type=entries ignores=0 http.span=46 role=server",
+              "timestamp=2026-10-17T02:23:32.643Z level=INFO run=34af9764 message=\"watcher started\" path=/ type=entries backend=node ignores=0 http.span=47 role=server",
+              "timestamp=2026-10-17T02:23:32.644Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab type=entries ignores=0 http.span=48 role=server",
+              "timestamp=2026-10-17T02:23:32.645Z level=INFO run=34af9764 message=\"watcher started\" path=/lab type=entries backend=node ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:32.645Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work type=entries ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:32.645Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work type=entries backend=node ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:32.645Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs type=entries ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:32.646Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs type=entries backend=node ignores=0 http.span=50 role=server",
+              "timestamp=2026-10-17T02:23:32.646Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline type=entries ignores=0 http.span=50 role=server",
+              "timestamp=2026-10-17T02:23:32.647Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline type=entries backend=node ignores=0 http.span=51 role=server",
+              "timestamp=2026-10-17T02:23:32.647Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project type=entries ignores=0 http.span=51 role=server",
+              "timestamp=2026-10-17T02:23:32.647Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/project type=entries backend=node ignores=0 http.span=51 role=server",
+              "timestamp=2026-10-17T02:23:32.648Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/home type=entries ignores=0 http.span=52 role=server",
+              "timestamp=2026-10-17T02:23:32.648Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/home type=entries backend=node ignores=0 http.span=52 role=server",
+              "timestamp=2026-10-17T02:23:32.683Z level=INFO run=34af9764 message=\"location services booted\" directory=/lab/work/runs/baseline/project workspaceID=undefined durationMs=85 http.span=87 role=server",
+              "timestamp=2026-10-17T02:23:33.142Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/xdg/config/opencode/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.143Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/xdg/config/opencode/AGENTS.md type=file backend=node ignores=0 http.span=547 role=server",
+              "timestamp=2026-10-17T02:23:33.143Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.143Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/project/AGENTS.md type=file backend=node ignores=0 http.span=547 role=server",
+              "timestamp=2026-10-17T02:23:33.174Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/xdg/config/opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.175Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/xdg/config/opencode/skill type=file backend=node ignores=0 http.span=579 role=server",
+              "timestamp=2026-10-17T02:23:33.179Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/xdg/config/opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.180Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/xdg/config/opencode/skills type=file backend=node ignores=0 http.span=584 role=server",
+              "timestamp=2026-10-17T02:23:33.183Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project/.opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.183Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/project/.opencode/skill type=file backend=node ignores=0 http.span=587 role=server",
+              "timestamp=2026-10-17T02:23:33.186Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project/.opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:33.186Z level=INFO run=34af9764 message=\"watcher started\" path=/lab/work/runs/baseline/project/.opencode/skills type=file backend=node ignores=0 http.span=590 role=server",
+              "timestamp=2026-10-17T02:23:33.211Z level=INFO run=34af9764 message=event event.id=evt_147abf15b001s6iYjCJMZpOSxx event.created=1792203813211 event.type=provider.updated event.location.directory=/lab/work/runs/baseline/project event.location.workspaceID=undefined event.data={} http.span=615 role=server",
+              "timestamp=2026-10-17T02:23:33.232Z level=INFO run=34af9764 message=event event.id=evt_147abf170001xKUjJuAMj0xrV5 event.created=1792203813232 event.type=model.updated event.location.directory=/lab/work/runs/baseline/project event.location.workspaceID=undefined event.data={} http.span=636 role=server",
+              "timestamp=2026-10-17T02:23:33.235Z level=INFO run=34af9764 message=event event.id=evt_147abf173001Np8ZHghH3TCCWJ event.created=1792203813235 event.type=agent.updated event.location.directory=/lab/work/runs/baseline/project event.location.workspaceID=undefined event.data={} http.span=639 role=server",
+              "timestamp=2026-10-17T02:23:33.237Z level=INFO run=34af9764 message=event event.id=evt_147abf174001XpVs04p9Wn7rfm event.created=1792203813237 event.type=command.updated event.location.directory=/lab/work/runs/baseline/project event.location.workspaceID=undefined event.data={} http.span=641 role=server",
+              "timestamp=2026-10-17T02:23:33.293Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/xdg/config/opencode type=directory ignores=3 http.span=697 role=server",
+              "timestamp=2026-10-17T02:23:33.293Z level=ERROR run=34af9764 message=\"watcher backend not supported\" directory=/lab/work/runs/baseline/xdg/config/opencode platform=linux http.span=697 role=server",
+              "timestamp=2026-10-17T02:23:33.293Z level=INFO run=34af9764 message=\"watcher subscribe\" path=/lab/work/runs/baseline/project/.opencode type=directory ignores=3 http.span=697 role=server",
+              "timestamp=2026-10-17T02:23:33.294Z level=ERROR run=34af9764 message=\"watcher backend not supported\" directory=/lab/work/runs/baseline/project/.opencode platform=linux http.span=698 role=server"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 300,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "model-path/baseline",
+      "meta": {
+        "tier": "all",
+        "config": "baseline"
+      },
+      "startedAt": "2026-10-17T02:23:33.854Z",
+      "finishedAt": "2026-10-17T02:23:36.106Z",
+      "counts": {
+        "pass": 3,
+        "fail": 0,
+        "skipped": 1
+      },
+      "results": [
+        {
+          "id": "model.run-completes",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "stdoutTail": "OK\n"
+          },
+          "notes": null
+        },
+        {
+          "id": "model.request-reached-provider",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "requestCount": 2
+          },
+          "notes": null
+        },
+        {
+          "id": "model.control-transmits-secret",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "bytes": 25171
+          },
+          "notes": null
+        },
+        {
+          "id": "model.redaction",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin in this configuration declares capabilities.redaction"
+        }
+      ]
+    },
+    {
+      "suite": "runtime/example-plugin",
+      "meta": {
+        "tier": "all",
+        "config": "example-plugin"
+      },
+      "startedAt": "2026-10-17T02:23:36.106Z",
+      "finishedAt": "2026-10-17T02:23:38.235Z",
+      "counts": {
+        "pass": 9,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "runtime.server-boot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 4,
+          "error": null,
+          "detail": {
+            "version": "2.0.21",
+            "port": 47697
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.plugins-active",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 10,
+          "error": null,
+          "detail": {
+            "active": [
+              "opencode.tool.input.repair",
+              "opencode.config.worktree",
+              "opencode.config.mcp",
+              "opencode.mcp.codemode.defaults",
+              "opencode.wellknown",
+              "opencode.vcs.git",
+              "opencode.agent",
+              "opencode.plan",
+              "opencode.command",
+              "opencode.skill",
+              "opencode.vcs.hg",
+              "opencode.models.dev",
+              "opencode.provider.amazon.bedrock",
+              "opencode.provider.azure",
+              "opencode.provider.cerebras",
+              "opencode.provider.chatgpt",
+              "opencode.provider.cloudflare.ai.gateway",
+              "opencode.provider.cloudflare.workers.ai",
+              "opencode.provider.cohere",
+              "opencode.provider.digitalocean",
+              "opencode.provider.gateway",
+              "opencode.provider.github.copilot",
+              "opencode.provider.gitlab",
+              "opencode.provider.google.vertex",
+              "opencode.provider.kilo",
+              "opencode.provider.llmgateway",
+              "opencode.provider.lmstudio",
+              "opencode.provider.modal",
+              "opencode.provider.nvidia",
+              "opencode.provider.ollama",
+              "opencode.provider.opencode",
+              "opencode.provider.snowflake.cortex",
+              "opencode.provider.openai",
+              "opencode.provider.openrouter",
+              "opencode.provider.perplexity",
+              "opencode.provider.poe",
+              "opencode.provider.prompt-cache-key",
+              "opencode.provider.sap.ai.core",
+              "opencode.provider.vercel",
+              "opencode.provider.venice",
+              "opencode.provider.vllm",
+              "opencode.provider.xai",
+              "opencode.provider.zenmux",
+              "opencode.provider.dynamic",
+              "opencode.websearch.exa",
+              "opencode.websearch.firecrawl",
+              "opencode.websearch.parallel",
+              "opencode.websearch.tavily",
+              "opencode.websearch.tinyfish",
+              "opencode.tool.patch",
+              "opencode.prompt.openai",
+              "opencode.prompt.anthropic",
+              "opencode.prompt.kimi",
+              "opencode.prompt.arcee",
+              "opencode.prompt.meta",
+              "opencode.prompt.verbosity",
+              "opencode.prompt.identity",
+              "opencode.tool.edit",
+              "opencode.tool.glob",
+              "opencode.tool.grep",
+              "opencode.tools",
+              "opencode.tools.mcp-resources",
+              "opencode.tool.question",
+              "opencode.tool.read",
+              "opencode.tool.shell",
+              "opencode.tool.skill",
+              "opencode.tool.subagent",
+              "opencode.tool.webfetch",
+              "opencode.tool.websearch",
+              "opencode.tool.write",
+              "opencode.warming",
+              "lab.example",
+              "lab.inspector",
+              "opencode.config.instruction",
+              "opencode.config.reference",
+              "opencode.config.agent",
+              "opencode.browser",
+              "opencode.config.command",
+              "opencode.config.compaction",
+              "opencode.config.formatter",
+              "opencode.config.image",
+              "opencode.config.location-watcher",
+              "opencode.config.shell",
+              "opencode.config.snapshot",
+              "opencode.config.tool-output",
+              "opencode.config.compatibility",
+              "opencode.config.skill",
+              "opencode.config.provider",
+              "opencode.config.websearch",
+              "opencode.config.policy"
+            ],
+            "expected": [
+              "example-plugin"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.tools-registered",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "tools": 18,
+            "pluginsWithoutTools": []
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.no-load-errors",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logBytes": 10265
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.lifecycle-setup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] setup"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.write-boundaries",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "entries": [
+              ".opencode",
+              "AGENTS.md",
+              "opencode.json"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.log-snapshot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logTail": [
+              "timestamp=2026-10-17T02:23:36.710Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin type=entries backend=node ignores=0 http.span=48 role=server",
+              "timestamp=2026-10-17T02:23:36.710Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/project type=entries ignores=0 http.span=48 role=server",
+              "timestamp=2026-10-17T02:23:36.710Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/project type=entries backend=node ignores=0 http.span=48 role=server",
+              "timestamp=2026-10-17T02:23:36.711Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/home type=entries ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:36.711Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/home type=entries backend=node ignores=0 http.span=49 role=server",
+              "timestamp=2026-10-17T02:23:36.743Z level=INFO run=f78d9956 message=\"location services booted\" directory=/lab/work/runs/example-plugin/project workspaceID=undefined durationMs=79 http.span=81 role=server",
+              "timestamp=2026-10-17T02:23:36.853Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin type=directory ignores=0 http.span=191 role=server",
+              "timestamp=2026-10-17T02:23:36.854Z level=ERROR run=f78d9956 message=\"watcher backend not supported\" directory=/opt/lab/plugins/example-plugin platform=linux http.span=192 role=server",
+              "timestamp=2026-10-17T02:23:36.854Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector type=directory ignores=0 http.span=192 role=server",
+              "timestamp=2026-10-17T02:23:36.858Z level=ERROR run=f78d9956 message=\"watcher backend not supported\" directory=/opt/lab/plugins/lab-inspector platform=linux http.span=196 role=server",
+              "timestamp=2026-10-17T02:23:36.860Z level=INFO run=f78d9956 msg=\"loading plugin\" id=/opt/lab/plugins/example-plugin entrypoint=file:///opt/lab/plugins/example-plugin/index.ts http.span=198 role=server",
+              "timestamp=2026-10-17T02:23:37.154Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/index.ts type=file ignores=0 http.span=492 role=server",
+              "timestamp=2026-10-17T02:23:37.155Z level=INFO run=f78d9956 message=\"watcher started\" path=/opt/lab/plugins/example-plugin/index.ts type=file backend=node ignores=0 http.span=493 role=server",
+              "timestamp=2026-10-17T02:23:37.155Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file ignores=0 http.span=493 role=server",
+              "timestamp=2026-10-17T02:23:37.156Z level=INFO run=f78d9956 message=\"watcher started\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file backend=node ignores=0 http.span=494 role=server",
+              "timestamp=2026-10-17T02:23:37.157Z level=INFO run=f78d9956 msg=\"loading plugin\" id=/opt/lab/plugins/lab-inspector entrypoint=file:///opt/lab/plugins/lab-inspector/index.ts http.span=495 role=server",
+              "timestamp=2026-10-17T02:23:37.326Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector/index.ts type=file ignores=0 http.span=664 role=server",
+              "timestamp=2026-10-17T02:23:37.327Z level=INFO run=f78d9956 message=\"watcher started\" path=/opt/lab/plugins/lab-inspector/index.ts type=file backend=node ignores=0 http.span=665 role=server",
+              "[example-plugin] setup (options={\"greeting\":\"hello from the lab\"})",
+              "[lab.inspector] version=2.0.21 plugins=[] tools=18",
+              "timestamp=2026-10-17T02:23:37.769Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/xdg/config/opencode/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.770Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/xdg/config/opencode/AGENTS.md type=file backend=node ignores=0 http.span=1108 role=server",
+              "timestamp=2026-10-17T02:23:37.770Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/project/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.770Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/project/AGENTS.md type=file backend=node ignores=0 http.span=1108 role=server",
+              "timestamp=2026-10-17T02:23:37.794Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/xdg/config/opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.795Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/xdg/config/opencode/skill type=file backend=node ignores=0 http.span=1133 role=server",
+              "timestamp=2026-10-17T02:23:37.797Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/xdg/config/opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.797Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/xdg/config/opencode/skills type=file backend=node ignores=0 http.span=1135 role=server",
+              "timestamp=2026-10-17T02:23:37.799Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/project/.opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.799Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/project/.opencode/skill type=file backend=node ignores=0 http.span=1137 role=server",
+              "timestamp=2026-10-17T02:23:37.803Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/project/.opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:37.803Z level=INFO run=f78d9956 message=\"watcher started\" path=/lab/work/runs/example-plugin/project/.opencode/skills type=file backend=node ignores=0 http.span=1141 role=server",
+              "timestamp=2026-10-17T02:23:37.805Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/xdg/config/opencode type=directory ignores=3 http.span=1143 role=server",
+              "timestamp=2026-10-17T02:23:37.806Z level=ERROR run=f78d9956 message=\"watcher backend not supported\" directory=/lab/work/runs/example-plugin/xdg/config/opencode platform=linux http.span=1144 role=server",
+              "timestamp=2026-10-17T02:23:37.806Z level=INFO run=f78d9956 message=\"watcher subscribe\" path=/lab/work/runs/example-plugin/project/.opencode type=directory ignores=3 http.span=1144 role=server",
+              "timestamp=2026-10-17T02:23:37.807Z level=ERROR run=f78d9956 message=\"watcher backend not supported\" directory=/lab/work/runs/example-plugin/project/.opencode platform=linux http.span=1145 role=server",
+              "timestamp=2026-10-17T02:23:37.828Z level=INFO run=f78d9956 message=event event.id=evt_147ac0364001CHl47RjR5F3Gb9 event.created=1792203817828 event.type=provider.updated event.location.directory=/lab/work/runs/example-plugin/project event.location.workspaceID=undefined event.data={} http.span=1166 role=server",
+              "timestamp=2026-10-17T02:23:37.845Z level=INFO run=f78d9956 message=event event.id=evt_147ac0375001r3ZDLsH83OIbaB event.created=1792203817845 event.type=model.updated event.location.directory=/lab/work/runs/example-plugin/project event.location.workspaceID=undefined event.data={} http.span=1183 role=server",
+              "timestamp=2026-10-17T02:23:37.848Z level=INFO run=f78d9956 message=event event.id=evt_147ac0378001hk1nupBdvqxY2Q event.created=1792203817848 event.type=agent.updated event.location.directory=/lab/work/runs/example-plugin/project event.location.workspaceID=undefined event.data={} http.span=1186 role=server",
+              "timestamp=2026-10-17T02:23:37.849Z level=INFO run=f78d9956 message=event event.id=evt_147ac0379001Q8jp7vSyCnlUV2 event.created=1792203817849 event.type=command.updated event.location.directory=/lab/work/runs/example-plugin/project event.location.workspaceID=undefined event.data={} http.span=1187 role=server"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 151,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.lifecycle-cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] cleanup"
+            ]
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "model-path/example-plugin",
+      "meta": {
+        "tier": "all",
+        "config": "example-plugin"
+      },
+      "startedAt": "2026-10-17T02:23:38.235Z",
+      "finishedAt": "2026-10-17T02:23:40.093Z",
+      "counts": {
+        "pass": 3,
+        "fail": 0,
+        "skipped": 1
+      },
+      "results": [
+        {
+          "id": "model.run-completes",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "stdoutTail": "OK\n"
+          },
+          "notes": null
+        },
+        {
+          "id": "model.request-reached-provider",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "requestCount": 2
+          },
+          "notes": null
+        },
+        {
+          "id": "model.control-transmits-secret",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "bytes": 25364
+          },
+          "notes": null
+        },
+        {
+          "id": "model.redaction",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin in this configuration declares capabilities.redaction"
+        }
+      ]
+    },
+    {
+      "suite": "runtime/single-plugin",
+      "meta": {
+        "tier": "all",
+        "config": "single-plugin"
+      },
+      "startedAt": "2026-10-17T02:23:40.093Z",
+      "finishedAt": "2026-10-17T02:23:42.109Z",
+      "counts": {
+        "pass": 9,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "runtime.server-boot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2,
+          "error": null,
+          "detail": {
+            "version": "2.0.21",
+            "port": 47256
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.plugins-active",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 7,
+          "error": null,
+          "detail": {
+            "active": [
+              "opencode.tool.input.repair",
+              "opencode.config.worktree",
+              "opencode.config.mcp",
+              "opencode.mcp.codemode.defaults",
+              "opencode.wellknown",
+              "opencode.vcs.git",
+              "opencode.agent",
+              "opencode.plan",
+              "opencode.command",
+              "opencode.skill",
+              "opencode.vcs.hg",
+              "opencode.models.dev",
+              "opencode.provider.amazon.bedrock",
+              "opencode.provider.azure",
+              "opencode.provider.cerebras",
+              "opencode.provider.chatgpt",
+              "opencode.provider.cloudflare.ai.gateway",
+              "opencode.provider.cloudflare.workers.ai",
+              "opencode.provider.cohere",
+              "opencode.provider.digitalocean",
+              "opencode.provider.gateway",
+              "opencode.provider.github.copilot",
+              "opencode.provider.gitlab",
+              "opencode.provider.google.vertex",
+              "opencode.provider.kilo",
+              "opencode.provider.llmgateway",
+              "opencode.provider.lmstudio",
+              "opencode.provider.modal",
+              "opencode.provider.nvidia",
+              "opencode.provider.ollama",
+              "opencode.provider.opencode",
+              "opencode.provider.snowflake.cortex",
+              "opencode.provider.openai",
+              "opencode.provider.openrouter",
+              "opencode.provider.perplexity",
+              "opencode.provider.poe",
+              "opencode.provider.prompt-cache-key",
+              "opencode.provider.sap.ai.core",
+              "opencode.provider.vercel",
+              "opencode.provider.venice",
+              "opencode.provider.vllm",
+              "opencode.provider.xai",
+              "opencode.provider.zenmux",
+              "opencode.provider.dynamic",
+              "opencode.websearch.exa",
+              "opencode.websearch.firecrawl",
+              "opencode.websearch.parallel",
+              "opencode.websearch.tavily",
+              "opencode.websearch.tinyfish",
+              "opencode.tool.patch",
+              "opencode.prompt.openai",
+              "opencode.prompt.anthropic",
+              "opencode.prompt.kimi",
+              "opencode.prompt.arcee",
+              "opencode.prompt.meta",
+              "opencode.prompt.verbosity",
+              "opencode.prompt.identity",
+              "opencode.tool.edit",
+              "opencode.tool.glob",
+              "opencode.tool.grep",
+              "opencode.tools",
+              "opencode.tools.mcp-resources",
+              "opencode.tool.question",
+              "opencode.tool.read",
+              "opencode.tool.shell",
+              "opencode.tool.skill",
+              "opencode.tool.subagent",
+              "opencode.tool.webfetch",
+              "opencode.tool.websearch",
+              "opencode.tool.write",
+              "opencode.warming",
+              "lab.example",
+              "lab.inspector",
+              "opencode.config.instruction",
+              "opencode.config.reference",
+              "opencode.config.agent",
+              "opencode.browser",
+              "opencode.config.command",
+              "opencode.config.compaction",
+              "opencode.config.formatter",
+              "opencode.config.image",
+              "opencode.config.location-watcher",
+              "opencode.config.shell",
+              "opencode.config.snapshot",
+              "opencode.config.tool-output",
+              "opencode.config.compatibility",
+              "opencode.config.skill",
+              "opencode.config.provider",
+              "opencode.config.websearch",
+              "opencode.config.policy"
+            ],
+            "expected": [
+              "example-plugin"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.tools-registered",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "tools": 18,
+            "pluginsWithoutTools": []
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.no-load-errors",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logBytes": 10517
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.lifecycle-setup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] setup"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.write-boundaries",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "entries": [
+              ".opencode",
+              "AGENTS.md",
+              "opencode.json"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.log-snapshot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logTail": [
+              "timestamp=2026-10-17T02:23:40.654Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/project type=entries ignores=0 http.span=50 role=server",
+              "timestamp=2026-10-17T02:23:40.654Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/project type=entries backend=node ignores=0 http.span=50 role=server",
+              "timestamp=2026-10-17T02:23:40.655Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/home type=entries ignores=0 http.span=51 role=server",
+              "timestamp=2026-10-17T02:23:40.655Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/home type=entries backend=node ignores=0 http.span=51 role=server",
+              "timestamp=2026-10-17T02:23:40.681Z level=INFO run=8bf2e7be message=\"location services booted\" directory=/lab/work/runs/single-plugin/project workspaceID=undefined durationMs=75 http.span=77 role=server",
+              "timestamp=2026-10-17T02:23:40.694Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin type=directory ignores=0 http.span=90 role=server",
+              "timestamp=2026-10-17T02:23:40.695Z level=ERROR run=8bf2e7be message=\"watcher backend not supported\" directory=/opt/lab/plugins/example-plugin platform=linux http.span=91 role=server",
+              "timestamp=2026-10-17T02:23:40.695Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector type=directory ignores=0 http.span=91 role=server",
+              "timestamp=2026-10-17T02:23:40.696Z level=ERROR run=8bf2e7be message=\"watcher backend not supported\" directory=/opt/lab/plugins/lab-inspector platform=linux http.span=92 role=server",
+              "timestamp=2026-10-17T02:23:40.698Z level=INFO run=8bf2e7be msg=\"loading plugin\" id=/opt/lab/plugins/example-plugin entrypoint=file:///opt/lab/plugins/example-plugin/index.ts http.span=94 role=server",
+              "timestamp=2026-10-17T02:23:41.009Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/index.ts type=file ignores=0 http.span=405 role=server",
+              "timestamp=2026-10-17T02:23:41.010Z level=INFO run=8bf2e7be message=\"watcher started\" path=/opt/lab/plugins/example-plugin/index.ts type=file backend=node ignores=0 http.span=406 role=server",
+              "timestamp=2026-10-17T02:23:41.011Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file ignores=0 http.span=407 role=server",
+              "timestamp=2026-10-17T02:23:41.011Z level=INFO run=8bf2e7be message=\"watcher started\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file backend=node ignores=0 http.span=407 role=server",
+              "timestamp=2026-10-17T02:23:41.013Z level=INFO run=8bf2e7be msg=\"loading plugin\" id=/opt/lab/plugins/lab-inspector entrypoint=file:///opt/lab/plugins/lab-inspector/index.ts http.span=409 role=server",
+              "timestamp=2026-10-17T02:23:41.198Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector/index.ts type=file ignores=0 http.span=594 role=server",
+              "timestamp=2026-10-17T02:23:41.199Z level=INFO run=8bf2e7be message=\"watcher started\" path=/opt/lab/plugins/lab-inspector/index.ts type=file backend=node ignores=0 http.span=595 role=server",
+              "[example-plugin] setup (options={\"greeting\":\"hello from single-plugin\"})",
+              "[lab.inspector] version=2.0.21 plugins=[] tools=18",
+              "timestamp=2026-10-17T02:23:41.642Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/xdg/config/opencode/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.642Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/xdg/config/opencode/AGENTS.md type=file backend=node ignores=0 http.span=1038 role=server",
+              "timestamp=2026-10-17T02:23:41.642Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/project/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.643Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/project/AGENTS.md type=file backend=node ignores=0 http.span=1039 role=server",
+              "timestamp=2026-10-17T02:23:41.666Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/xdg/config/opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.667Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/xdg/config/opencode/skill type=file backend=node ignores=0 http.span=1063 role=server",
+              "timestamp=2026-10-17T02:23:41.672Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/xdg/config/opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.673Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/xdg/config/opencode/skills type=file backend=node ignores=0 http.span=1069 role=server",
+              "timestamp=2026-10-17T02:23:41.675Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/project/.opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.675Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/project/.opencode/skill type=file backend=node ignores=0 http.span=1071 role=server",
+              "timestamp=2026-10-17T02:23:41.677Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/project/.opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:41.678Z level=INFO run=8bf2e7be message=\"watcher started\" path=/lab/work/runs/single-plugin/project/.opencode/skills type=file backend=node ignores=0 http.span=1074 role=server",
+              "timestamp=2026-10-17T02:23:41.699Z level=INFO run=8bf2e7be message=event event.id=evt_147ac12830014bm0tK261QdnBb event.created=1792203821699 event.type=provider.updated event.location.directory=/lab/work/runs/single-plugin/project event.location.workspaceID=undefined event.data={} http.span=1095 role=server",
+              "timestamp=2026-10-17T02:23:41.716Z level=INFO run=8bf2e7be message=event event.id=evt_147ac1294001HygkmPDa1ITkAv event.created=1792203821716 event.type=model.updated event.location.directory=/lab/work/runs/single-plugin/project event.location.workspaceID=undefined event.data={} http.span=1112 role=server",
+              "timestamp=2026-10-17T02:23:41.719Z level=INFO run=8bf2e7be message=event event.id=evt_147ac1296001k5fNKrvfsa0OH1 event.created=1792203821718 event.type=agent.updated event.location.directory=/lab/work/runs/single-plugin/project event.location.workspaceID=undefined event.data={} http.span=1115 role=server",
+              "timestamp=2026-10-17T02:23:41.720Z level=INFO run=8bf2e7be message=event event.id=evt_147ac1297001pRzB8eTgiUEsFv event.created=1792203821719 event.type=command.updated event.location.directory=/lab/work/runs/single-plugin/project event.location.workspaceID=undefined event.data={} http.span=1116 role=server",
+              "timestamp=2026-10-17T02:23:41.762Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/xdg/config/opencode type=directory ignores=3 http.span=1158 role=server",
+              "timestamp=2026-10-17T02:23:41.762Z level=ERROR run=8bf2e7be message=\"watcher backend not supported\" directory=/lab/work/runs/single-plugin/xdg/config/opencode platform=linux http.span=1158 role=server",
+              "timestamp=2026-10-17T02:23:41.763Z level=INFO run=8bf2e7be message=\"watcher subscribe\" path=/lab/work/runs/single-plugin/project/.opencode type=directory ignores=3 http.span=1159 role=server",
+              "timestamp=2026-10-17T02:23:41.763Z level=ERROR run=8bf2e7be message=\"watcher backend not supported\" directory=/lab/work/runs/single-plugin/project/.opencode platform=linux http.span=1159 role=server",
+              "timestamp=2026-10-17T02:23:41.948Z level=ERROR run=8bf2e7be message=\"Failed to fetch models.dev\" cause=\"Cause([Fail(HttpClientError: Transport error (GET https://models.opencode.ai/api.json) (cause: TypeError: getaddrinfo ETIMEOUT models.opencode.ai))])\" http.span=1344 role=server"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 149,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.lifecycle-cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] cleanup"
+            ]
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "model-path/single-plugin",
+      "meta": {
+        "tier": "all",
+        "config": "single-plugin"
+      },
+      "startedAt": "2026-10-17T02:23:42.110Z",
+      "finishedAt": "2026-10-17T02:23:44.246Z",
+      "counts": {
+        "pass": 3,
+        "fail": 0,
+        "skipped": 1
+      },
+      "results": [
+        {
+          "id": "model.run-completes",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "stdoutTail": "OK\n"
+          },
+          "notes": null
+        },
+        {
+          "id": "model.request-reached-provider",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "requestCount": 2
+          },
+          "notes": null
+        },
+        {
+          "id": "model.control-transmits-secret",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "bytes": 25361
+          },
+          "notes": null
+        },
+        {
+          "id": "model.redaction",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin in this configuration declares capabilities.redaction"
+        }
+      ]
+    },
+    {
+      "suite": "runtime/multi-plugin",
+      "meta": {
+        "tier": "all",
+        "config": "multi-plugin"
+      },
+      "startedAt": "2026-10-17T02:23:44.246Z",
+      "finishedAt": "2026-10-17T02:23:46.383Z",
+      "counts": {
+        "pass": 9,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "runtime.server-boot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 3,
+          "error": null,
+          "detail": {
+            "version": "2.0.21",
+            "port": 47349
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.plugins-active",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 5,
+          "error": null,
+          "detail": {
+            "active": [
+              "opencode.tool.input.repair",
+              "opencode.config.worktree",
+              "opencode.config.mcp",
+              "opencode.mcp.codemode.defaults",
+              "opencode.wellknown",
+              "opencode.vcs.git",
+              "opencode.agent",
+              "opencode.plan",
+              "opencode.command",
+              "opencode.skill",
+              "opencode.vcs.hg",
+              "opencode.models.dev",
+              "opencode.provider.amazon.bedrock",
+              "opencode.provider.azure",
+              "opencode.provider.cerebras",
+              "opencode.provider.chatgpt",
+              "opencode.provider.cloudflare.ai.gateway",
+              "opencode.provider.cloudflare.workers.ai",
+              "opencode.provider.cohere",
+              "opencode.provider.digitalocean",
+              "opencode.provider.gateway",
+              "opencode.provider.github.copilot",
+              "opencode.provider.gitlab",
+              "opencode.provider.google.vertex",
+              "opencode.provider.kilo",
+              "opencode.provider.llmgateway",
+              "opencode.provider.lmstudio",
+              "opencode.provider.modal",
+              "opencode.provider.nvidia",
+              "opencode.provider.ollama",
+              "opencode.provider.opencode",
+              "opencode.provider.snowflake.cortex",
+              "opencode.provider.openai",
+              "opencode.provider.openrouter",
+              "opencode.provider.perplexity",
+              "opencode.provider.poe",
+              "opencode.provider.prompt-cache-key",
+              "opencode.provider.sap.ai.core",
+              "opencode.provider.vercel",
+              "opencode.provider.venice",
+              "opencode.provider.vllm",
+              "opencode.provider.xai",
+              "opencode.provider.zenmux",
+              "opencode.provider.dynamic",
+              "opencode.websearch.exa",
+              "opencode.websearch.firecrawl",
+              "opencode.websearch.parallel",
+              "opencode.websearch.tavily",
+              "opencode.websearch.tinyfish",
+              "opencode.tool.patch",
+              "opencode.prompt.openai",
+              "opencode.prompt.anthropic",
+              "opencode.prompt.kimi",
+              "opencode.prompt.arcee",
+              "opencode.prompt.meta",
+              "opencode.prompt.verbosity",
+              "opencode.prompt.identity",
+              "opencode.tool.edit",
+              "opencode.tool.glob",
+              "opencode.tool.grep",
+              "opencode.tools",
+              "opencode.tools.mcp-resources",
+              "opencode.tool.question",
+              "opencode.tool.read",
+              "opencode.tool.shell",
+              "opencode.tool.skill",
+              "opencode.tool.subagent",
+              "opencode.tool.webfetch",
+              "opencode.tool.websearch",
+              "opencode.tool.write",
+              "opencode.warming",
+              "lab.example",
+              "lab.example-two",
+              "lab.inspector",
+              "opencode.config.instruction",
+              "opencode.config.reference",
+              "opencode.config.agent",
+              "opencode.browser",
+              "opencode.config.command",
+              "opencode.config.compaction",
+              "opencode.config.formatter",
+              "opencode.config.image",
+              "opencode.config.location-watcher",
+              "opencode.config.shell",
+              "opencode.config.snapshot",
+              "opencode.config.tool-output",
+              "opencode.config.compatibility",
+              "opencode.config.skill",
+              "opencode.config.provider",
+              "opencode.config.websearch",
+              "opencode.config.policy"
+            ],
+            "expected": [
+              "example-plugin",
+              "example-plugin-2"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.tools-registered",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "tools": 18,
+            "pluginsWithoutTools": [
+              "example-plugin-2"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.no-load-errors",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logBytes": 11479
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.lifecycle-setup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] setup",
+              "[example-plugin-2] setup"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.write-boundaries",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "entries": [
+              ".opencode",
+              "AGENTS.md",
+              "opencode.json"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.log-snapshot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logTail": [
+              "timestamp=2026-10-17T02:23:44.840Z level=ERROR run=830ee2f1 message=\"watcher backend not supported\" directory=/opt/lab/plugins/example-plugin platform=linux http.span=87 role=server",
+              "timestamp=2026-10-17T02:23:44.840Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin-2 type=directory ignores=0 http.span=87 role=server",
+              "timestamp=2026-10-17T02:23:44.841Z level=ERROR run=830ee2f1 message=\"watcher backend not supported\" directory=/opt/lab/plugins/example-plugin-2 platform=linux http.span=88 role=server",
+              "timestamp=2026-10-17T02:23:44.842Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector type=directory ignores=0 http.span=89 role=server",
+              "timestamp=2026-10-17T02:23:44.842Z level=ERROR run=830ee2f1 message=\"watcher backend not supported\" directory=/opt/lab/plugins/lab-inspector platform=linux http.span=89 role=server",
+              "timestamp=2026-10-17T02:23:44.843Z level=INFO run=830ee2f1 msg=\"loading plugin\" id=/opt/lab/plugins/example-plugin entrypoint=file:///opt/lab/plugins/example-plugin/index.ts http.span=90 role=server",
+              "timestamp=2026-10-17T02:23:45.136Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/index.ts type=file ignores=0 http.span=383 role=server",
+              "timestamp=2026-10-17T02:23:45.137Z level=INFO run=830ee2f1 message=\"watcher started\" path=/opt/lab/plugins/example-plugin/index.ts type=file backend=node ignores=0 http.span=384 role=server",
+              "timestamp=2026-10-17T02:23:45.137Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file ignores=0 http.span=384 role=server",
+              "timestamp=2026-10-17T02:23:45.138Z level=INFO run=830ee2f1 message=\"watcher started\" path=/opt/lab/plugins/example-plugin/dist/index.js type=file backend=node ignores=0 http.span=385 role=server",
+              "timestamp=2026-10-17T02:23:45.139Z level=INFO run=830ee2f1 msg=\"loading plugin\" id=/opt/lab/plugins/example-plugin-2 entrypoint=file:///opt/lab/plugins/example-plugin-2/index.js http.span=386 role=server",
+              "timestamp=2026-10-17T02:23:45.310Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/example-plugin-2/index.js type=file ignores=0 http.span=557 role=server",
+              "timestamp=2026-10-17T02:23:45.311Z level=INFO run=830ee2f1 message=\"watcher started\" path=/opt/lab/plugins/example-plugin-2/index.js type=file backend=node ignores=0 http.span=558 role=server",
+              "timestamp=2026-10-17T02:23:45.313Z level=INFO run=830ee2f1 msg=\"loading plugin\" id=/opt/lab/plugins/lab-inspector entrypoint=file:///opt/lab/plugins/lab-inspector/index.ts http.span=560 role=server",
+              "timestamp=2026-10-17T02:23:45.459Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector/index.ts type=file ignores=0 http.span=706 role=server",
+              "timestamp=2026-10-17T02:23:45.459Z level=INFO run=830ee2f1 message=\"watcher started\" path=/opt/lab/plugins/lab-inspector/index.ts type=file backend=node ignores=0 http.span=706 role=server",
+              "timestamp=2026-10-17T02:23:45.886Z level=ERROR run=830ee2f1 message=\"Failed to fetch models.dev\" cause=\"Cause([Fail(HttpClientError: Transport error (GET https://models.opencode.ai/api.json) (cause: TypeError: getaddrinfo ETIMEOUT models.opencode.ai))])\" http.span=1133 role=server",
+              "[example-plugin] setup (options={\"greeting\":\"hello from the lab\"})",
+              "[example-plugin-2] setup (lifecycle-only; registers no tools)",
+              "[lab.inspector] version=2.0.21 plugins=[] tools=18",
+              "timestamp=2026-10-17T02:23:45.923Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.923Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/AGENTS.md type=file backend=node ignores=0 http.span=1170 role=server",
+              "timestamp=2026-10-17T02:23:45.923Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/project/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.924Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/project/AGENTS.md type=file backend=node ignores=0 http.span=1171 role=server",
+              "timestamp=2026-10-17T02:23:45.954Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.955Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/skill type=file backend=node ignores=0 http.span=1202 role=server",
+              "timestamp=2026-10-17T02:23:45.957Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.957Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/xdg/config/opencode/skills type=file backend=node ignores=0 http.span=1204 role=server",
+              "timestamp=2026-10-17T02:23:45.958Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/project/.opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.959Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/project/.opencode/skill type=file backend=node ignores=0 http.span=1206 role=server",
+              "timestamp=2026-10-17T02:23:45.961Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/project/.opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:23:45.961Z level=INFO run=830ee2f1 message=\"watcher started\" path=/lab/work/runs/multi-plugin/project/.opencode/skills type=file backend=node ignores=0 http.span=1208 role=server",
+              "timestamp=2026-10-17T02:23:45.985Z level=INFO run=830ee2f1 message=event event.id=evt_147ac2341001y4vJ2HvxxOE1iw event.created=1792203825985 event.type=provider.updated event.location.directory=/lab/work/runs/multi-plugin/project event.location.workspaceID=undefined event.data={} http.span=1232 role=server",
+              "timestamp=2026-10-17T02:23:46.003Z level=INFO run=830ee2f1 message=event event.id=evt_147ac2353001XpXtPrqsaedARb event.created=1792203826003 event.type=model.updated event.location.directory=/lab/work/runs/multi-plugin/project event.location.workspaceID=undefined event.data={} http.span=1250 role=server",
+              "timestamp=2026-10-17T02:23:46.006Z level=INFO run=830ee2f1 message=event event.id=evt_147ac23560018f33Cf46nrS1ht event.created=1792203826006 event.type=agent.updated event.location.directory=/lab/work/runs/multi-plugin/project event.location.workspaceID=undefined event.data={} http.span=1253 role=server",
+              "timestamp=2026-10-17T02:23:46.008Z level=INFO run=830ee2f1 message=event event.id=evt_147ac2357001z9d10GrfBp07ZH event.created=1792203826008 event.type=command.updated event.location.directory=/lab/work/runs/multi-plugin/project event.location.workspaceID=undefined event.data={} http.span=1255 role=server",
+              "timestamp=2026-10-17T02:23:46.056Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/xdg/config/opencode type=directory ignores=3 http.span=1303 role=server",
+              "timestamp=2026-10-17T02:23:46.057Z level=ERROR run=830ee2f1 message=\"watcher backend not supported\" directory=/lab/work/runs/multi-plugin/xdg/config/opencode platform=linux http.span=1304 role=server",
+              "timestamp=2026-10-17T02:23:46.057Z level=INFO run=830ee2f1 message=\"watcher subscribe\" path=/lab/work/runs/multi-plugin/project/.opencode type=directory ignores=3 http.span=1304 role=server",
+              "timestamp=2026-10-17T02:23:46.057Z level=ERROR run=830ee2f1 message=\"watcher backend not supported\" directory=/lab/work/runs/multi-plugin/project/.opencode platform=linux http.span=1304 role=server"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 151,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.lifecycle-cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "markers": [
+              "[example-plugin] cleanup",
+              "[example-plugin-2] cleanup"
+            ]
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "model-path/multi-plugin",
+      "meta": {
+        "tier": "all",
+        "config": "multi-plugin"
+      },
+      "startedAt": "2026-10-17T02:23:46.383Z",
+      "finishedAt": "2026-10-17T02:23:48.411Z",
+      "counts": {
+        "pass": 3,
+        "fail": 0,
+        "skipped": 1
+      },
+      "results": [
+        {
+          "id": "model.run-completes",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "stdoutTail": "OK\n"
+          },
+          "notes": null
+        },
+        {
+          "id": "model.request-reached-provider",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "requestCount": 2
+          },
+          "notes": null
+        },
+        {
+          "id": "model.control-transmits-secret",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "bytes": 25358
+          },
+          "notes": null
+        },
+        {
+          "id": "model.redaction",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin in this configuration declares capabilities.redaction"
+        }
+      ]
+    },
+    {
+      "suite": "package-inspection/artifacts",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:23:48.413Z",
+      "finishedAt": "2026-10-17T02:23:48.417Z",
+      "counts": {
+        "pass": 13,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "package.example-plugin.present",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "packageDir": "/opt/lab/plugins/example-plugin"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.example-plugin.metadata",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "name": "@opencode-lab/example-plugin",
+            "sdk": "2.0.21",
+            "main": "index.ts"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.example-plugin.sdk-resolvable",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "sdkVersion": "2.0.21"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.example-plugin.entry-resolves",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "entry": "index.js",
+            "shim": true
+          },
+          "notes": null
+        },
+        {
+          "id": "package.example-plugin.build-output",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "files": 1,
+            "bytes": 1948
+          },
+          "notes": null
+        },
+        {
+          "id": "package.example-plugin.provenance",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "version": "1.0.0",
+            "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6",
+            "sourceType": "directory"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.example-plugin-2.present",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "packageDir": "/opt/lab/plugins/example-plugin-2"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.example-plugin-2.metadata",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "name": "@opencode-lab/example-plugin-2",
+            "sdk": "2.0.21",
+            "main": "index.js"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.example-plugin-2.sdk-resolvable",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "sdkVersion": "2.0.21"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.example-plugin-2.entry-resolves",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "entry": "index.js",
+            "rootEntry": true
+          },
+          "notes": null
+        },
+        {
+          "id": "package.example-plugin-2.build-output",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "files": 6,
+            "bytes": 142901
+          },
+          "notes": null
+        },
+        {
+          "id": "package.example-plugin-2.provenance",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "version": "1.0.0",
+            "commit": "96e67fc43ef33373f631bae9448f1075c357a2c6",
+            "sourceType": "package"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.inspector.present",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "present": true
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "load-order/permutations",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:23:48.418Z",
+      "finishedAt": "2026-10-17T02:23:54.730Z",
+      "counts": {
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "load-order.order.exampleplugin_exampleplugin2",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2103,
+          "error": null,
+          "detail": {
+            "order": [
+              "example-plugin",
+              "example-plugin-2"
+            ],
+            "tools": 18
+          },
+          "notes": null
+        },
+        {
+          "id": "load-order.order.exampleplugin2_exampleplugin",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2103,
+          "error": null,
+          "detail": {
+            "order": [
+              "example-plugin-2",
+              "example-plugin"
+            ],
+            "tools": 18
+          },
+          "notes": null
+        },
+        {
+          "id": "load-order.duplicate-entry",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2102,
+          "error": null,
+          "detail": {
+            "tools": 18,
+            "duplicateOf": "example-plugin"
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "failure-isolation/broken-plugin",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:23:54.732Z",
+      "finishedAt": "2026-10-17T02:24:01.106Z",
+      "counts": {
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "failure-isolation.broken-first",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2130,
+          "error": null,
+          "detail": {
+            "label": "broken-first",
+            "failed": 1,
+            "tools": 18,
+            "externalPlugins": 4
+          },
+          "notes": null
+        },
+        {
+          "id": "failure-isolation.broken-last",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2117,
+          "error": null,
+          "detail": {
+            "label": "broken-last",
+            "failed": 1,
+            "tools": 18,
+            "externalPlugins": 4
+          },
+          "notes": null
+        },
+        {
+          "id": "failure-isolation.unresolvable-import-first",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2124,
+          "error": null,
+          "detail": {
+            "label": "unresolvable-import-first",
+            "failed": 1,
+            "tools": 18,
+            "externalPlugins": 3
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "process-cleanup/graceful-shutdown",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:24:01.108Z",
+      "finishedAt": "2026-10-17T02:24:03.821Z",
+      "counts": {
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "process-cleanup.server-alive",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 3,
+          "error": null,
+          "detail": {
+            "port": 47443
+          },
+          "notes": null
+        },
+        {
+          "id": "process-cleanup.shutdown-exits",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 150,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        },
+        {
+          "id": "process-cleanup.port-released",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 403,
+          "error": null,
+          "detail": {
+            "port": 47443,
+            "refused": true
+          },
+          "notes": null
+        },
+        {
+          "id": "process-cleanup.no-orphans",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 209,
+          "error": null,
+          "detail": {
+            "runDir": "/lab/work/runs/multi-plugin",
+            "orphans": 0
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "install-artifact/packaged",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:24:03.824Z",
+      "finishedAt": "2026-10-17T02:24:10.198Z",
+      "counts": {
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "install.example-plugin.pack",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2067,
+          "error": null,
+          "detail": {
+            "tarball": "opencode-lab-example-plugin-0.0.0-lab.tgz",
+            "pkgRoot": "/tmp/lab-pack-ZBBrIy/example-plugin/extracted/package"
+          },
+          "notes": null
+        },
+        {
+          "id": "install.example-plugin.loads-in-runtime",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1796,
+          "error": null,
+          "detail": {
+            "active": true,
+            "plugins": 90
+          },
+          "notes": null
+        },
+        {
+          "id": "install.example-plugin-2.pack",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 518,
+          "error": null,
+          "detail": {
+            "tarball": "opencode-lab-example-plugin-2-0.0.0-lab.tgz",
+            "pkgRoot": "/tmp/lab-pack-ZBBrIy/example-plugin-2/extracted/package"
+          },
+          "notes": null
+        },
+        {
+          "id": "install.example-plugin-2.loads-in-runtime",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1992,
+          "error": null,
+          "detail": {
+            "active": true,
+            "plugins": 90
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "config-validation/errors",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:24:10.200Z",
+      "finishedAt": "2026-10-17T02:24:13.903Z",
+      "counts": {
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "config-validation.unknown-configuration",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "message": "unknown configuration \"definitely-not-a-config\" (known: baseline, example-plugin, single-plugin, multi-plugin)"
+          },
+          "notes": null
+        },
+        {
+          "id": "config-validation.invalid-manifest-rejected",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "message": "invalid manifest /tmp/lab-cfg-q3lP9A/bad-lab.config.json: |   - plugins[0].source.type is required (directory|tarball|package|npm)"
+          },
+          "notes": null
+        },
+        {
+          "id": "config-validation.missing-plugin-directory",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1791,
+          "error": null,
+          "detail": {
+            "outcome": "booted",
+            "failed": 1
+          },
+          "notes": null
+        },
+        {
+          "id": "config-validation.malformed-package-json",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1910,
+          "error": null,
+          "detail": {
+            "outcome": "booted"
+          },
+          "notes": null
+        }
+      ]
+    }
+  ]
+}

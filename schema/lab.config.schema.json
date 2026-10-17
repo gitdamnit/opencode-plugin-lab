@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gitdamnit/opencode-plugin-lab/schema/lab.config.schema.json",
+  "title": "OpenCode Plugin Lab configuration",
+  "description": "Declares which OpenCode V2 plugins the lab stages, builds and tests, and which configurations it runs them in. One manifest fully describes a lab run.",
+  "type": "object",
+  "required": ["version", "plugins", "configs"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": {
+      "type": "integer",
+      "const": 1,
+      "description": "Manifest schema version. Only 1 is defined."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for this manifest (informational)."
+    },
+    "opencode": {
+      "type": "object",
+      "description": "Pinned runtime versions. Keep a tested version here; select another with LAB/OPENCODE_VERSION at build time.",
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+",
+          "description": "OpenCode V2 CLI version (@opencode/cli), e.g. 2.0.21."
+        },
+        "sdkVersion": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+",
+          "description": "Plugin SDK version (@opencode/plugin). Defaults to `version`."
+        }
+      }
+    },
+    "defaultConfig": {
+      "type": "string",
+      "description": "Configuration used by `make start` and as the default for `make test`. Defaults to the first entry in `configs`."
+    },
+    "plugins": {
+      "type": "array",
+      "description": "Every plugin the lab can build and test.",
+      "items": { "$ref": "#/$defs/plugin" }
+    },
+    "configs": {
+      "type": "array",
+      "description": "Runtime configurations. Each one boots a real OpenCode server with a subset of the declared plugins.",
+      "items": { "$ref": "#/$defs/config" },
+      "minItems": 1
+    },
+    "globalSuites": {
+      "type": "array",
+      "description": "Optional configuration-independent test extensions specific to this manifest (loaded once per run). Each module exports `run({ tier })`.",
+      "items": { "$ref": "#/$defs/suite" }
+    }
+  },
+  "$defs": {
+    "plugin": {
+      "type": "object",
+      "required": ["name", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]*$",
+          "description": "Stable lab identifier. Also the directory name under /opt/lab/plugins."
+        },
+        "package": {
+          "type": "string",
+          "description": "Upstream npm package name (informational; used in reports)."
+        },
+        "id": {
+          "type": "string",
+          "description": "Expected runtime plugin id (e.g. lab.example). Optional; when omitted the plugin is matched by source path only."
+        },
+        "source": { "$ref": "#/$defs/source" },
+        "build": { "$ref": "#/$defs/build" },
+        "options": {
+          "type": "object",
+          "description": "Options passed to this plugin in every generated opencode config.",
+          "additionalProperties": true
+        },
+        "capabilities": { "$ref": "#/$defs/capabilities" },
+        "expectTools": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Tool ids this plugin is expected to register. Empty means 'registers no tools' and tool assertions are skipped."
+        },
+        "install": { "$ref": "#/$defs/install" },
+        "setupMarker": {
+          "type": "string",
+          "description": "Optional string the plugin logs during setup. When present, the lab asserts it appears in the server log after boot."
+        },
+        "cleanupMarker": {
+          "type": "string",
+          "description": "Optional string the plugin logs on unload. When present, the lab asserts it appears in the server log after graceful shutdown."
+        },
+        "expectedWrites": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Top-level entries this plugin is expected to create inside a project (e.g. .plugin-state). Used by the generic write-boundary check."
+        },
+        "tests": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional plugin-specific test-extension modules, resolved relative to this manifest. Each module exports `run({ plugin, tier })`."
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": ["directory", "tarball", "package", "npm"],
+          "description": "directory: a local source tree (staged + built). tarball: a local .tgz (unpacked, optionally built). package: an already-built package directory (used as-is). npm: an npm reference; never fetched unless allowRemote is true."
+        },
+        "path": {
+          "type": "string",
+          "description": "Directory or tarball path (for directory/tarball/package). Relative paths resolve against the manifest directory. Supports ~ and ${ENV_VAR} / ${ENV_VAR:-default}."
+        },
+        "ref": {
+          "type": "string",
+          "description": "npm reference such as name@1.2.3 (for npm). Required for type npm."
+        },
+        "allowRemote": {
+          "type": "boolean",
+          "default": false,
+          "description": "Explicit opt-in required before a `npm` source is fetched from the network."
+        },
+        "commit": {
+          "type": "string",
+          "description": "Optional commit the source corresponds to. Recorded as provenance when the source is not a git worktree (e.g. an exported tree or a tarball)."
+        }
+      }
+    },
+    "build": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "type": "string",
+          "description": "Build command run in the staged tree. Defaults to the package's own `build` script, or is skipped when the package has none and a dist is already present / entry is at the root."
+        },
+        "install": {
+          "type": "string",
+          "description": "Dependency-install command. Defaults to `npm ci` when a lockfile is present, else `npm install`."
+        },
+        "dist": {
+          "type": "string",
+          "description": "Directory of compiled output produced by the build. Defaults to 'dist'."
+        },
+        "entry": {
+          "type": "string",
+          "description": "Entry file inside `dist` that exports the plugin default. Defaults to 'index.js'."
+        },
+        "rootEntry": {
+          "type": "boolean",
+          "default": false,
+          "description": "When true the plugin entry lives at the package root (no dist/ shim is generated)."
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "description": "What the plugin is expected to do. The harness only asserts applicable capabilities and reports the rest as skipped/unsupported.",
+      "additionalProperties": false,
+      "properties": {
+        "tools": { "type": "boolean", "default": false, "description": "Registers one or more tools." },
+        "hooks": { "type": "boolean", "default": false, "description": "Registers session/context hooks." },
+        "storage": { "type": "boolean", "default": false, "description": "Persists state (database/files) itself." },
+        "redaction": { "type": "boolean", "default": false, "description": "Transforms model requests (secret redaction) on the supported request path." },
+        "network": { "type": "boolean", "default": false, "description": "Makes outbound network calls. Such plugins are only supported in the gated online tier." }
+      }
+    },
+    "install": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scripts": {
+          "type": "boolean",
+          "default": false,
+          "description": "Allow npm lifecycle scripts (preinstall/install/postinstall) during dependency installation. Default false (--ignore-scripts)."
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "description": { "type": "string" },
+        "plugins": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Plugin names (from `plugins`) loaded in this configuration, in load order."
+        },
+        "template": {
+          "type": "string",
+          "description": "Optional JSONC template for the base opencode config, resolved relative to the manifest. The plugin list is still generated from `plugins`."
+        },
+        "options": {
+          "type": "object",
+          "description": "Per-plugin option overrides keyed by plugin name.",
+          "additionalProperties": { "type": "object", "additionalProperties": true }
+        },
+        "settings": {
+          "type": "object",
+          "description": "Extra top-level opencode config keys (e.g. compaction, providers), merged into the generated config.",
+          "additionalProperties": true
+        }
+      }
+    },
+    "suite": {
+      "type": "object",
+      "required": ["name", "module"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "description": "Suite id used in reports." },
+        "module": { "type": "string", "description": "Module path relative to this manifest. Exports `run({ tier })`." },
+        "tier": { "type": "string", "description": "Tier this suite belongs to (informational)." }
+      }
+    }
+  }
+}

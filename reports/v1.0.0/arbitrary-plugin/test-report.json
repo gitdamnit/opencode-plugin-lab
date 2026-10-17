@@ -1,0 +1,1747 @@
+{
+  "schema": "opencode-plugin-lab/report/v1",
+  "environment": {
+    "schema": "opencode-plugin-lab/report/v1",
+    "generatedAt": "2026-10-17T02:16:08.884Z",
+    "runId": "2026-10-17T02-15-38-449Z",
+    "opencodeVersion": "opencode v2.0.21",
+    "nodeVersion": "v22.23.3",
+    "platform": "linux/x64",
+    "image": "opencode-plugin-lab:local",
+    "imageId": null,
+    "labRoot": "/lab",
+    "manifest": {
+      "name": "local plugin: stranger-danger-pin",
+      "path": "/opt/lab/lab.config.json",
+      "digest": "a55be923bcb9fcc23ff38b4bb98e99c10112975b00f25ea02c7f9ce934d6197d",
+      "version": 1,
+      "opencode": {
+        "version": "2.0.21",
+        "sdkVersion": "2.0.21"
+      },
+      "plugins": [
+        "stranger-danger-pin"
+      ],
+      "configs": [
+        "plugin"
+      ],
+      "defaultConfig": "plugin"
+    },
+    "requested": {
+      "config": null,
+      "tier": "all",
+      "online": false,
+      "all": true
+    },
+    "plugins": {
+      "stranger-danger-pin": {
+        "name": "stranger-danger-pin",
+        "packageDir": "/opt/lab/plugins/stranger-danger-pin",
+        "version": "0.2.0",
+        "commit": null,
+        "branch": null,
+        "dirty": null,
+        "sourcePath": "/tmp/opencode/gitdamnit-pins/sd",
+        "built": true,
+        "packageName": "@gitdamnit/stranger-danger",
+        "license": "MIT",
+        "sourceType": "directory",
+        "labPackageName": "@opencode-lab/stranger-danger-pin",
+        "manifestDir": "/opt/lab",
+        "dist": {
+          "present": true,
+          "fileCount": 88,
+          "bytes": 291964,
+          "files": [
+            {
+              "path": "dist/cli/args.d.ts",
+              "bytes": 1230
+            },
+            {
+              "path": "dist/cli/args.d.ts.map",
+              "bytes": 345
+            },
+            {
+              "path": "dist/cli/args.js",
+              "bytes": 3099
+            },
+            {
+              "path": "dist/cli/args.js.map",
+              "bytes": 2456
+            },
+            {
+              "path": "dist/cli/commands/allowlist.d.ts",
+              "bytes": 177
+            },
+            {
+              "path": "dist/cli/commands/allowlist.d.ts.map",
+              "bytes": 283
+            },
+            {
+              "path": "dist/cli/commands/allowlist.js",
+              "bytes": 2532
+            },
+            {
+              "path": "dist/cli/commands/allowlist.js.map",
+              "bytes": 2827
+            },
+            {
+              "path": "dist/cli/commands/audit.d.ts",
+              "bytes": 86
+            },
+            {
+              "path": "dist/cli/commands/audit.d.ts.map",
+              "bytes": 171
+            },
+            {
+              "path": "dist/cli/commands/audit.js",
+              "bytes": 883
+            },
+            {
+              "path": "dist/cli/commands/audit.js.map",
+              "bytes": 1130
+            },
+            {
+              "path": "dist/cli/commands/redact.d.ts",
+              "bytes": 150
+            },
+            {
+              "path": "dist/cli/commands/redact.d.ts.map",
+              "bytes": 256
+            },
+            {
+              "path": "dist/cli/commands/redact.js",
+              "bytes": 4995
+            },
+            {
+              "path": "dist/cli/commands/redact.js.map",
+              "bytes": 5189
+            },
+            {
+              "path": "dist/cli/commands/rules.d.ts",
+              "bytes": 86
+            },
+            {
+              "path": "dist/cli/commands/rules.d.ts.map",
+              "bytes": 171
+            },
+            {
+              "path": "dist/cli/commands/rules.js",
+              "bytes": 843
+            },
+            {
+              "path": "dist/cli/commands/rules.js.map",
+              "bytes": 1002
+            },
+            {
+              "path": "dist/cli/commands/scan.d.ts",
+              "bytes": 145
+            },
+            {
+              "path": "dist/cli/commands/scan.d.ts.map",
+              "bytes": 250
+            },
+            {
+              "path": "dist/cli/commands/scan.js",
+              "bytes": 5763
+            },
+            {
+              "path": "dist/cli/commands/scan.js.map",
+              "bytes": 6516
+            },
+            {
+              "path": "dist/cli/index.d.ts",
+              "bytes": 66
+            },
+            {
+              "path": "dist/cli/index.d.ts.map",
+              "bytes": 111
+            },
+            {
+              "path": "dist/cli/index.js",
+              "bytes": 1430
+            },
+            {
+              "path": "dist/cli/index.js.map",
+              "bytes": 1519
+            },
+            {
+              "path": "dist/engine/allowlist.d.ts",
+              "bytes": 393
+            },
+            {
+              "path": "dist/engine/allowlist.d.ts.map",
+              "bytes": 448
+            },
+            {
+              "path": "dist/engine/allowlist.js",
+              "bytes": 3491
+            },
+            {
+              "path": "dist/engine/allowlist.js.map",
+              "bytes": 3747
+            },
+            {
+              "path": "dist/engine/audit.d.ts",
+              "bytes": 1632
+            },
+            {
+              "path": "dist/engine/audit.d.ts.map",
+              "bytes": 914
+            },
+            {
+              "path": "dist/engine/audit.js",
+              "bytes": 4755
+            },
+            {
+              "path": "dist/engine/audit.js.map",
+              "bytes": 3437
+            },
+            {
+              "path": "dist/engine/entropy.d.ts",
+              "bytes": 1254
+            },
+            {
+              "path": "dist/engine/entropy.d.ts.map",
+              "bytes": 541
+            },
+            {
+              "path": "dist/engine/entropy.js",
+              "bytes": 1831
+            },
+            {
+              "path": "dist/engine/entropy.js.map",
+              "bytes": 1414
+            },
+            {
+              "path": "dist/engine/rules.d.ts",
+              "bytes": 788
+            },
+            {
+              "path": "dist/engine/rules.d.ts.map",
+              "bytes": 358
+            },
+            {
+              "path": "dist/engine/rules.js",
+              "bytes": 87278
+            },
+            {
+              "path": "dist/engine/rules.js.map",
+              "bytes": 36558
+            },
+            {
+              "path": "dist/engine/scanner.d.ts",
+              "bytes": 3428
+            },
+            {
+              "path": "dist/engine/scanner.d.ts.map",
+              "bytes": 1741
+            },
+            {
+              "path": "dist/engine/scanner.js",
+              "bytes": 11941
+            },
+            {
+              "path": "dist/engine/scanner.js.map",
+              "bytes": 10664
+            },
+            {
+              "path": "dist/engine/types.d.ts",
+              "bytes": 772
+            },
+            {
+              "path": "dist/engine/types.d.ts.map",
+              "bytes": 1019
+            },
+            {
+              "path": "dist/engine/types.js",
+              "bytes": 44
+            },
+            {
+              "path": "dist/engine/types.js.map",
+              "bytes": 112
+            },
+            {
+              "path": "dist/plugin/index.d.ts",
+              "bytes": 1418
+            },
+            {
+              "path": "dist/plugin/index.d.ts.map",
+              "bytes": 240
+            },
+            {
+              "path": "dist/plugin/index.js",
+              "bytes": 7809
+            },
+            {
+              "path": "dist/plugin/index.js.map",
+              "bytes": 5294
+            },
+            {
+              "path": "dist/plugin/layer1.d.ts",
+              "bytes": 1096
+            },
+            {
+              "path": "dist/plugin/layer1.d.ts.map",
+              "bytes": 398
+            },
+            {
+              "path": "dist/plugin/layer1.js",
+              "bytes": 2593
+            },
+            {
+              "path": "dist/plugin/layer1.js.map",
+              "bytes": 1623
+            },
+            {
+              "path": "dist/plugin/layer2-compaction.d.ts",
+              "bytes": 732
+            },
+            {
+              "path": "dist/plugin/layer2-compaction.d.ts.map",
+              "bytes": 462
+            },
+            {
+              "path": "dist/plugin/layer2-compaction.js",
+              "bytes": 932
+            },
+            {
+              "path": "dist/plugin/layer2-compaction.js.map",
+              "bytes": 694
+            },
+            {
+              "path": "dist/plugin/layer2-message.d.ts",
+              "bytes": 2994
+            },
+            {
+              "path": "dist/plugin/layer2-message.d.ts.map",
+              "bytes": 1355
+            },
+            {
+              "path": "dist/plugin/layer2-message.js",
+              "bytes": 6335
+            },
+            {
+              "path": "dist/plugin/layer2-message.js.map",
+              "bytes": 4876
+            },
+            {
+              "path": "dist/plugin/layer3.d.ts",
+              "bytes": 1204
+            },
+            {
+              "path": "dist/plugin/layer3.d.ts.map",
+              "bytes": 703
+            },
+            {
+              "path": "dist/plugin/layer3.js",
+              "bytes": 2642
+            },
+            {
+              "path": "dist/plugin/layer3.js.map",
+              "bytes": 1900
+            },
+            {
+              "path": "dist/plugin/redact.d.ts",
+              "bytes": 2525
+            },
+            {
+              "path": "dist/plugin/redact.d.ts.map",
+              "bytes": 971
+            },
+            {
+              "path": "dist/plugin/redact.js",
+              "bytes": 4784
+            },
+            {
+              "path": "dist/plugin/redact.js.map",
+              "bytes": 3635
+            },
+            {
+              "path": "dist/plugin/tools.d.ts",
+              "bytes": 1183
+            },
+            {
+              "path": "dist/plugin/tools.d.ts.map",
+              "bytes": 873
+            },
+            {
+              "path": "dist/plugin/tools.js",
+              "bytes": 4379
+            },
+            {
+              "path": "dist/plugin/tools.js.map",
+              "bytes": 4121
+            },
+            {
+              "path": "dist/shared/fingerprint.d.ts",
+              "bytes": 282
+            },
+            {
+              "path": "dist/shared/fingerprint.d.ts.map",
+              "bytes": 191
+            },
+            {
+              "path": "dist/shared/fingerprint.js",
+              "bytes": 374
+            },
+            {
+              "path": "dist/shared/fingerprint.js.map",
+              "bytes": 339
+            },
+            {
+              "path": "dist/shared/version.d.ts",
+              "bytes": 210
+            },
+            {
+              "path": "dist/shared/version.d.ts.map",
+              "bytes": 159
+            },
+            {
+              "path": "dist/shared/version.js",
+              "bytes": 200
+            },
+            {
+              "path": "dist/shared/version.js.map",
+              "bytes": 167
+            }
+          ]
+        },
+        "capabilities": {
+          "tools": false,
+          "hooks": false,
+          "storage": false,
+          "redaction": false,
+          "network": false
+        },
+        "expectTools": []
+      }
+    }
+  },
+  "startedAt": "2026-10-17T02:15:38.588Z",
+  "finishedAt": "2026-10-17T02:16:08.881Z",
+  "durationMs": 30293,
+  "summary": {
+    "counts": {
+      "pass": 30,
+      "fail": 0,
+      "skipped": 3
+    },
+    "total": 33
+  },
+  "sections": {
+    "section0": {
+      "title": "Runtime plugin loading",
+      "counts": {
+        "pass": 6,
+        "fail": 0,
+        "skipped": 2
+      },
+      "results": [
+        {
+          "suite": "runtime/plugin",
+          "id": "runtime.server-boot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 9,
+          "error": null,
+          "detail": {
+            "version": "2.0.21",
+            "port": 47347
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/plugin",
+          "id": "runtime.plugins-active",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 37,
+          "error": null,
+          "detail": {
+            "active": [
+              "opencode.tool.input.repair",
+              "opencode.config.worktree",
+              "opencode.config.mcp",
+              "opencode.mcp.codemode.defaults",
+              "opencode.wellknown",
+              "opencode.vcs.git",
+              "opencode.agent",
+              "opencode.plan",
+              "opencode.command",
+              "opencode.skill",
+              "opencode.vcs.hg",
+              "opencode.models.dev",
+              "opencode.provider.amazon.bedrock",
+              "opencode.provider.azure",
+              "opencode.provider.cerebras",
+              "opencode.provider.chatgpt",
+              "opencode.provider.cloudflare.ai.gateway",
+              "opencode.provider.cloudflare.workers.ai",
+              "opencode.provider.cohere",
+              "opencode.provider.digitalocean",
+              "opencode.provider.gateway",
+              "opencode.provider.github.copilot",
+              "opencode.provider.gitlab",
+              "opencode.provider.google.vertex",
+              "opencode.provider.kilo",
+              "opencode.provider.llmgateway",
+              "opencode.provider.lmstudio",
+              "opencode.provider.modal",
+              "opencode.provider.nvidia",
+              "opencode.provider.ollama",
+              "opencode.provider.opencode",
+              "opencode.provider.snowflake.cortex",
+              "opencode.provider.openai",
+              "opencode.provider.openrouter",
+              "opencode.provider.perplexity",
+              "opencode.provider.poe",
+              "opencode.provider.prompt-cache-key",
+              "opencode.provider.sap.ai.core",
+              "opencode.provider.vercel",
+              "opencode.provider.venice",
+              "opencode.provider.vllm",
+              "opencode.provider.xai",
+              "opencode.provider.zenmux",
+              "opencode.provider.dynamic",
+              "opencode.websearch.exa",
+              "opencode.websearch.firecrawl",
+              "opencode.websearch.parallel",
+              "opencode.websearch.tavily",
+              "opencode.websearch.tinyfish",
+              "opencode.tool.patch",
+              "opencode.prompt.openai",
+              "opencode.prompt.anthropic",
+              "opencode.prompt.kimi",
+              "opencode.prompt.arcee",
+              "opencode.prompt.meta",
+              "opencode.prompt.verbosity",
+              "opencode.prompt.identity",
+              "opencode.tool.edit",
+              "opencode.tool.glob",
+              "opencode.tool.grep",
+              "opencode.tools",
+              "opencode.tools.mcp-resources",
+              "opencode.tool.question",
+              "opencode.tool.read",
+              "opencode.tool.shell",
+              "opencode.tool.skill",
+              "opencode.tool.subagent",
+              "opencode.tool.webfetch",
+              "opencode.tool.websearch",
+              "opencode.tool.write",
+              "opencode.warming",
+              "gitdamnit.stranger-danger",
+              "lab.inspector",
+              "opencode.config.instruction",
+              "opencode.config.reference",
+              "opencode.config.agent",
+              "opencode.browser",
+              "opencode.config.command",
+              "opencode.config.compaction",
+              "opencode.config.formatter",
+              "opencode.config.image",
+              "opencode.config.location-watcher",
+              "opencode.config.shell",
+              "opencode.config.snapshot",
+              "opencode.config.tool-output",
+              "opencode.config.compatibility",
+              "opencode.config.skill",
+              "opencode.config.provider",
+              "opencode.config.websearch",
+              "opencode.config.policy"
+            ],
+            "expected": [
+              "stranger-danger-pin"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/plugin",
+          "id": "runtime.tools-registered",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin in this configuration declares tools; tool registration not applicable"
+        },
+        {
+          "suite": "runtime/plugin",
+          "id": "runtime.no-load-errors",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logBytes": 15323
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/plugin",
+          "id": "runtime.lifecycle-setup",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin declares a setup marker"
+        },
+        {
+          "suite": "runtime/plugin",
+          "id": "runtime.write-boundaries",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "entries": [
+              ".opencode",
+              "AGENTS.md",
+              "opencode.json"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/plugin",
+          "id": "runtime.log-snapshot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logTail": [
+              "timestamp=2026-10-17T02:15:44.233Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/engine/entropy.js type=file ignores=0 http.span=587 role=server",
+              "timestamp=2026-10-17T02:15:44.233Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/engine/entropy.js type=file backend=node ignores=0 http.span=587 role=server",
+              "timestamp=2026-10-17T02:15:44.233Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/engine/allowlist.js type=file ignores=0 http.span=587 role=server",
+              "timestamp=2026-10-17T02:15:44.234Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/engine/allowlist.js type=file backend=node ignores=0 http.span=588 role=server",
+              "timestamp=2026-10-17T02:15:44.234Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/redact.js type=file ignores=0 http.span=588 role=server",
+              "timestamp=2026-10-17T02:15:44.234Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/redact.js type=file backend=node ignores=0 http.span=588 role=server",
+              "timestamp=2026-10-17T02:15:44.235Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer3.js type=file ignores=0 http.span=589 role=server",
+              "timestamp=2026-10-17T02:15:44.235Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer3.js type=file backend=node ignores=0 http.span=589 role=server",
+              "timestamp=2026-10-17T02:15:44.235Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer2-message.js type=file ignores=0 http.span=589 role=server",
+              "timestamp=2026-10-17T02:15:44.236Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer2-message.js type=file backend=node ignores=0 http.span=590 role=server",
+              "timestamp=2026-10-17T02:15:44.236Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer2-compaction.js type=file ignores=0 http.span=590 role=server",
+              "timestamp=2026-10-17T02:15:44.237Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer2-compaction.js type=file backend=node ignores=0 http.span=591 role=server",
+              "timestamp=2026-10-17T02:15:44.237Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/tools.js type=file ignores=0 http.span=591 role=server",
+              "timestamp=2026-10-17T02:15:44.237Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/tools.js type=file backend=node ignores=0 http.span=591 role=server",
+              "timestamp=2026-10-17T02:15:44.238Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/shared/version.js type=file ignores=0 http.span=592 role=server",
+              "timestamp=2026-10-17T02:15:44.238Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/shared/version.js type=file backend=node ignores=0 http.span=592 role=server",
+              "timestamp=2026-10-17T02:15:44.239Z level=INFO run=7e8fb952 msg=\"loading plugin\" id=/opt/lab/plugins/lab-inspector entrypoint=file:///opt/lab/plugins/lab-inspector/index.ts http.span=593 role=server",
+              "timestamp=2026-10-17T02:15:44.395Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector/index.ts type=file ignores=0 http.span=749 role=server",
+              "timestamp=2026-10-17T02:15:44.396Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/lab-inspector/index.ts type=file backend=node ignores=0 http.span=750 role=server",
+              "[lab.inspector] version=2.0.21 plugins=[] tools=22",
+              "timestamp=2026-10-17T02:15:45.025Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/xdg/config/opencode/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.025Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/xdg/config/opencode/AGENTS.md type=file backend=node ignores=0 http.span=1379 role=server",
+              "timestamp=2026-10-17T02:15:45.025Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/project/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.026Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/project/AGENTS.md type=file backend=node ignores=0 http.span=1380 role=server",
+              "timestamp=2026-10-17T02:15:45.052Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/xdg/config/opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.052Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/xdg/config/opencode/skill type=file backend=node ignores=0 http.span=1406 role=server",
+              "timestamp=2026-10-17T02:15:45.056Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/xdg/config/opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.057Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/xdg/config/opencode/skills type=file backend=node ignores=0 http.span=1411 role=server",
+              "timestamp=2026-10-17T02:15:45.060Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/xdg/config/opencode type=directory ignores=3 http.span=1414 role=server",
+              "timestamp=2026-10-17T02:15:45.060Z level=ERROR run=7e8fb952 message=\"watcher backend not supported\" directory=/lab/work/runs/plugin/xdg/config/opencode platform=linux http.span=1414 role=server",
+              "timestamp=2026-10-17T02:15:45.060Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/project/.opencode type=directory ignores=3 http.span=1414 role=server",
+              "timestamp=2026-10-17T02:15:45.060Z level=ERROR run=7e8fb952 message=\"watcher backend not supported\" directory=/lab/work/runs/plugin/project/.opencode platform=linux http.span=1414 role=server",
+              "timestamp=2026-10-17T02:15:45.061Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/project/.opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.062Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/project/.opencode/skill type=file backend=node ignores=0 http.span=1416 role=server",
+              "timestamp=2026-10-17T02:15:45.063Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/project/.opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.063Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/project/.opencode/skills type=file backend=node ignores=0 http.span=1417 role=server",
+              "timestamp=2026-10-17T02:15:45.086Z level=INFO run=7e8fb952 message=event event.id=evt_147a4ccbd001ij3ziZDZe26JSZ event.created=1792203345086 event.type=provider.updated event.location.directory=/lab/work/runs/plugin/project event.location.workspaceID=undefined event.data={} http.span=1440 role=server",
+              "timestamp=2026-10-17T02:15:45.104Z level=INFO run=7e8fb952 message=event event.id=evt_147a4ccd000140mkYdQivF013D event.created=1792203345104 event.type=model.updated event.location.directory=/lab/work/runs/plugin/project event.location.workspaceID=undefined event.data={} http.span=1458 role=server",
+              "timestamp=2026-10-17T02:15:45.109Z level=INFO run=7e8fb952 message=event event.id=evt_147a4ccd50013tNWXcjignGkg7 event.created=1792203345109 event.type=agent.updated event.location.directory=/lab/work/runs/plugin/project event.location.workspaceID=undefined event.data={} http.span=1463 role=server",
+              "timestamp=2026-10-17T02:15:45.110Z level=INFO run=7e8fb952 message=event event.id=evt_147a4ccd6001H55FpYEEv3ZgRp event.created=1792203345110 event.type=command.updated event.location.directory=/lab/work/runs/plugin/project event.location.workspaceID=undefined event.data={} http.span=1464 role=server"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "suite": "runtime/plugin",
+          "id": "runtime.cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 302,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section1": {
+      "title": "Model-request path (offline mock provider)",
+      "counts": {
+        "pass": 2,
+        "fail": 0,
+        "skipped": 1
+      },
+      "results": [
+        {
+          "suite": "model-path/plugin",
+          "id": "model.run-completes",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "stdoutTail": "OK\n"
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/plugin",
+          "id": "model.request-reached-provider",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "requestCount": 2
+          },
+          "notes": null
+        },
+        {
+          "suite": "model-path/plugin",
+          "id": "model.redaction",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "plugin appears to redact the request but did not declare capabilities.redaction; declare it to assert strictly"
+        }
+      ]
+    },
+    "section2": {
+      "title": "Package inspection & provenance",
+      "counts": {
+        "pass": 7,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.stranger-danger-pin.present",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "packageDir": "/opt/lab/plugins/stranger-danger-pin"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.stranger-danger-pin.metadata",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "name": "@opencode-lab/stranger-danger-pin",
+            "sdk": "2.0.21",
+            "main": "index.ts"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.stranger-danger-pin.sdk-resolvable",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "sdkVersion": "2.0.21"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.stranger-danger-pin.entry-resolves",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "entry": "plugin/index.js",
+            "shim": true
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.stranger-danger-pin.build-output",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 4,
+          "error": null,
+          "detail": {
+            "files": 88,
+            "bytes": 291964
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.stranger-danger-pin.provenance",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "version": "0.2.0",
+            "commit": null,
+            "sourceType": "directory"
+          },
+          "notes": null
+        },
+        {
+          "suite": "package-inspection/artifacts",
+          "id": "package.inspector.present",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "present": true
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section3": {
+      "title": "Load-order permutations & tool conflicts",
+      "counts": {
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "load-order/permutations",
+          "id": "load-order.order.strangerdangerpin",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2052,
+          "error": null,
+          "detail": {
+            "order": [
+              "stranger-danger-pin"
+            ],
+            "tools": 22
+          },
+          "notes": null
+        },
+        {
+          "suite": "load-order/permutations",
+          "id": "load-order.duplicate-entry",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2039,
+          "error": null,
+          "detail": {
+            "tools": 22,
+            "duplicateOf": "stranger-danger-pin"
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section4": {
+      "title": "Failure isolation",
+      "counts": {
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "failure-isolation/broken-plugin",
+          "id": "failure-isolation.broken-first",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2058,
+          "error": null,
+          "detail": {
+            "label": "broken-first",
+            "failed": 1,
+            "tools": 22,
+            "externalPlugins": 3
+          },
+          "notes": null
+        },
+        {
+          "suite": "failure-isolation/broken-plugin",
+          "id": "failure-isolation.broken-last",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2054,
+          "error": null,
+          "detail": {
+            "label": "broken-last",
+            "failed": 1,
+            "tools": 22,
+            "externalPlugins": 3
+          },
+          "notes": null
+        },
+        {
+          "suite": "failure-isolation/broken-plugin",
+          "id": "failure-isolation.unresolvable-import-first",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2071,
+          "error": null,
+          "detail": {
+            "label": "unresolvable-import-first",
+            "failed": 1,
+            "tools": 22,
+            "externalPlugins": 2
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section5": {
+      "title": "Process cleanup",
+      "counts": {
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "process-cleanup/graceful-shutdown",
+          "id": "process-cleanup.server-alive",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 3,
+          "error": null,
+          "detail": {
+            "port": 47188
+          },
+          "notes": null
+        },
+        {
+          "suite": "process-cleanup/graceful-shutdown",
+          "id": "process-cleanup.shutdown-exits",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 150,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        },
+        {
+          "suite": "process-cleanup/graceful-shutdown",
+          "id": "process-cleanup.port-released",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 407,
+          "error": null,
+          "detail": {
+            "port": 47188,
+            "refused": true
+          },
+          "notes": null
+        },
+        {
+          "suite": "process-cleanup/graceful-shutdown",
+          "id": "process-cleanup.no-orphans",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 142,
+          "error": null,
+          "detail": {
+            "runDir": "/lab/work/runs/plugin",
+            "orphans": 0
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section6": {
+      "title": "Install from built artifact",
+      "counts": {
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "install-artifact/packaged",
+          "id": "install.stranger-danger-pin.pack",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2482,
+          "error": null,
+          "detail": {
+            "tarball": "opencode-lab-stranger-danger-pin-0.0.0-lab.tgz",
+            "pkgRoot": "/tmp/lab-pack-VvoCgo/stranger-danger-pin/extracted/package"
+          },
+          "notes": null
+        },
+        {
+          "suite": "install-artifact/packaged",
+          "id": "install.stranger-danger-pin.loads-in-runtime",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1893,
+          "error": null,
+          "detail": {
+            "active": true,
+            "plugins": 90
+          },
+          "notes": null
+        }
+      ]
+    },
+    "section7": {
+      "title": "Configuration validation & error handling",
+      "counts": {
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "suite": "config-validation/errors",
+          "id": "config-validation.unknown-configuration",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "message": "unknown configuration \"definitely-not-a-config\" (known: plugin)"
+          },
+          "notes": null
+        },
+        {
+          "suite": "config-validation/errors",
+          "id": "config-validation.invalid-manifest-rejected",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "message": "invalid manifest /tmp/lab-cfg-HscVK9/bad-lab.config.json: |   - plugins[0].source.type is required (directory|tarball|package|npm)"
+          },
+          "notes": null
+        },
+        {
+          "suite": "config-validation/errors",
+          "id": "config-validation.missing-plugin-directory",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1860,
+          "error": null,
+          "detail": {
+            "outcome": "booted",
+            "failed": 1
+          },
+          "notes": null
+        },
+        {
+          "suite": "config-validation/errors",
+          "id": "config-validation.malformed-package-json",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1871,
+          "error": null,
+          "detail": {
+            "outcome": "booted"
+          },
+          "notes": null
+        }
+      ]
+    }
+  },
+  "blockers": [],
+  "failures": [],
+  "skipped": [
+    {
+      "suite": "runtime/plugin",
+      "id": "runtime.tools-registered",
+      "reason": "no plugin in this configuration declares tools; tool registration not applicable"
+    },
+    {
+      "suite": "runtime/plugin",
+      "id": "runtime.lifecycle-setup",
+      "reason": "no plugin declares a setup marker"
+    },
+    {
+      "suite": "model-path/plugin",
+      "id": "model.redaction",
+      "reason": "plugin appears to redact the request but did not declare capabilities.redaction; declare it to assert strictly"
+    }
+  ],
+  "securityWarnings": [
+    "No source commit recorded for: stranger-danger-pin (not a git worktree?).",
+    "Third-party plugin code runs in the container during build and load. Rootless Docker limits but does not eliminate risk; do not run untrusted plugins without reviewing them."
+  ],
+  "limitations": [
+    "Live provider credential paths are not exercised unless `--online` and a dedicated test key are supplied (disabled by default).",
+    "Outbound redaction is only asserted for plugins that declare capabilities.redaction; it is verified on the supported HTTP model-request path via the offline mock provider, never on provider-native WebSocket traffic.",
+    "Docker (rootless or otherwise) reduces but does not eliminate the risk of malicious plugin code; plugins are not a hard security sandbox.",
+    "Install-from-artifact packs the built output with npm scripts disabled and supplies the plugin SDK offline; a package that relies on install-time scripts is reported as skipped rather than forced."
+  ],
+  "notes": [],
+  "suites": [
+    {
+      "suite": "runtime/plugin",
+      "meta": {
+        "tier": "all",
+        "config": "plugin"
+      },
+      "startedAt": "2026-10-17T02:15:38.592Z",
+      "finishedAt": "2026-10-17T02:15:45.629Z",
+      "counts": {
+        "pass": 6,
+        "fail": 0,
+        "skipped": 2
+      },
+      "results": [
+        {
+          "id": "runtime.server-boot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 9,
+          "error": null,
+          "detail": {
+            "version": "2.0.21",
+            "port": 47347
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.plugins-active",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 37,
+          "error": null,
+          "detail": {
+            "active": [
+              "opencode.tool.input.repair",
+              "opencode.config.worktree",
+              "opencode.config.mcp",
+              "opencode.mcp.codemode.defaults",
+              "opencode.wellknown",
+              "opencode.vcs.git",
+              "opencode.agent",
+              "opencode.plan",
+              "opencode.command",
+              "opencode.skill",
+              "opencode.vcs.hg",
+              "opencode.models.dev",
+              "opencode.provider.amazon.bedrock",
+              "opencode.provider.azure",
+              "opencode.provider.cerebras",
+              "opencode.provider.chatgpt",
+              "opencode.provider.cloudflare.ai.gateway",
+              "opencode.provider.cloudflare.workers.ai",
+              "opencode.provider.cohere",
+              "opencode.provider.digitalocean",
+              "opencode.provider.gateway",
+              "opencode.provider.github.copilot",
+              "opencode.provider.gitlab",
+              "opencode.provider.google.vertex",
+              "opencode.provider.kilo",
+              "opencode.provider.llmgateway",
+              "opencode.provider.lmstudio",
+              "opencode.provider.modal",
+              "opencode.provider.nvidia",
+              "opencode.provider.ollama",
+              "opencode.provider.opencode",
+              "opencode.provider.snowflake.cortex",
+              "opencode.provider.openai",
+              "opencode.provider.openrouter",
+              "opencode.provider.perplexity",
+              "opencode.provider.poe",
+              "opencode.provider.prompt-cache-key",
+              "opencode.provider.sap.ai.core",
+              "opencode.provider.vercel",
+              "opencode.provider.venice",
+              "opencode.provider.vllm",
+              "opencode.provider.xai",
+              "opencode.provider.zenmux",
+              "opencode.provider.dynamic",
+              "opencode.websearch.exa",
+              "opencode.websearch.firecrawl",
+              "opencode.websearch.parallel",
+              "opencode.websearch.tavily",
+              "opencode.websearch.tinyfish",
+              "opencode.tool.patch",
+              "opencode.prompt.openai",
+              "opencode.prompt.anthropic",
+              "opencode.prompt.kimi",
+              "opencode.prompt.arcee",
+              "opencode.prompt.meta",
+              "opencode.prompt.verbosity",
+              "opencode.prompt.identity",
+              "opencode.tool.edit",
+              "opencode.tool.glob",
+              "opencode.tool.grep",
+              "opencode.tools",
+              "opencode.tools.mcp-resources",
+              "opencode.tool.question",
+              "opencode.tool.read",
+              "opencode.tool.shell",
+              "opencode.tool.skill",
+              "opencode.tool.subagent",
+              "opencode.tool.webfetch",
+              "opencode.tool.websearch",
+              "opencode.tool.write",
+              "opencode.warming",
+              "gitdamnit.stranger-danger",
+              "lab.inspector",
+              "opencode.config.instruction",
+              "opencode.config.reference",
+              "opencode.config.agent",
+              "opencode.browser",
+              "opencode.config.command",
+              "opencode.config.compaction",
+              "opencode.config.formatter",
+              "opencode.config.image",
+              "opencode.config.location-watcher",
+              "opencode.config.shell",
+              "opencode.config.snapshot",
+              "opencode.config.tool-output",
+              "opencode.config.compatibility",
+              "opencode.config.skill",
+              "opencode.config.provider",
+              "opencode.config.websearch",
+              "opencode.config.policy"
+            ],
+            "expected": [
+              "stranger-danger-pin"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.tools-registered",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin in this configuration declares tools; tool registration not applicable"
+        },
+        {
+          "id": "runtime.no-load-errors",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logBytes": 15323
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.lifecycle-setup",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "no plugin declares a setup marker"
+        },
+        {
+          "id": "runtime.write-boundaries",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "entries": [
+              ".opencode",
+              "AGENTS.md",
+              "opencode.json"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.log-snapshot",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "logTail": [
+              "timestamp=2026-10-17T02:15:44.233Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/engine/entropy.js type=file ignores=0 http.span=587 role=server",
+              "timestamp=2026-10-17T02:15:44.233Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/engine/entropy.js type=file backend=node ignores=0 http.span=587 role=server",
+              "timestamp=2026-10-17T02:15:44.233Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/engine/allowlist.js type=file ignores=0 http.span=587 role=server",
+              "timestamp=2026-10-17T02:15:44.234Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/engine/allowlist.js type=file backend=node ignores=0 http.span=588 role=server",
+              "timestamp=2026-10-17T02:15:44.234Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/redact.js type=file ignores=0 http.span=588 role=server",
+              "timestamp=2026-10-17T02:15:44.234Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/redact.js type=file backend=node ignores=0 http.span=588 role=server",
+              "timestamp=2026-10-17T02:15:44.235Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer3.js type=file ignores=0 http.span=589 role=server",
+              "timestamp=2026-10-17T02:15:44.235Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer3.js type=file backend=node ignores=0 http.span=589 role=server",
+              "timestamp=2026-10-17T02:15:44.235Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer2-message.js type=file ignores=0 http.span=589 role=server",
+              "timestamp=2026-10-17T02:15:44.236Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer2-message.js type=file backend=node ignores=0 http.span=590 role=server",
+              "timestamp=2026-10-17T02:15:44.236Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer2-compaction.js type=file ignores=0 http.span=590 role=server",
+              "timestamp=2026-10-17T02:15:44.237Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/layer2-compaction.js type=file backend=node ignores=0 http.span=591 role=server",
+              "timestamp=2026-10-17T02:15:44.237Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/tools.js type=file ignores=0 http.span=591 role=server",
+              "timestamp=2026-10-17T02:15:44.237Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/plugin/tools.js type=file backend=node ignores=0 http.span=591 role=server",
+              "timestamp=2026-10-17T02:15:44.238Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/stranger-danger-pin/dist/shared/version.js type=file ignores=0 http.span=592 role=server",
+              "timestamp=2026-10-17T02:15:44.238Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/stranger-danger-pin/dist/shared/version.js type=file backend=node ignores=0 http.span=592 role=server",
+              "timestamp=2026-10-17T02:15:44.239Z level=INFO run=7e8fb952 msg=\"loading plugin\" id=/opt/lab/plugins/lab-inspector entrypoint=file:///opt/lab/plugins/lab-inspector/index.ts http.span=593 role=server",
+              "timestamp=2026-10-17T02:15:44.395Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/opt/lab/plugins/lab-inspector/index.ts type=file ignores=0 http.span=749 role=server",
+              "timestamp=2026-10-17T02:15:44.396Z level=INFO run=7e8fb952 message=\"watcher started\" path=/opt/lab/plugins/lab-inspector/index.ts type=file backend=node ignores=0 http.span=750 role=server",
+              "[lab.inspector] version=2.0.21 plugins=[] tools=22",
+              "timestamp=2026-10-17T02:15:45.025Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/xdg/config/opencode/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.025Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/xdg/config/opencode/AGENTS.md type=file backend=node ignores=0 http.span=1379 role=server",
+              "timestamp=2026-10-17T02:15:45.025Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/project/AGENTS.md type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.026Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/project/AGENTS.md type=file backend=node ignores=0 http.span=1380 role=server",
+              "timestamp=2026-10-17T02:15:45.052Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/xdg/config/opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.052Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/xdg/config/opencode/skill type=file backend=node ignores=0 http.span=1406 role=server",
+              "timestamp=2026-10-17T02:15:45.056Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/xdg/config/opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.057Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/xdg/config/opencode/skills type=file backend=node ignores=0 http.span=1411 role=server",
+              "timestamp=2026-10-17T02:15:45.060Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/xdg/config/opencode type=directory ignores=3 http.span=1414 role=server",
+              "timestamp=2026-10-17T02:15:45.060Z level=ERROR run=7e8fb952 message=\"watcher backend not supported\" directory=/lab/work/runs/plugin/xdg/config/opencode platform=linux http.span=1414 role=server",
+              "timestamp=2026-10-17T02:15:45.060Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/project/.opencode type=directory ignores=3 http.span=1414 role=server",
+              "timestamp=2026-10-17T02:15:45.060Z level=ERROR run=7e8fb952 message=\"watcher backend not supported\" directory=/lab/work/runs/plugin/project/.opencode platform=linux http.span=1414 role=server",
+              "timestamp=2026-10-17T02:15:45.061Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/project/.opencode/skill type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.062Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/project/.opencode/skill type=file backend=node ignores=0 http.span=1416 role=server",
+              "timestamp=2026-10-17T02:15:45.063Z level=INFO run=7e8fb952 message=\"watcher subscribe\" path=/lab/work/runs/plugin/project/.opencode/skills type=file ignores=0",
+              "timestamp=2026-10-17T02:15:45.063Z level=INFO run=7e8fb952 message=\"watcher started\" path=/lab/work/runs/plugin/project/.opencode/skills type=file backend=node ignores=0 http.span=1417 role=server",
+              "timestamp=2026-10-17T02:15:45.086Z level=INFO run=7e8fb952 message=event event.id=evt_147a4ccbd001ij3ziZDZe26JSZ event.created=1792203345086 event.type=provider.updated event.location.directory=/lab/work/runs/plugin/project event.location.workspaceID=undefined event.data={} http.span=1440 role=server",
+              "timestamp=2026-10-17T02:15:45.104Z level=INFO run=7e8fb952 message=event event.id=evt_147a4ccd000140mkYdQivF013D event.created=1792203345104 event.type=model.updated event.location.directory=/lab/work/runs/plugin/project event.location.workspaceID=undefined event.data={} http.span=1458 role=server",
+              "timestamp=2026-10-17T02:15:45.109Z level=INFO run=7e8fb952 message=event event.id=evt_147a4ccd50013tNWXcjignGkg7 event.created=1792203345109 event.type=agent.updated event.location.directory=/lab/work/runs/plugin/project event.location.workspaceID=undefined event.data={} http.span=1463 role=server",
+              "timestamp=2026-10-17T02:15:45.110Z level=INFO run=7e8fb952 message=event event.id=evt_147a4ccd6001H55FpYEEv3ZgRp event.created=1792203345110 event.type=command.updated event.location.directory=/lab/work/runs/plugin/project event.location.workspaceID=undefined event.data={} http.span=1464 role=server"
+            ]
+          },
+          "notes": null
+        },
+        {
+          "id": "runtime.cleanup",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 302,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "model-path/plugin",
+      "meta": {
+        "tier": "all",
+        "config": "plugin"
+      },
+      "startedAt": "2026-10-17T02:15:45.632Z",
+      "finishedAt": "2026-10-17T02:15:47.903Z",
+      "counts": {
+        "pass": 2,
+        "fail": 0,
+        "skipped": 1
+      },
+      "results": [
+        {
+          "id": "model.run-completes",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "stdoutTail": "OK\n"
+          },
+          "notes": null
+        },
+        {
+          "id": "model.request-reached-provider",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "requestCount": 2
+          },
+          "notes": null
+        },
+        {
+          "id": "model.redaction",
+          "tier": "all",
+          "status": "skipped",
+          "durationMs": 0,
+          "error": null,
+          "detail": null,
+          "notes": "plugin appears to redact the request but did not declare capabilities.redaction; declare it to assert strictly"
+        }
+      ]
+    },
+    {
+      "suite": "package-inspection/artifacts",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:15:47.905Z",
+      "finishedAt": "2026-10-17T02:15:47.912Z",
+      "counts": {
+        "pass": 7,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "package.stranger-danger-pin.present",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "packageDir": "/opt/lab/plugins/stranger-danger-pin"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.stranger-danger-pin.metadata",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "name": "@opencode-lab/stranger-danger-pin",
+            "sdk": "2.0.21",
+            "main": "index.ts"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.stranger-danger-pin.sdk-resolvable",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "sdkVersion": "2.0.21"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.stranger-danger-pin.entry-resolves",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "entry": "plugin/index.js",
+            "shim": true
+          },
+          "notes": null
+        },
+        {
+          "id": "package.stranger-danger-pin.build-output",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 4,
+          "error": null,
+          "detail": {
+            "files": 88,
+            "bytes": 291964
+          },
+          "notes": null
+        },
+        {
+          "id": "package.stranger-danger-pin.provenance",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "version": "0.2.0",
+            "commit": null,
+            "sourceType": "directory"
+          },
+          "notes": null
+        },
+        {
+          "id": "package.inspector.present",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "present": true
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "load-order/permutations",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:15:47.913Z",
+      "finishedAt": "2026-10-17T02:15:52.004Z",
+      "counts": {
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "load-order.order.strangerdangerpin",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2052,
+          "error": null,
+          "detail": {
+            "order": [
+              "stranger-danger-pin"
+            ],
+            "tools": 22
+          },
+          "notes": null
+        },
+        {
+          "id": "load-order.duplicate-entry",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2039,
+          "error": null,
+          "detail": {
+            "tools": 22,
+            "duplicateOf": "stranger-danger-pin"
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "failure-isolation/broken-plugin",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:15:52.006Z",
+      "finishedAt": "2026-10-17T02:15:58.189Z",
+      "counts": {
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "failure-isolation.broken-first",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2058,
+          "error": null,
+          "detail": {
+            "label": "broken-first",
+            "failed": 1,
+            "tools": 22,
+            "externalPlugins": 3
+          },
+          "notes": null
+        },
+        {
+          "id": "failure-isolation.broken-last",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2054,
+          "error": null,
+          "detail": {
+            "label": "broken-last",
+            "failed": 1,
+            "tools": 22,
+            "externalPlugins": 3
+          },
+          "notes": null
+        },
+        {
+          "id": "failure-isolation.unresolvable-import-first",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2071,
+          "error": null,
+          "detail": {
+            "label": "unresolvable-import-first",
+            "failed": 1,
+            "tools": 22,
+            "externalPlugins": 2
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "process-cleanup/graceful-shutdown",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:15:58.190Z",
+      "finishedAt": "2026-10-17T02:16:00.767Z",
+      "counts": {
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "process-cleanup.server-alive",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 3,
+          "error": null,
+          "detail": {
+            "port": 47188
+          },
+          "notes": null
+        },
+        {
+          "id": "process-cleanup.shutdown-exits",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 150,
+          "error": null,
+          "detail": {
+            "code": 130,
+            "signal": null
+          },
+          "notes": null
+        },
+        {
+          "id": "process-cleanup.port-released",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 407,
+          "error": null,
+          "detail": {
+            "port": 47188,
+            "refused": true
+          },
+          "notes": null
+        },
+        {
+          "id": "process-cleanup.no-orphans",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 142,
+          "error": null,
+          "detail": {
+            "runDir": "/lab/work/runs/plugin",
+            "orphans": 0
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "install-artifact/packaged",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:16:00.769Z",
+      "finishedAt": "2026-10-17T02:16:05.147Z",
+      "counts": {
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "install.stranger-danger-pin.pack",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 2482,
+          "error": null,
+          "detail": {
+            "tarball": "opencode-lab-stranger-danger-pin-0.0.0-lab.tgz",
+            "pkgRoot": "/tmp/lab-pack-VvoCgo/stranger-danger-pin/extracted/package"
+          },
+          "notes": null
+        },
+        {
+          "id": "install.stranger-danger-pin.loads-in-runtime",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1893,
+          "error": null,
+          "detail": {
+            "active": true,
+            "plugins": 90
+          },
+          "notes": null
+        }
+      ]
+    },
+    {
+      "suite": "config-validation/errors",
+      "meta": {
+        "tier": "all"
+      },
+      "startedAt": "2026-10-17T02:16:05.148Z",
+      "finishedAt": "2026-10-17T02:16:08.881Z",
+      "counts": {
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "results": [
+        {
+          "id": "config-validation.unknown-configuration",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 0,
+          "error": null,
+          "detail": {
+            "message": "unknown configuration \"definitely-not-a-config\" (known: plugin)"
+          },
+          "notes": null
+        },
+        {
+          "id": "config-validation.invalid-manifest-rejected",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1,
+          "error": null,
+          "detail": {
+            "message": "invalid manifest /tmp/lab-cfg-HscVK9/bad-lab.config.json: |   - plugins[0].source.type is required (directory|tarball|package|npm)"
+          },
+          "notes": null
+        },
+        {
+          "id": "config-validation.missing-plugin-directory",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1860,
+          "error": null,
+          "detail": {
+            "outcome": "booted",
+            "failed": 1
+          },
+          "notes": null
+        },
+        {
+          "id": "config-validation.malformed-package-json",
+          "tier": "all",
+          "status": "pass",
+          "durationMs": 1871,
+          "error": null,
+          "detail": {
+            "outcome": "booted"
+          },
+          "notes": null
+        }
+      ]
+    }
+  ]
+}

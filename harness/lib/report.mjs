@@ -1,5 +1,11 @@
 // Assemble machine-readable and human-readable test reports.
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+//
+// The report is generic: it describes whatever the manifest declared, without
+// hardcoding any plugin. It records provenance (manifest digest, per-plugin
+// version/commit, OpenCode runtime version, container image id), the exact
+// configuration requested, PASS/FAIL/SKIP counts per area, failure details,
+// security warnings and a reproduction command.
+import { existsSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { LAB, PLUGINS, pluginSourceInfo } from "./env.mjs";
 import { run } from "./exec.mjs";
@@ -12,29 +18,41 @@ function opencodeVersion() {
 function distInventory(name) {
   const pkgDir = join(LAB.plugins, name);
   const dist = join(pkgDir, "dist");
-  if (!existsSync(dist)) return { present: false, files: [] };
+  const root = existsSync(dist) ? dist : pkgDir;
+  if (!existsSync(root)) return { present: false, files: [] };
   const files = [];
   const walk = (dir) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       const full = join(dir, entry.name);
-      if (entry.isDirectory()) walk(full);
-      else files.push({ path: full.replace(pkgDir + "/", ""), bytes: statSync(full).size });
+      if (entry.isDirectory()) {
+        if (entry.name === "node_modules") continue;
+        walk(full);
+      } else files.push({ path: full.replace(pkgDir + "/", ""), bytes: statSync(full).size });
     }
   };
-  walk(dist);
+  walk(root);
   return { present: true, fileCount: files.length, bytes: files.reduce((a, f) => a + f.bytes, 0), files: files.slice(0, 200) };
 }
 
-export function collectEnvironment(argv) {
+export function collectEnvironment(argv, extra = {}) {
   const pluginBuilds = {};
-  for (const name of Object.keys(PLUGINS)) pluginBuilds[name] = { ...pluginSourceInfo(name), dist: distInventory(name) };
+  for (const name of Object.keys(PLUGINS)) {
+    const info = { ...pluginSourceInfo(name), dist: distInventory(name) };
+    info.capabilities = PLUGINS[name].capabilities;
+    info.expectTools = PLUGINS[name].tools;
+    pluginBuilds[name] = info;
+  }
   return {
+    schema: "opencode-plugin-lab/report/v1",
     generatedAt: new Date().toISOString(),
+    runId: extra.runId || process.env.LAB_RUN_ID || null,
     opencodeVersion: opencodeVersion(),
     nodeVersion: process.version,
     platform: `${process.platform}/${process.arch}`,
     image: process.env.LAB_IMAGE || "opencode-plugin-lab:local",
+    imageId: process.env.LAB_IMAGE_ID || null,
     labRoot: LAB.root,
+    manifest: extra.summary || null,
     requested: { config: argv.config, tier: argv.tier, online: !!argv.online, all: !!argv.all },
     plugins: pluginBuilds,
   };
@@ -46,18 +64,39 @@ function subCounts(rows) {
   return c;
 }
 
-const SECTION_DEFS = {
-  runtimePluginLoading: { prefix: "runtime/", title: "Runtime plugin loading" },
-  functional: { prefix: "functional/", title: "Functional tests" },
-  modelRequestPath: { prefix: "model-path/", title: "Model-request path (offline mock provider)" },
-  combinedCompatibility: { prefix: "combined/", title: "Combined compatibility" },
-  compatibilityMatrix: { prefix: "matrix/", title: "Plugin compatibility matrix (load orders)" },
-  security: { prefix: "security/", title: "Security tests" },
-  concurrency: { prefix: "concurrency/", title: "Concurrency & crash consistency" },
-  failureIsolation: { prefix: "failure-isolation/", title: "Failure isolation" },
-  checkpointTriggers: { prefix: "checkpoint-triggers/", title: "Checkpoint automatic triggers (live runtime)" },
-  online: { prefix: "online-model/", title: "Online model-request (optional)" },
+const KNOWN_TITLES = {
+  "runtime/": "Runtime plugin loading",
+  "model-path/": "Model-request path (offline mock provider)",
+  "package-inspection/": "Package inspection & provenance",
+  "load-order/": "Load-order permutations & tool conflicts",
+  "failure-isolation/": "Failure isolation",
+  "process-cleanup/": "Process cleanup",
+  "install-artifact/": "Install from built artifact",
+  "config-validation/": "Configuration validation & error handling",
+  "online-model/": "Online model-request (optional, gated)",
 };
+
+function titleForSuite(suite) {
+  for (const [prefix, title] of Object.entries(KNOWN_TITLES)) {
+    if (suite.startsWith(prefix)) return title;
+  }
+  return suite;
+}
+
+function groupSections(flat) {
+  const byTitle = new Map();
+  for (const r of flat) {
+    const title = titleForSuite(r.suite);
+    if (!byTitle.has(title)) byTitle.set(title, []);
+    byTitle.get(title).push(r);
+  }
+  const sections = {};
+  let i = 0;
+  for (const [title, rows] of byTitle) {
+    sections[`section${i++}`] = { title, counts: subCounts(rows), results: rows };
+  }
+  return sections;
+}
 
 export function buildReport({ environment, suites, startedAt, finishedAt, notes = [] }) {
   const flat = suites.flatMap((s) => s.results.map((r) => ({ suite: s.suite, ...r })));
@@ -66,12 +105,6 @@ export function buildReport({ environment, suites, startedAt, finishedAt, notes 
   const failures = flat.filter((r) => r.status === "fail").map((r) => ({ suite: r.suite, id: r.id, error: r.error }));
   const skipped = flat.filter((r) => r.status === "skipped").map((r) => ({ suite: r.suite, id: r.id, reason: r.notes }));
 
-  const sections = {};
-  for (const [key, def] of Object.entries(SECTION_DEFS)) {
-    const rows = flat.filter((r) => r.suite.startsWith(def.prefix));
-    if (rows.length) sections[key] = { title: def.title, counts: subCounts(rows), results: rows };
-  }
-
   return {
     schema: "opencode-plugin-lab/report/v1",
     environment,
@@ -79,36 +112,41 @@ export function buildReport({ environment, suites, startedAt, finishedAt, notes 
     finishedAt,
     durationMs: startedAt ? new Date(finishedAt).getTime() - new Date(startedAt).getTime() : null,
     summary: { counts, total: flat.length },
-    sections,
-    // A blocker is anything that prevents a required validation from passing.
+    sections: groupSections(flat),
     blockers: failures.map((f) => `${f.suite}:${f.id}`),
     failures,
     skipped,
-    limitations: remainingUnverified(),
-    futureImprovements: futureImprovements(),
+    securityWarnings: securityWarnings(environment),
+    limitations: remainingUnverified(environment),
     notes,
     suites,
   };
 }
 
-export function remainingUnverified() {
-  return [
-    "Live provider credential paths are not exercised unless `--online` and a dedicated test key are supplied (disabled by default).",
-    "Outbound redaction is verified on the supported HTTP model-request path via the offline mock provider; provider-native WebSocket traffic (experimental) is not covered.",
-    "The stranger-danger oversize fail-closed branch (>256MiB) is asserted by its constant, not by allocating a >256MiB payload inside the resource-limited container.",
-    "Hook registration is observed indirectly (through tool registration and the offline model path); OpenCode exposes no API to enumerate hooks.",
-    "Tool-result transformations beyond the prompt/context/output paths depend on the same hooks and are covered by the functional suite rather than distinct live sessions.",
-    "Plugin cleanup is verified by graceful server shutdown; explicit registration disposal / plugin unload is not separately asserted.",
-    "The compatibility matrix covers the three plugins in every load order plus a duplicate entry, but not arbitrary third-party plugins.",
-  ];
+export function securityWarnings(env) {
+  const warnings = [];
+  const plugins = env.plugins || {};
+  const networked = Object.entries(plugins).filter(([, i]) => i.capabilities && i.capabilities.network);
+  if (networked.length) warnings.push(`Plugins declare network capability: ${networked.map(([n]) => n).join(", ")}. Only the gated online tier enables networking.`);
+  const dirty = Object.entries(plugins).filter(([, i]) => i.dirty === true);
+  if (dirty.length) warnings.push(`Staged from a dirty worktree (uncommitted changes): ${dirty.map(([n]) => n).join(", ")}. Results may not reproduce from the recorded commit.`);
+  const noCommit = Object.entries(plugins).filter(([, i]) => i.built && !i.commit && i.sourceType !== "npm");
+  if (noCommit.length) warnings.push(`No source commit recorded for: ${noCommit.map(([n]) => n).join(", ")} (not a git worktree?).`);
+  warnings.push("Third-party plugin code runs in the container during build and load. Rootless Docker limits but does not eliminate risk; do not run untrusted plugins without reviewing them.");
+  return warnings;
 }
 
-export function futureImprovements() {
-  return [
-    "Image size / export time (deferred, not a functional issue): the final image is ~3.61GB with ~73k files, dominated by four identical copies of `@opencode/plugin` (~189MB / ~17.8k files each). Installing the SDK once and symlinking `node_modules/@opencode` into each plugin directory would remove ~570MB and ~53k files, but must be re-verified with a loading test before adoption.",
-    "Drop the optional global `bun` (85MB) from the runtime image; it is only needed for Git That Shit's own `bun:test` suite, which the lab harness does not run.",
-    "Build when the host is quieter or run the build under `nice -n 19 ionice -c3`; exports take minutes under load because rootless overlayfs writes ~3.6GB / ~73k files on a single volume.",
+export function remainingUnverified(env = {}) {
+  const list = [
+    "Live provider credential paths are not exercised unless `--online` and a dedicated test key are supplied (disabled by default).",
+    "Outbound redaction is only asserted for plugins that declare capabilities.redaction; it is verified on the supported HTTP model-request path via the offline mock provider, never on provider-native WebSocket traffic.",
+    "Docker (rootless or otherwise) reduces but does not eliminate the risk of malicious plugin code; plugins are not a hard security sandbox.",
+    "Install-from-artifact packs the built output with npm scripts disabled and supplies the plugin SDK offline; a package that relies on install-time scripts is reported as skipped rather than forced.",
   ];
+  for (const [name, info] of Object.entries(env.plugins || {})) {
+    if (info.capabilities && info.capabilities.storage) list.push(`Persistence for "${name}" is exercised only through the generic write-boundary check, not a plugin-specific storage audit.`);
+  }
+  return list;
 }
 
 export function renderMarkdown(report) {
@@ -116,10 +154,12 @@ export function renderMarkdown(report) {
   const lines = [];
   lines.push("# OpenCode Plugin Lab — Test Report");
   lines.push("");
+  lines.push(`- Run id: ${e.runId ?? "(none)"}`);
   lines.push(`- Generated: ${report.finishedAt}`);
   lines.push(`- OpenCode runtime: ${e.opencodeVersion}`);
   lines.push(`- Node: ${e.nodeVersion} (${e.platform})`);
-  lines.push(`- Image: ${e.image}`);
+  lines.push(`- Image: ${e.image}${e.imageId ? ` (${e.imageId})` : ""}`);
+  if (e.manifest) lines.push(`- Manifest: ${e.manifest.name} · \`${e.manifest.path}\` · digest ${String(e.manifest.digest).slice(0, 16)}…`);
   lines.push(`- Config: ${e.requested.all ? "all configurations" : e.requested.config} · tier: ${e.requested.tier} · online: ${e.requested.online}`);
   if (report.durationMs != null) lines.push(`- Duration: ${(report.durationMs / 1000).toFixed(1)}s`);
   lines.push("");
@@ -141,13 +181,18 @@ export function renderMarkdown(report) {
   }
   lines.push("");
 
-  lines.push("## Plugin packages under test");
+  lines.push("## Plugins under test");
   lines.push("");
-  lines.push("| Plugin | Version | Commit | Branch | Dirty |");
-  lines.push("| --- | --- | --- | --- | --- |");
+  lines.push("| Plugin | Version | Commit | Branch | Dirty | Source type |");
+  lines.push("| --- | --- | --- | --- | --- | --- |");
   for (const [name, info] of Object.entries(e.plugins)) {
-    lines.push(`| ${name} | ${info.version ?? "?"} | ${(info.commit ?? "?").slice(0, 10)} | ${info.branch ?? "?"} | ${info.dirty ?? "?"} |`);
+    lines.push(`| ${name} | ${info.version ?? "?"} | ${(info.commit ?? "?").slice(0, 10)} | ${info.branch ?? "?"} | ${info.dirty ?? "?"} | ${info.sourceType ?? "?"} |`);
   }
+  lines.push("");
+
+  lines.push("## Security warnings");
+  lines.push("");
+  for (const w of report.securityWarnings) lines.push(`- ${w}`);
   lines.push("");
 
   for (const section of Object.values(report.sections)) {
@@ -179,11 +224,8 @@ export function renderMarkdown(report) {
 
   lines.push("## Blockers");
   lines.push("");
-  if (report.blockers.length) {
-    for (const b of report.blockers) lines.push(`- ${b}`);
-  } else {
-    lines.push("- None. All required validations passed.");
-  }
+  if (report.blockers.length) for (const b of report.blockers) lines.push(`- ${b}`);
+  else lines.push("- None. All required validations passed.");
   lines.push("");
 
   lines.push("## Limitations / remaining unverified behaviors");
@@ -191,16 +233,14 @@ export function renderMarkdown(report) {
   for (const item of report.limitations) lines.push(`- ${item}`);
   lines.push("");
 
-  lines.push("## Future improvements (not required for this validation)");
-  lines.push("");
-  for (const item of report.futureImprovements) lines.push(`- ${item}`);
-  lines.push("");
-
   lines.push("## Reproduce");
   lines.push("");
   lines.push("```sh");
-  if (e.requested.all) lines.push(`make suite`);
+  if (e.requested.all) lines.push("make suite");
   else lines.push(`make test CONFIG=${e.requested.config} TIER=${e.requested.tier}`);
+  if (e.manifest && e.manifest.path && e.manifest.path.includes("/profiles/")) {
+    lines.push("# (built with the profile manifest: " + e.manifest.path + ")");
+  }
   lines.push("```");
   lines.push("");
   return lines.join("\n");
