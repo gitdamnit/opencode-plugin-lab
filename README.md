@@ -1,5 +1,7 @@
 # OpenCode Plugin Lab
 
+<img width="760" height="512" alt="pluginlab" src="https://github.com/user-attachments/assets/baa9c56e-14ab-4f8b-8f6e-ae589a4134da" />
+
 A disposable, isolated Docker test lab for **OpenCode V2 plugins**. Point it at
 any plugin and it builds the plugin, loads it in the *real* `opencode` runtime,
 and checks the things plugin authors actually care about: does it load, do its
